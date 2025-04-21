@@ -44,7 +44,7 @@ INSTALLED_APPS = [
     # Optional -- requires install using `django-allauth[socialaccount]`.
     'allauth.socialaccount',
     # ... include the providers you want to enable:
-    'allauth.socialaccount.providers.facebook',
+    # 'allauth.socialaccount.providers.facebook', - will try later
     'allauth.socialaccount.providers.google',
 ]
 

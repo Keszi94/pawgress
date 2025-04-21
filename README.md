@@ -68,7 +68,7 @@
 
 ## Testing
 
-
+All documentation regarding the testing on this project can be viewed in this seperate [TESTING.md file](TESTING.md).
 
 ## Deployment
 
