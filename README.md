@@ -80,6 +80,13 @@ All documentation regarding the testing on this project can be viewed in this se
 ## Credits
 
 ### Code Used
-### Content Used
+
+* [Bootstrap Docs](https://getbootstrap.com/docs/5.3/getting-started/introduction/) for the base template.
+
+
+### Supporting Material
+
+* [This artickle on bastakiss.com](https://bastakiss.com/blog/django-6/effective-implementation-of-django-templates-structure-inheritance-and-best-practices-800) helped me with template structuring.
+
 ### Media
 ### Acknowledgments
