@@ -1,0 +1,57 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- responsive design on mobile -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+    <!-- Page title -->
+    <title>Pawgress
+        <!-- Opt.: Extra title for other pages -->
+        {% block extratitle %}{% endblock %}
+    </title>
+
+    <!-- Opt.: Extra meta tags for other pages  -->
+    {% block extrameta %}{% endblock %}
+
+    <!-- Bootstrap core css -->
+    {% block corecss %}
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet">
+    {% endblock %}
+
+    <!-- Extra css for other pages -->
+    {% block extracss %}{% endblock %}
+  </head>
+
+  <body>
+    <!-- Fixed top header -->
+    <header class="containre-fluid fixed-top"></header>
+   
+    <main class="container mt-5 pt-5">
+        {% block content %}{% endblock %}
+    </main>
+
+    <!-- Django messages -->
+     <div class="container mt-3">
+        {% if messages %}
+            <div class="message-container">
+                {% for message in messages %}
+                    <div class="alert alert-{{ message.tags }}">{{ message }}</div>
+                {% endfor %}
+            </div>
+        {% endif %}
+     </div>
+
+     <!-- Bootstrap core JS -->
+      {% block corejs %}
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js"></script>
+    {% endblock %}
+
+    <!-- Extra JavaScript for other pages -->
+     {% block extrajs %}{% endblock %}
+  </body>
+</html>

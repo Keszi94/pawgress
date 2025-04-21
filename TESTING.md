@@ -68,7 +68,7 @@ This successfully merged the remote and local histories and I was able to push m
 
 ---
 
-**2. : ImproperlyConfigured – Missing AccountMiddleware in MIDDLEWARE**
+**2. ImproperlyConfigured – Missing AccountMiddleware in MIDDLEWARE**
 
 When running the initial database migration after installing django-allauth, the following error occurred:
 
