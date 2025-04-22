@@ -1,6 +1,34 @@
 {% extends "base.html" %}
 {% load static %}
 
-{% block content %}
-<h1 class="text-success display-4">I am working!</h1>
+<!-- Header -->
+{% block page_header %}
+    <div class="container-fluid header-container d-flex align-items-center justify-content-center">
+        <div class="text-end me-5">
+            <h1 class="display-4 logo-font text-black">Train Smarter, Not Harder</h1>
+            <div class="my-5">
+                <a href="#" class="btn btn-lg rounded-0 text-uppercase py-3 shop-now-button">Browse Courses</a>
+            </div>
+        </div>
+    </div>
 {% endblock %}
+
+<!-- About Us -->
+ {% block content %}
+ <section class="container my-5 py-4">
+    <div class="row">
+        <div class="col-md-8 mx-auto text-center">
+            <h2 class="mb-4">About Pawgress</h2>
+            <p class="lead">
+                At Pawgress, we believe every dog deserves the chance to thrive.
+                Our expert-designed training courses help dog owners build trust,
+                confidence, and lifelong skills — one paw at a time.
+            </p>
+            <p>
+                Whether you're raising a puppy, working with a rescue, or fine-tuning
+                advanced behaviors, we're here to guide you through every step of your journey. 
+            </p>
+        </div>
+    </div>
+ </section>
+ {% endblock %}

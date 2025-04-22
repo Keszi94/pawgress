@@ -30,7 +30,72 @@
 
   <body>
     <!-- Fixed top header -->
-    <header class="container-fluid fixed-top"></header>
+    <header class="container-fluid fixed-top py-2 py-lg-3">
+        <div class="row">
+            <!-- Site logo -->
+            <div class="col-12 col-lg-4 my-auto py-1 py-lg-0 text-center text-lg-left">
+                <a href="{% url 'home' %}" class="nav-link main-logo-link">
+                    <h2 class="logo-font text-black my-0"><i class="fa-solid fa-paw text-black"></i>Pawgress</h2>
+                </a>
+            </div>
+            <!-- Searchbar -->
+            <div class="col-12 col-lg-4 my-auto py-1 py-lg-0">
+                <form action="" method="GET">
+                    <div class="input-group w-100">
+                        <input type="text" class="form-control border border-black rounded-0" name="q" placeholder="Find the pawfect course...">
+                        <div class="input-group-append">
+                            <button class="form-control btn custom-btn rounded-0" type="submit">
+                                <span class="icon">
+                                    <i class="fa-solid fa-magnifying-glass"></i>
+                                </span>
+                            </button>
+                        </div>
+                    </div> 
+                </form>
+            </div>
+            <!-- Profile and Cart -->
+            <div class="col-12 col-lg-4 my-auto py-1 py-lg-0">
+                <ul class="list-inline list-unstyled d-flex justify-content-center justify-content-lg-end align-items-center my-0 gap-4">
+                    
+                    <!-- Account dropdown -->
+                    <li class="list-inline-item dropdown">
+                    <a class="text-black nav-link" href="#" id="user-options" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                <div><i class="fa-solid fa-user"></i></div>
+                                <p class="my-0">Account</p>
+                        </a>
+                        <div class="dropdown-menu border-0" aria-labelledby="user-options">
+                            {% if request.user.is_authenticated %}
+                                {% if request.user.is_superuser %}
+                                    <a href="" class="dropdown-item">Add New Course</a>
+                                {% endif %}
+                                <a href="" class="dropdown-item">My Profile</a>
+                                <a href="{% url 'account_logout' %}" class="dropdown-item">Logout</a>
+                            {% else %}
+                                <a href="{% url 'account_signup' %}" class="dropdown-item">Register</a>
+                                <a href="{% url 'account_login' %}" class="dropdown-item">Login</a>
+                            {% endif %}
+                        </div>
+                    </li>
+                    
+                    <!-- Cart -->
+                    <li class="list-inline-item">
+                        <a class="{% if grand_total %}text-info font-weight-bold{% else %}text-black{% endif %} nav-link" href="">
+                            <div class="text-center">
+                                <div><i class="fa-solid fa-cart-shopping"></i></div>
+                                <p class="my-0">
+                                    {% if grand_total %}
+                                        ${{ grand_total|floatformat:2 }}
+                                    {% else %}
+                                        €0.00
+                                    {% endif %}
+                                </p>
+                            </div>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </header>
 
     <!-- Django messages -->
     <div class="container mt-3">

@@ -15,6 +15,9 @@
   - [User Stories](#user-stories)
   - [Wireframes](#wireframes)
   - [Database Schema](#database-schema)
+- [Design](#design)
+  - [Color Palette](#color-palette)
+  - [Typography](#typography)
 - [Features](#features)
 - [Future Features](#future-features)
 - [SEO and Web Marketing](#seo-and-web-marketing)
@@ -47,6 +50,13 @@
 ### User Stories
 ### Wireframes
 ### Database Schema
+
+
+## Design
+
+### Color Palette
+
+### Typography
 
 
 ## Features
@@ -86,7 +96,13 @@ All documentation regarding the testing on this project can be viewed in this se
 
 ### Supporting Material
 
-* [This artickle on bastakiss.com](https://bastakiss.com/blog/django-6/effective-implementation-of-django-templates-structure-inheritance-and-best-practices-800) helped me with template structuring.
+* [This article on bastakiss.com](https://bastakiss.com/blog/django-6/effective-implementation-of-django-templates-structure-inheritance-and-best-practices-800) helped me with template structuring.
 
 ### Media
+
+#### Images Used
+
+* Header image downloaded from [Freepik](https://www.freepik.com/free-photo/dog-copyspace_2009576.htm#fromView=keyword&page=1&position=1&uuid=19b1f879-d65e-4dd1-a018-704e55560ec9&query=Dog+Header)
+* The color palette for the website was created using [coolors](https://coolors.co/).
+
 ### Acknowledgments
