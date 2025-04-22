@@ -1,0 +1,81 @@
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+}
+
+body {
+    background: url('/media/homepage_header.jpg') no-repeat center center fixed;
+    background-size: cover;
+    color: black;
+    font-family: 'Archivo';
+    min-height: 100vh;
+    background-position: 25% center;
+    overflow: hidden; /* Stop page from scrolling*/
+}
+
+.logo-font {
+    text-transform: none !important;
+    font-weight: 700;
+}
+
+.main-logo-link {
+    width: fit-content;
+}
+
+.browse-courses-button {
+    background: #f06543;
+    color: black;
+    min-width: 260px;
+}
+
+.search-btn {
+    background: #f06543;
+    color: black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.browse-courses-button:hover,
+.sbrowse-courses-button:active,
+.browse-courses-button:focus,
+.search-btn:hover,
+.search-btn:active,
+.search-btn:focus {
+    background: #f09d51;
+    color: black;
+}
+
+.text-black {
+    color: #000 !important;
+}
+
+.border-black {
+    border: 1px solid black !important;
+}
+
+/* -------------------------------- Media Queries */
+
+/* Slightly larger container on xl screens */
+@media (min-width: 1200px) {
+  .container {
+    max-width: 80%;
+  }
+}
+
+/* fixed top navbar only on medium and up */
+@media (min-width: 992px) {
+    .fixed-top-desktop-only {
+        position: fixed;
+        top: 0;
+        right: 0;
+        left: 0;
+        z-index: 1030;
+    }
+
+    .header-container {
+        padding-top: 164px;
+    }
+}

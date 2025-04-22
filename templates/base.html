@@ -11,10 +11,8 @@
     {% endblock %}
 
     <!-- Page title -->
-    <title>Pawgress
-        <!-- Opt.: Extra title for other pages -->
-        {% block extratitle %}{% endblock %}
-    </title>
+                    <!-- Opt.: Extra title for other pages -->
+    <title>Pawgress{% block extratitle %}{% endblock %}</title>
 
     <!-- Opt.: Extra meta tags for other pages  -->
     {% block extrameta %}{% endblock %}
@@ -22,20 +20,26 @@
     <!-- Bootstrap core css -->
     {% block corecss %}
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="{% static 'css/base.css' %}">
     {% endblock %}
 
     <!-- Extra css for other pages -->
-    {% block extracss %}{% endblock %}
+    {% block extracss %}
+        <link rel="stylesheet" href="{% static 'css/base.css' %}">
+    {% endblock %}
   </head>
 
   <body>
     <!-- Fixed top header -->
-    <header class="container-fluid fixed-top py-2 py-lg-3">
-        <div class="row">
+    <header class="container-fluid fixed-top bg-white py-2 py-lg-3">
+        <div id="topnav" class="row bg-white pt-lg-2 d-none d-lg-flex">
             <!-- Site logo -->
-            <div class="col-12 col-lg-4 my-auto py-1 py-lg-0 text-center text-lg-left">
+            <div class="col-12 col-lg-4 my-auto py-1 py-lg-0 text-center text-lg-start ps-3">
                 <a href="{% url 'home' %}" class="nav-link main-logo-link">
-                    <h2 class="logo-font text-black my-0"><i class="fa-solid fa-paw text-black"></i>Pawgress</h2>
+                    <h2 class="logo-font text-black my-0">
+                        <i class="fa-solid fa-paw text-black me-1"></i> <strong>Pawgress</strong>
+                    </h2>
                 </a>
             </div>
             <!-- Searchbar -->
@@ -43,14 +47,10 @@
                 <form action="" method="GET">
                     <div class="input-group w-100">
                         <input type="text" class="form-control border border-black rounded-0" name="q" placeholder="Find the pawfect course...">
-                        <div class="input-group-append">
-                            <button class="form-control btn custom-btn rounded-0" type="submit">
-                                <span class="icon">
-                                    <i class="fa-solid fa-magnifying-glass"></i>
-                                </span>
-                            </button>
-                        </div>
-                    </div> 
+                        <button class="btn search-btn border-black rounded-0 px-4" type="submit">
+                            <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+                        </button>
+                    </div>
                 </form>
             </div>
             <!-- Profile and Cart -->
@@ -60,9 +60,11 @@
                     <!-- Account dropdown -->
                     <li class="list-inline-item dropdown">
                     <a class="text-black nav-link" href="#" id="user-options" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                <div><i class="fa-solid fa-user"></i></div>
-                                <p class="my-0">Account</p>
-                        </a>
+                        <div class="d-flex flex-column align-items-center">
+                            <i class="fa-solid fa-user"></i>
+                            <p class="my-0">Account</p>
+                        </div>
+                    </a>
                         <div class="dropdown-menu border-0" aria-labelledby="user-options">
                             {% if request.user.is_authenticated %}
                                 {% if request.user.is_superuser %}
@@ -78,7 +80,7 @@
                     </li>
                     
                     <!-- Cart -->
-                    <li class="list-inline-item">
+                    <li class="list-inline-item me-3">
                         <a class="{% if grand_total %}text-info font-weight-bold{% else %}text-black{% endif %} nav-link" href="">
                             <div class="text-center">
                                 <div><i class="fa-solid fa-cart-shopping"></i></div>
@@ -113,11 +115,12 @@
         {% block content %}{% endblock %}
     </main>
 
-    <footer class="container mt-5 pt-4 border-top text-center"></footer>
+    <!-- <footer class="container mt-5 pt-4 border-top text-center"></footer> -->
 
      <!-- Bootstrap core JS -->
-      {% block corejs %}
+    {% block corejs %}
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="https://kit.fontawesome.com/2b7435e410.js" crossorigin="anonymous"></script>
     {% endblock %}
 
     <!-- This runs after everything else -->
