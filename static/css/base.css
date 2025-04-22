@@ -12,7 +12,11 @@ body {
     font-family: 'Archivo';
     min-height: 100vh;
     background-position: 25% center;
-    overflow: hidden; /* Stop page from scrolling*/
+    overflow: hidden; /* Stop page from scrolling */
+}
+
+.about-us-section {
+    max-width: 880px;
 }
 
 .logo-font {
@@ -36,6 +40,15 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+.social-icons {
+    color: black;
+    transition: color 0.2s ease;
+}
+
+.social-icons:hover {
+    color: #f06543;
 }
 
 .browse-courses-button:hover,

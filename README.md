@@ -56,6 +56,10 @@
 
 ### Color Palette
 
+![Coolors palette](readme_assets/images/pawgress_palette.png)
+
+The color palette for the website was created using [coolors](https://coolors.co/).
+
 ### Typography
 
 
@@ -103,6 +107,5 @@ All documentation regarding the testing on this project can be viewed in this se
 #### Images Used
 
 * Header image downloaded from [Freepik](https://www.freepik.com/free-photo/dog-copyspace_2009576.htm#fromView=keyword&page=1&position=1&uuid=19b1f879-d65e-4dd1-a018-704e55560ec9&query=Dog+Header)
-* The color palette for the website was created using [coolors](https://coolors.co/).
 
 ### Acknowledgments
