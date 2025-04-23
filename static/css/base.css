@@ -15,6 +15,24 @@ body {
     overflow: hidden; /* Stop page from scrolling */
 }
 
+header {
+    border-bottom: 2px solid #000 !important;
+}
+
+/* Toggler icon in navbar on mobile */
+.navbar-toggler {
+    padding: 0.25rem 0.75rem;
+    height: 48px;
+    display: flex;
+    align-items: center;
+}
+
+.navbar-toggler-icon {
+    width: 1.5rem;
+    height: 1.5rem;
+    background-size: contain;
+}
+
 .about-us-section {
     max-width: 880px;
 }

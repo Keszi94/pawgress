@@ -1,3 +1,5 @@
+<!-- Initial code grabbed from Bootstrap & Boutique Ado wt project, modified to fit Pawgress -->
+
 {% load static %}
 <!doctype html>
 <html lang="en">
@@ -37,9 +39,9 @@
             <!-- Site logo -->
             <div class="col-12 col-lg-4 my-auto py-1 py-lg-0 text-center text-lg-start ps-3">
                 <a href="{% url 'home' %}" class="nav-link main-logo-link">
-                    <h2 class="logo-font text-black my-0">
+                    <h1 class="logo-font text-black my-0 mt-2">
                         <i class="fa-solid fa-paw text-black me-1"></i> <strong>Pawgress</strong>
-                    </h2>
+                    </h1>
                 </a>
             </div>
             <!-- Searchbar -->
@@ -53,7 +55,7 @@
                     </div>
                 </form>
             </div>
-            <!-- Profile and Cart -->
+            <!-- Account and Cart -->
             <div class="col-12 col-lg-4 my-auto py-1 py-lg-0">
                 <ul class="list-inline list-unstyled d-flex justify-content-center justify-content-lg-end align-items-center my-0 gap-4">
                     
@@ -81,12 +83,12 @@
                     
                     <!-- Cart -->
                     <li class="list-inline-item me-3">
-                        <a class="{% if grand_total %}text-info font-weight-bold{% else %}text-black{% endif %} nav-link" href="">
+                        <a class="{% if grand_total %}text-info fw-bold{% else %}text-black{% endif %} nav-link" href="">
                             <div class="text-center">
                                 <div><i class="fa-solid fa-cart-shopping"></i></div>
                                 <p class="my-0">
                                     {% if grand_total %}
-                                        ${{ grand_total|floatformat:2 }}
+                                        €{{ grand_total|floatformat:2 }}
                                     {% else %}
                                         €0.00
                                     {% endif %}
@@ -96,6 +98,17 @@
                     </li>
                 </ul>
             </div>
+        </div>
+
+        <!-- Code grabbed from bootstrap docs, modified based on Boutique Ado wt project -->
+        <div class="row bg-white">
+            <nav class="navbar navbar-expand-lg navbar-light w-100 px-3 py-0">
+                <button class="navbar-toggler d-lg-none" type="button" data-bs-toggle="collapse" data-bs-target="#main-nav" aria-controls="main-nav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+              </button>
+                {% include 'includes/mobile-top-header.html' %}
+                {% include 'includes/main-nav.html' %}
+            </nav>
         </div>
     </header>
 
@@ -109,8 +122,15 @@
             </div>
         {% endif %}
     </div>
-    
+    <!-- Pawgress logo on mobile -->
     <main class="container mt-5 pt-5">
+        <div class="col-12 col-lg-4 my-auto py-1 py-lg-0 text-center text-lg-start d-lg-none">
+            <a href="{% url 'home' %}" class="nav-link main-logo-link">
+                <h1 class="logo-font text-black my-0 mt-2">
+                    <i class="fa-solid fa-paw text-black me-1"></i> <strong>Pawgress</strong>
+                </h1>
+            </a>
+        </div>
         {% block page_header %}{% endblock %}
         {% block content %}{% endblock %}
     </main>
