@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     # 'allauth.socialaccount.providers.facebook', - will try later
     'allauth.socialaccount.providers.google',
     'home',
+    'courses',
 ]
 
 MIDDLEWARE = [
