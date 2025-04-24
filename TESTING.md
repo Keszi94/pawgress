@@ -89,3 +89,22 @@ After this I ran the `python manage.py migrate`command and it worked as expected
 [Solution found on this page](https://stackoverflow.com/questions/77012106/django-allauth-modulenotfounderror-no-module-named-allauth-account-middlewar?utm_source=chatgpt.com)
 
 ---
+
+**3. DeserializationError – Category ForeignKey in fixture requires integer, not string**
+
+**Cause:**
+
+While trying to run `python manage.py loaddata courses`, a ValidationError was raised because the category values were provided as strings ("Puppy Training"), rather than integer primary keys that are expected by Django's ForeignKey.
+
+**Solution:**
+
+I have created a separate categories.json fixture, where I assigned each category it's own integer primary key. I than ran:
+
+`python manage.py loaddata categories`
+`python manage.py loaddata courses`
+
+After this all course data was successfully imported into the database.
+
+Solution found on these pages: [reddit](https://www.reddit.com/r/django/comments/10zift2/help_me_understand_how_to_load_data_into_the/), [Dev.to](https://dev.to/documendous/using-django-fixtures-with-foreign-keys-without-hardcoded-ids-1pa0)
+
+---
