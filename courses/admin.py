@@ -3,5 +3,24 @@ from .models import Course, Category
 
 # Register your models here.
 
-admin.site.register(Course)
-admin.site.register(Category)
+
+class CourseAdmin(admin.ModelAdmin):
+    list_display = (
+        'title',
+        'category',
+        'price',
+        'image'
+    )
+
+    ordering = ('title', )
+
+
+class CategoryAdmin(admin.ModelAdmin):
+    list_display = (
+        'name',
+        'pk'
+    )
+
+
+admin.site.register(Course, CourseAdmin)
+admin.site.register(Category, CategoryAdmin)
