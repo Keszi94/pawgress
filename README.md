@@ -113,6 +113,8 @@ All documentation regarding the testing on this project can be viewed in this se
 ---
 **course images**
 
+I shrank all the images using the [squoosh.app](https://squoosh.app/).
+
 * [Anastasiya Badun](https://unsplash.com/@badun?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash") on [Unsplash](https://unsplash.com/photos/a-brown-and-black-dog-standing-on-top-of-a-dirt-road-Xffr7rCo98s?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash)
  
 * [Roger Granquist](https://unsplash.com/@rogergranquist?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash) on [Unsplash](https://unsplash.com/photos/a-dog-with-a-leash-standing-next-to-another-dog-1y7n5lEL10U?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash)

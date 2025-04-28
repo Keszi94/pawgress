@@ -3,16 +3,16 @@ html, body {
     margin: 0;
     padding: 0;
     overflow-x: hidden;
+    font-family: 'Archivo';
+    color: black;
+    min-height: 100vh;
 }
 
-body {
+body.home-page {
     background: url('/media/homepage_header.jpg') no-repeat center center fixed;
     background-size: cover;
-    color: black;
-    font-family: 'Archivo';
-    min-height: 100vh;
     background-position: 25% center;
-    overflow: hidden; /* Stop page from scrolling */
+    overflow: hidden; /* Stop page from scrolling on home page */
 }
 
 header {
@@ -85,6 +85,59 @@ header {
 
 .border-black {
     border: 1px solid black !important;
+}
+
+/* -------------------------------- Courses page */
+
+body.courses-page {
+    background: white;
+}
+
+.card-img-top {
+    height: 250px;
+    object-fit: cover;
+    width: 100%;
+}
+
+.card-footer {
+    background-color: transparent;
+    border-top: none;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+}
+
+.card {
+    margin-bottom: 20px;
+    border: 1px solid black;
+    border-radius: 8px;
+    transition: transform 0.3s ease;
+}
+
+.card:hover {
+    transform: scale(1.05);
+}
+
+.card-title {
+    color: #000;
+    transition: color 0.2s ease
+}
+
+.card-title:hover,
+.card-title:active {
+    color: #227c9d;
+}
+
+.course-category {
+    color: #f06543;
+}
+
+.course-category:hover {
+    text-decoration: underline solid;
+}
+
+.card a {
+    text-decoration: none;
+    color: black;
 }
 
 /* -------------------------------- Media Queries */

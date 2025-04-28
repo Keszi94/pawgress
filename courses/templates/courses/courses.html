@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 {% load static %}
 
+{% block body_class %}courses-page{% endblock %}
 
 {% block page_header %}
     <div class="container header-container">
@@ -12,10 +13,41 @@
 
 
 {% block content %}
-    <div class="container">
+    <div class="container-fluid">
         <div class="row">
-            <div class="col">
-                {{ courses }}
+            <div class="col text-center mt-3">
+                <h2 class="logo-font">Courses</h2>
+                <br>
+            </div>
+        </div>
+        <div class="row">
+            <div class="course-container col-12">
+                <div class="row mt-1 mb-2"></div>
+                <div class="row">
+                    {% for course in courses %}
+                        <div class="col-sm-6 col-md-6 col-lg-4 col-xl-3 pb-4">
+                            <div class="card h-100">
+                                {% if course.image %}
+                                <a href="#">
+                                    <img src="{{ course.image.url }}" class="card-img-top" alt="{{ course.title }}" loading="lazy">
+                                </a>
+                                {% else %}
+                                <a href="#">
+                                    <img src="{{ MEDIA_URL }}noimage.jpg" class="card-img-top" alt="{{ course.title }}" loading="lazy">
+                                </a>
+                                {% endif %}
+                                <div class="card-body">
+                                  <a href="#"><p class="course-category">{{ course.category }}</p></a>
+                                  <a href="#"><h3 class="card-title">{{ course.title }}</h3></a>
+                                  <p class="card-text">{{ course.description }}</p>
+                                </div>
+                                <div class="card-footer">
+                                    <h5>€{{ course.price }}</h5>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
             </div>
         </div>
     </div>
