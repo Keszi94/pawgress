@@ -27,10 +27,29 @@ header {
     align-items: center;
 }
 
+#main-nav {
+    background-color: #000;
+    width: 100%;
+}
+
 .navbar-toggler-icon {
     width: 1.5rem;
     height: 1.5rem;
     background-size: contain;
+    filter: invert(100%);
+}
+
+.main-nav-link {
+    background-color: transparent;
+    color: white;
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.main-nav-link:hover,
+.main-nav-link:active,
+.main-nav-link:focus {
+    background: #e9d985;
+    color: black;
 }
 
 .about-us-section {
