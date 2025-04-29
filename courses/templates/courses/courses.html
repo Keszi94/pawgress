@@ -28,17 +28,17 @@
                         <div class="col-sm-6 col-md-6 col-lg-4 col-xl-3 pb-4">
                             <div class="card h-100">
                                 {% if course.image %}
-                                <a href="#">
+                                <a href="{% url 'course_detail' course.id %}">
                                     <img src="{{ course.image.url }}" class="card-img-top" alt="{{ course.title }}" loading="lazy">
                                 </a>
                                 {% else %}
-                                <a href="#">
+                                <a href="{% url 'course_detail' course.id %}">
                                     <img src="{{ MEDIA_URL }}noimage.jpg" class="card-img-top" alt="{{ course.title }}" loading="lazy">
                                 </a>
                                 {% endif %}
                                 <div class="card-body">
                                   <a href="#"><p class="course-category">{{ course.category }}</p></a>
-                                  <a href="#"><h3 class="card-title">{{ course.title }}</h3></a>
+                                  <a href="{% url 'course_detail' course.id %}"><h3 class="card-title">{{ course.title }}</h3></a>
                                   <p class="card-text">{{ course.description }}</p>
                                 </div>
                                 <div class="card-footer">

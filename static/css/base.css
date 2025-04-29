@@ -46,7 +46,8 @@ header {
     width: fit-content;
 }
 
-.browse-courses-button {
+.browse-courses-button,
+.add-to-cart-btn {
     background: #f06543;
     color: black;
     min-width: 260px;
@@ -74,7 +75,10 @@ header {
 .browse-courses-button:focus,
 .search-btn:hover,
 .search-btn:active,
-.search-btn:focus {
+.search-btn:focus,
+.add-to-cart-btn:hover,
+.add-to-cart-btn:active,
+.add-to-cart-btn:focus {
     background: #f09d51;
     color: black;
 }
@@ -138,6 +142,23 @@ body.courses-page {
 .card a {
     text-decoration: none;
     color: black;
+}
+
+/* -------------------------------- Course Detail page */
+
+body.course-detail {
+    background: white;
+}
+
+.course-detail-header {
+    background: #AAE1E7;
+    background: linear-gradient(0deg,rgba(170, 225, 231, 0.32) 12%, rgba(170, 225, 231, 1) 100%);
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+    padding-top: 5rem;
+    padding-bottom: 5rem;
+
 }
 
 /* -------------------------------- Media Queries */
