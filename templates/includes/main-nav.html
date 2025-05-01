@@ -2,33 +2,35 @@
 
 <div class="collapse navbar-collapse" id="main-nav">
     <ul class="navbar-nav w-auto mx-auto">
+        <!-- All Courses -->
         <li class="nav-item dropdown">
             <a href="{% url 'courses' %}" class="main-nav-link logo-font fw-bold nav-link me-5" id="all-courses-link">
                 All Courses
             </a>
         </li>
+        <!-- Courses by Category -->
         <li class="nav-item dropdown">
             <a href="#" class="main-nav-link logo-font fw-bold nav-link me-5" id="courses-by-category-link" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 Courses by Category
             </a>
             <div class="dropdown-menu border-0" aria-labelledby="courses-by-category-link">
-                <a href="" class="dropdown-item py-2 px-4">Puppy Training</a>
-                <a href="" class="dropdown-item py-2 px-4">Basic Obidience</a>
-                <a href="" class="dropdown-item py-2 px-4">Reactivity & Behavior</a>
-                <a href="" class="dropdown-item py-2 px-4">Advanced Skills & Tricks</a>
-                <a href="" class="dropdown-item py-2 px-4">Rescue Support</a>
+                <a href="{% url 'courses' %}?category=puppy-training" class="dropdown-item py-2 px-4">Puppy Training</a>
+                <a href="{% url 'courses' %}?category=basic-obedience" class="dropdown-item py-2 px-4">Basic Obedience</a>
+                <a href="{% url 'courses' %}?category=reactivity-behavior" class="dropdown-item py-2 px-4">Reactivity & Behavior</a>
+                <a href="{% url 'courses' %}?category=advanced-skills-tricks" class="dropdown-item py-2 px-4">Advanced Skills & Tricks</a>
+                <a href="{% url 'courses' %}?category=rescue-support" class="dropdown-item py-2 px-4">Rescue Support</a>
             </div>
         </li>
-
+        <!-- Course Bundles -->
         <li class="nav-item dropdown">
             <a href="#" class="main-nav-link logo-font fw-bold nav-link me-5" id="bundles-link">
                 Course Bundles
             </a>
         </li>
-
+        <!-- Meet the Team -->
         <li class="nav-item dropdown">
             <a href="#" class="main-nav-link logo-font fw-bold nav-link me-5" id="team-link">
-                Meet The Team
+                Meet the Team
             </a>
         </li>
     </ul>
