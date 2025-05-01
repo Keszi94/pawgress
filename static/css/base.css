@@ -203,3 +203,10 @@ body.course-detail {
         padding-top: 164px;
     }
 }
+
+/* Add in if any added content is hidden by the nav on mobile later */
+/* @media (max-width: 991px) {
+    body.courses-page {
+        padding-top: 116px;
+    }
+} */

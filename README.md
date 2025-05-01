@@ -96,6 +96,8 @@ All documentation regarding the testing on this project can be viewed in this se
 ### Code Used
 
 * [Bootstrap Docs](https://getbootstrap.com/docs/5.3/getting-started/introduction/) for the base template.
+* I used [CSS Gradient.io](https://cssgradient.io/) to generate the css code for the courses detail page header background.
+* All icons used on the side are from [Font Awesome](https://fontawesome.com/).
 
 
 ### Supporting Material
