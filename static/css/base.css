@@ -180,6 +180,21 @@ body.course-detail {
 
 }
 
+/* -------------------------------- Cart page */
+
+.cart-browse-btn {
+    border: none;
+    color: #000;
+    background-color: transparent;
+    transition: background-color 0.2s ease, color 0.2 ease;
+}
+
+.cart-browse-btn:hover,
+.cart-browse-btn:focus {
+    background-color: #aae1e7;
+    text-decoration: none;
+}
+
 /* -------------------------------- Media Queries */
 
 /* Slightly larger container on xl screens */

@@ -49,7 +49,7 @@
 
     <!-- Cart subtotal -->
     <li class="list-inline-item">
-        <a class="{% if grand_total %}text-black fw-bold{% else %}text-white{% endif %} nav-link d-block d-lg-none" href="">
+        <a class="{% if grand_total %}text-black fw-bold{% else %}text-white{% endif %} nav-link d-block d-lg-none" href="{% url 'view_cart' %}">
             <div class="text-center">
                 <div><i class="fa-solid fa-cart-shopping"></i></div>
                 <p class="my-0">

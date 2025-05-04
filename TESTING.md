@@ -186,4 +186,49 @@
     [How to auto fill SlugField instead of overriding save()?](https://stackoverflow.com/questions/50615561/how-to-auto-fill-slugfield-instead-of-overriding-save) |
     [UNIQUE constraint failed on adding a new model field in django](https://stackoverflow.com/questions/58631272/unique-constraint-failed-on-adding-a-new-model-field-in-django)
 
---- 
+---
+
+6. `AssertionError` and `ImproperlyConfigured` errors when starting the server (django-allauth compatibility)
+
+    After restarting my computer, I suddenly couldn’t run the development server anymore. Running `python manage.py runserver` threw an `AssertionError` related to `allauth.account.app_settings`, and later a `ModuleNotFoundError` for middleware that didn’t exist. This was strange because everything had worked the day before.
+
+* Cause:
+  
+  I was using an older settings.py setup for django-allauth, which worked with older versions, but now I had installed newer versions, and these have more strict requirements.
+  In particular, I had settings like:
+
+
+  ```python
+  ACCOUNT_LOGIN_METHODS = {"username", "email"}
+  ```
+  I also had an invalid middleware line: 
+
+
+  ```python
+  'allauth.account.middleware.AccountMiddleware'
+  ```
+
+* Solution:
+  1.	I deleted the invalid middleware line from settings.py.
+  2.	I have changed the incorrect login method setting to this: 
+  ```python
+  ACCOUNT_AUTHENTICATION_METHOD = "username_email"
+  ```
+
+  3.	Using windows PowerShell, I removed my broken virtual environment and rebuilt it to match the project dependencies:
+  ```
+  Remove-Item -Recurse -Force .venv
+  python -m venv .venv
+  .venv\Scripts\Activate.ps1
+  pip install -r requirements.txt
+  ```
+  
+  After implementing all these changes, the server ran again with no errors.
+
+  Documentation that helped me find the solution: 
+
+  * [Allauth Quickstart](https://docs.allauth.org/en/dev/installation/quickstart.html?utm_source=chatgpt.com)
+
+  * [Allauth Configuration](https://docs.allauth.org/en/dev/account/configuration.html?utm_source=chatgpt.com)
+  
+---
