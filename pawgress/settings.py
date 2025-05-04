@@ -53,7 +53,6 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
-    'allauth.account.middleware.AccountMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -97,16 +96,14 @@ SITE_ID = 1
 # prints emails to console for testing
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
-
 # login is allowed by email or username
-ACCOUNT_LOGIN_METHODS = {'username', 'email'}
-# defines the register form fields and their required status
-ACCOUNT_SIGNUP_FIELDS = [
-    'email*', 'email2*', 'username*', 'password1*', 'password2*'
-    ]
+ACCOUNT_AUTHENTICATION_METHOD = "username_email"
+ACCOUNT_USERNAME_REQUIRED = True
+ACCOUNT_EMAIL_REQUIRED = True
 # email has to be verified to register
 ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
 ACCOUNT_USERNAME_MIN_LENGTH = 4
+
 LOGIN_URL = '/accounts/login/'
 LOGIN_REDIRECT_URL = '/'
 
