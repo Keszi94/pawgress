@@ -209,20 +209,21 @@
   ```
 
 * Solution:
-  1.	I deleted the invalid middleware line from settings.py.
-  2.	I have changed the incorrect login method setting to this: 
-  ```python
-  ACCOUNT_AUTHENTICATION_METHOD = "username_email"
-  ```
+    *	I deleted the invalid middleware line from settings.py.
 
-  3.	Using windows PowerShell, I removed my broken virtual environment and rebuilt it to match the project dependencies:
-  ```
-  Remove-Item -Recurse -Force .venv
-  python -m venv .venv
-  .venv\Scripts\Activate.ps1
-  pip install -r requirements.txt
-  ```
-  
+    *	I have changed the incorrect login method setting to this: 
+    ```python
+    ACCOUNT_AUTHENTICATION_METHOD = "username_email"
+    ```
+
+    * 	Using windows PowerShell, I removed my broken virtual environment and rebuilt it to match the project dependencies:
+    ```
+    Remove-Item -Recurse -Force .venv
+    python -m venv .venv
+    .venv\Scripts\Activate.ps1
+    pip install -r requirements.txt
+    ```
+    
   After implementing all these changes, the server ran again with no errors.
 
   Documentation that helped me find the solution: 
