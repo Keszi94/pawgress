@@ -194,6 +194,7 @@ body.course-detail {
 
 /* -------------------------------- Cart page */
 
+/* class for the empty and not empty cart as well */
 .cart-browse-btn {
     border: none;
     color: #000;
@@ -205,6 +206,18 @@ body.course-detail {
 .cart-browse-btn:focus {
     background-color: #aae1e7;
     text-decoration: none;
+}
+
+a.secure-checkout-btn {
+    background: #f06543 !important;
+    color: black;
+}
+
+a.secure-checkout-btn:hover,
+a.secure-checkout-btn:active,
+a.secure-checkout-btn:focus {
+    background: #f09d51 !important;
+    color: black;
 }
 
 /* -------------------------------- Media Queries */

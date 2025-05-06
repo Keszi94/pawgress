@@ -23,8 +23,56 @@
         <div class="row">
             <div class="col">
                 {% if cart_items %}
-                    <div class="table-responsive rounded"></div>
-                        {{ cart_items }}
+                    <div class="table-responsive rounded">
+                        <table class="table table-sm table-borderless">
+                            <thead class="text-black">
+                                <tr>
+                                    <th scope="col">Course Info</th>
+                                    <th scope="col" class="text-end">Price</th>
+                                    <!-- Remove from cart col -->
+                                    <th scope="col" class="text-end"></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for item in cart_items %}
+                                    <tr>
+                                        <td class="p-3 w-50">
+                                            <div class="d-flex align-items-center">
+                                                <img src="{{ item.course.image.url }}" alt="{{ item.course.title }}" class="img-fluid rounded me-3" style="width: 100px; height: auto;">
+                                                <div>
+                                                    <p class="my-0"><strong>{{ item.course.title }}</strong></p>
+                                                    <p class="my-0 small text-muted">{{ item.course.category }}</p>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td class="py-3 text-end align-middle">
+                                            €{{ item.course.price }}
+                                        </td>
+                                        <td class="py-3 text-end align-middle">
+                                            <a href="#" class="text-danger">Remove from Cart</a>
+                                        </td>
+                                    </tr>
+                                {% endfor %}
+                                <tr class="pt-5">
+                                    <td colspan="3" class="text-end pt-5">
+                                        <h4>
+                                            <strong>Grand Total:</strong> €{{ grand_total|floatformat:2 }}
+                                        </h4>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="3" class="text-end">
+                                        <a href="{% url 'courses' %}" class="btn btn-lg rounded-0 text-uppercase py-3 cart-browse-btn border border-black border-1">
+                                            <i class="fa-solid fa-dog"></i> Keep Browsing
+                                        </a>
+                                        <a href="#" class="btn btn-lg rounded-0 text-uppercase py-3 secure-checkout-btn border border-black border-1">
+                                            Secure Checkout <i class="fa-solid fa-lock"></i>
+                                        </a>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
                 {% else %}
                     <p class="lead mb-5">Your cart is empty</p>
                     <a href="{% url 'courses' %}" class="btn cart-browse-btn rounded-0 btn-lg">
