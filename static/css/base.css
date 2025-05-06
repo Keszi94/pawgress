@@ -163,6 +163,18 @@ body.courses-page {
     color: black;
 }
 
+/* courses page add to cart on cards */
+.add-to-cart-link {
+    color: black !important;
+    background-color: transparent;
+    transition: background-color 0.3s ease;
+    font-weight: 500;
+}
+
+.add-to-cart-link:hover {
+    background-color: #aae1e7 !important;
+}
+
 /* -------------------------------- Course Detail page */
 
 body.course-detail {

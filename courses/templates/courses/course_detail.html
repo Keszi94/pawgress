@@ -33,7 +33,13 @@
                 {% else %}
                 <div class="text-center">
                     <p class="lead">In order to gain access to the course, please purchase it first.</p>
-                    <a href="#" class="btn btn-lg rounded-0 text-uppercase py-3 border border-black border-1 add-to-cart-btn">Add to Cart</a>
+                    <form action="{% url 'add_to_cart' course.id %}" method="POST">
+                        {% csrf_token %}
+                        <input type="hidden" name="redirect_url" value="{{ request.path }}">
+                        <button type="submit" class="btn btn-lg rounded-0 text-uppercase py-3 border border-black border-1 add-to-cart-btn">
+                            Add to cart
+                        </button>
+                    </form>
                 </div>
                 {% endif %}
             </div>
