@@ -1,4 +1,5 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, HttpResponse
+from django.views.decorators.http import require_POST
 
 # Create your views here.
 
@@ -26,3 +27,26 @@ def add_to_cart(request, item_id):
     request.session['cart'] = cart
 
     return redirect(redirect_url)
+
+
+# this view handles only POST requests
+@require_POST
+def remove_from_cart(request, item_id):
+    """ Removes a course from the shopping cart """
+
+    try:
+        cart = request.session.get('cart', {})
+
+        # removes the item if it IS in the cart
+        if item_id in cart:
+            cart.pop(item_id)
+
+        # Saves the updated cart
+        request.session['cart'] = cart
+
+        # Returns success response
+        return HttpResponse(status=200)
+
+    # 'e' for error message display
+    except Exception as e:
+        return HttpResponse(status=500)
