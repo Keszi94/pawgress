@@ -220,6 +220,14 @@ a.secure-checkout-btn:focus {
     color: black;
 }
 
+.remove-item {
+    text-decoration: none;
+}
+
+.remove-item:hover {
+    text-decoration: underline solid 1px;
+}
+
 /* -------------------------------- Media Queries */
 
 /* Slightly larger container on xl screens */

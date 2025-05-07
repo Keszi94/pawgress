@@ -49,7 +49,9 @@
                                             €{{ item.course.price }}
                                         </td>
                                         <td class="py-3 text-end align-middle">
-                                            <a href="#" class="text-danger">Remove from Cart</a>
+                                            <a href="#" class="text-danger remove-item" id="remove_{{ item.item_id }}" data-item_id="{{ item.item_id }}">
+                                                Remove from Cart
+                                            </a>
                                         </td>
                                     </tr>
                                 {% endfor %}
@@ -85,4 +87,31 @@
             </div>
         </div>
     </div>
+{% endblock %}
+
+{% block postloadjs %}
+{{ block.super }}
+
+<script type="text/javascript">
+    // Remove the course item and reload on click
+    $('.remove-item').click(function(e) {
+        e.preventDefault();
+        // authorize the POST request by getting the csrf token
+        var csrfToken = '{{ csrf_token }}';
+        // get the clicked item's id
+        var itemId = $(this).attr('id').split('remove_')[1];
+        // build url for the item removal
+        var url = `/cart/remove/${itemId}/`;
+        // data for the POST request
+        var data = {'csrfmiddlewaretoken': csrfToken};
+
+        // sends the POST request to the server
+        $.post(url, data)
+        // reload the page
+         .done(function() {
+            location.reload();
+         });
+    });
+</script>
+
 {% endblock %}
