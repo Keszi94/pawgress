@@ -117,7 +117,21 @@
         {% if messages %}
             <div class="message-container">
                 {% for message in messages %}
-                    <div class="alert alert-{{ message.tags }}">{{ message }}</div>
+                    {% with message.level as level %}
+                        <!-- lvl 40 - error -->
+                        {% if level == 40 %}
+                            {% include 'includes/toasts/toast_error.html' %}
+                        <!-- lvl 30 - warning -->
+                        {% elif level == 30 %}
+                            {% include 'includes/toasts/toast_warning.html' %}
+                        <!-- lvl 25 - success -->
+                        {% elif level == 25 %}
+                            {% include 'includes/toasts/toast_success.html' %}
+                        <!-- info for everything else -->
+                        {% else %}
+                            {% include 'includes/toasts/toast_info.html' %}
+                        {% endif %}
+                    {% endwith %}
                 {% endfor %}
             </div>
         {% endif %}
@@ -145,6 +159,14 @@
     {% endblock %}
 
     <!-- This runs after everything else -->
-     {% block postloadjs %}{% endblock %}
+     {% block postloadjs %}
+        {{ block.super }}
+        <script type="text/javascript">
+            // js only runs after the DOM is ready
+            $(document).ready(function () {
+                $('.toast').toast('show');
+            });
+        </script>
+     {% endblock %}
   </body>
 </html>

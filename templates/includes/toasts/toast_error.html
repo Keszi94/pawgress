@@ -1,0 +1,17 @@
+<!-- Code grabbed from bootstrap docs https://getbootstrap.com/docs/5.3/components/toasts/#overview -->
+<!-- Flexbox container for aligning the toasts -->
+<div class="toast-container position-fixed top-0 end-0 p-3" aria-live="polite" aria-atomic="true">
+
+    <!-- data-bs-autohide is false on warnings and errors -->
+    <div class="toast align-items-center border-0 show bg-danger text-white custom-toast" role="alert" aria-live="assertive" aria-atomic="true" data-bs-autohide="false">
+      <div class="toast-header bg-danger text-white">
+        <i class="fa-solid fa-circle-exclamation me-2"></i>
+        <strong class="me-auto">Error!</strong>
+        <button type="button" class="btn-close btn-close-black ms-2 mb-1" data-bs-dismiss="toast" aria-label="Close"></button>
+      </div>
+      <div class="toast-body bg-white text-black">
+        {{ message }}
+      </div>
+    </div>
+
+  </div>
