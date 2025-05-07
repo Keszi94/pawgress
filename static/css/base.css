@@ -118,6 +118,20 @@ header {
     z-index: 999999999999;
 }
 
+.cart-notification-wrapper{
+    max-height: 160px;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+.view-cart-btn {
+    background-color: transparent !important;
+}
+
+.view-cart-btn:hover {
+    background-color: #aae1e7 !important;
+}
+
 /* -------------------------------- Courses page */
 
 body.courses-page {

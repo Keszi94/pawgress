@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect, HttpResponse
+from django.shortcuts import render, redirect, HttpResponse, get_object_or_404
 from django.contrib import messages
 from django.views.decorators.http import require_POST
 
@@ -17,7 +17,7 @@ def add_to_cart(request, item_id):
     Adds a course to the cart
     Only one of each course can be added
     """
-    course = Course.objects.get(pk=item_id)
+    course = get_object_or_404(Course, pk=item_id)
     redirect_url = request.POST.get('redirect_url')
     cart = request.session.get('cart', {})
     # convert item_id to a string
@@ -26,7 +26,12 @@ def add_to_cart(request, item_id):
     # Only add a course if it's not in the cart already
     if item_id not in cart:
         cart[item_id] = 1
-        messages.success(request, f'{course.title} has been added to your bag!')
+        messages.success(
+            request,
+            f'{course.title} has been added to your cart!'
+            )
+    else:
+        messages.info(request, f'{course.title} is already in your cart!')
 
     request.session['cart'] = cart
 
@@ -39,11 +44,16 @@ def remove_from_cart(request, item_id):
     """ Removes a course from the shopping cart """
 
     try:
+        course = get_object_or_404(Course, pk=item_id)
         cart = request.session.get('cart', {})
 
         # removes the item if it IS in the cart
         if item_id in cart:
             cart.pop(item_id)
+            messages.success(
+                request,
+                f'{course.title} has been successfully removed from your cart!'
+                )
 
         # Saves the updated cart
         request.session['cart'] = cart
@@ -53,4 +63,10 @@ def remove_from_cart(request, item_id):
 
     # 'e' for error message display
     except Exception as e:
+        messages.error(
+            request,
+            f"Something went wrong while removing "
+            f"{course.title} from your cart: {e}"
+            )
         return HttpResponse(status=500)
+    # remove {e} later before deployment
