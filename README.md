@@ -95,7 +95,7 @@ All documentation regarding the testing on this project can be viewed in this se
 
 ### Code Used
 
-* [Bootstrap Docs](https://getbootstrap.com/docs/5.3/getting-started/introduction/) for the base template.
+* I have grabbed various codes from the [Bootstrap Docs](https://getbootstrap.com/docs/5.3/getting-started/introduction/).
 * I used [CSS Gradient.io](https://cssgradient.io/) to generate the css code for the courses detail page header background.
 * All icons used on the side are from [Font Awesome](https://fontawesome.com/).
 
@@ -103,6 +103,7 @@ All documentation regarding the testing on this project can be viewed in this se
 ### Supporting Material
 
 * [This article on bastakiss.com](https://bastakiss.com/blog/django-6/effective-implementation-of-django-templates-structure-inheritance-and-best-practices-800) helped me with template structuring.
+* I gathered information from the [Django Documentation](https://www.djangoproject.com/) throughout the build.
 
 ### Media
 

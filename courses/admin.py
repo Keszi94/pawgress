@@ -14,6 +14,11 @@ class CourseAdmin(admin.ModelAdmin):
 
     ordering = ('title', )
 
+    search_fields = (
+        'title',
+        'description'
+    )
+
 
 class CategoryAdmin(admin.ModelAdmin):
     list_display = (

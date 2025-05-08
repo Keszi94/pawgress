@@ -29,7 +29,13 @@ class Course(models.Model):
     category = models.ForeignKey(
         Category, on_delete=models.SET_NULL, null=True, related_name='courses'
         )
-    image = models.ImageField(upload_to='', blank=True, null=True)
+    # added two seperate folders for course and bundle images for neatness
+    image = models.ImageField(
+        upload_to='course_images/', blank=True, null=True
+        )
+    # helps keeping site content up to date
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateField(auto_now=True)
 
     def save(self, *args, **kwargs):
         if not self.slug:
