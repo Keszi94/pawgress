@@ -22,7 +22,12 @@ class Category(models.Model):
 
 class Course(models.Model):
     title = models.CharField(max_length=255)
-    slug = models.SlugField(unique=True, blank=True)
+    slug = models.SlugField(
+        unique=True,
+        blank=True,
+        # stop admins from filling out slug field
+        help_text="Leave blank, autogenerates from the title."
+        )
     description = models.TextField(max_length=300)
     content = models.TextField()
     price = models.DecimalField(max_digits=6, decimal_places=2)

@@ -214,6 +214,18 @@ body.course-detail {
 
 }
 
+/* -------------------------------- Course Detail page */
+
+.incl-courses-links {
+    color: black;
+    text-decoration: none;
+}
+
+.incl-courses-links:hover {
+    color: #227c9d;
+    text-decoration: underline solid 1px !important;
+}
+
 /* -------------------------------- Cart page */
 
 /* class for the empty and not empty cart as well */
