@@ -25,6 +25,23 @@ def add_to_cart(request, item_id):
     # convert item_id to a string
     item_key = f"{item_type}_{item_id}"
 
+    # check if a course is already in a bundle that's in the cart
+    if item_type == 'course':
+        course = get_object_or_404(Course, pk=item_id)
+        for key in cart:
+            # only check bundles
+            if key.startswith('bundle_'):
+                bundle_id = key.split('_')[1]
+                bundle = get_object_or_404(Bundle, pk=bundle_id)
+                # if the course is in a bundle in the cart, block from adding
+                if course in bundle.courses.all():
+                    messages.info(
+                        request,
+                        f'"{course.title}" is already included in the bundle '
+                        f'"{bundle.title}" in your cart.'
+                    )
+                    return redirect(redirect_url)
+
     # Only add an item if it's not in the cart already
     if item_key not in cart:
         cart[item_key] = 1
