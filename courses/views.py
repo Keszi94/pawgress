@@ -23,13 +23,19 @@ def all_courses(request):
 
     # Searchbar handling
     if 'q' in request.GET:
-        query = request.GET['q']
+        # space-only " " search is also invalid (.strip())
+        query = request.GET['q'].strip()
         if not query:
             messages.error(
                 request,
                 "Please type a course name or keyword to start searching."
                 )
-            return redirect(reverse('courses'))
+            # Bug fix: return to the same page,
+            # not the courses page, when field is empty
+            return redirect(
+                request.META.get('HTTP_REFERER',
+                                 reverse('courses')
+                                 ))
 
         # either the title or the description contains the query
         # icontains = case-INsensitive substring match

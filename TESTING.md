@@ -233,3 +233,39 @@
   * [Allauth Configuration](https://docs.allauth.org/en/dev/account/configuration.html?utm_source=chatgpt.com)
   
 ---
+
+7. Submitting an empty search field redirects to the `/courses/` page
+
+    When submitting the global search form without entering any text (from the homepage or any other page), I was unexpectedly redirected to the courses page even though the view correctly the empty input.
+
+* Cause: 
+    
+    In my `all_courses` view I have logic to detect empty search queries: 
+
+    ```python
+    If not query:
+    messages.error(request, "Please type a course name or keyword to start searching.")
+ 	    return redirect(reverse('courses'))
+    ```
+
+    The problem is that the redirect logic always sends the user to the `courses page`
+
+
+* Solution:
+
+    I changed the redirect logic to use the `HTTP_PREFERER` header instead:
+
+    ```python
+    Return redirect(request.META.get('HTTP_REFERER', reverse('courses')))
+    ```
+
+    This way, the user is redirected to the page they were on when pressing the search button.
+    I also added `.strip()` to the query input so that space-only searches are treated as an empty search field: 
+    
+    ```python
+    query = request.GET['q'].strip()
+    ```
+
+* Reference: [Django Docs]( https://docs.djangoproject.com/en/5.2/ref/request-response/#django.http.HttpRequest.META)
+
+---
