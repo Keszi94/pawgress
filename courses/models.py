@@ -25,6 +25,7 @@ class Course(models.Model):
     slug = models.SlugField(
         unique=True,
         blank=True,
+        max_length=100,
         # stop admins from filling out slug field
         help_text="Leave blank, autogenerates from the title."
         )

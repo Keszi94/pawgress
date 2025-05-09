@@ -110,6 +110,12 @@ header {
     border: 1px solid black !important;
 }
 
+/* -------------------------------- Bundles and Courses page headers */
+.list-pages-headers {
+    padding-top: 4rem !important;
+    padding-bottom: 6rem !important;
+}
+
 /* -------------------------------- Toasts */
 .message-container {
     position: fixed;

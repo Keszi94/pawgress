@@ -49,7 +49,7 @@
                                             €{{ item.course.price }}
                                         </td>
                                         <td class="py-3 text-end align-middle">
-                                            <a href="#" class="text-danger remove-item" id="remove_{{ item.item_id }}" data-item_id="{{ item.item_id }}">
+                                            <a href="#" class="text-danger remove-item" id="remove_{{ item.item_key }}" data-item_key="{{ item.item_key }}">
                                                 Remove from Cart
                                             </a>
                                         </td>
@@ -99,9 +99,9 @@
         // authorize the POST request by getting the csrf token
         var csrfToken = '{{ csrf_token }}';
         // get the clicked item's id
-        var itemId = $(this).attr('id').split('remove_')[1];
+        var itemKey = $(this).data('item_key');
         // build url for the item removal
-        var url = `/cart/remove/${itemId}/`;
+        var url = `/cart/remove/${itemKey}/`;
         // data for the POST request
         var data = {'csrfmiddlewaretoken': csrfToken};
 

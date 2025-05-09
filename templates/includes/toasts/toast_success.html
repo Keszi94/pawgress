@@ -16,17 +16,37 @@
             <hr class="mt-1 mb-3">
           </div>
         </div>
+
         {% if grand_total %}
           <p class=""><strong>Your cart ({{ cart_items|length }})</strong></p>
           <div class="cart-notification-wrapper">
             {% for item in cart_items %}
               <div class="row">
                 <div class="col-3 my-1">
-                  <img class="w-100 rounded" src="{{ item.course.image.url }}" alt="{{ item.course.title }}">
+                  {% if item.course %}
+                    <img class="w-100 rounded" src="{{ item.course.image.url }}" alt="{{ item.course.title }}">
+                  {% elif item.bundle %}
+                    <img class="w-100 rounded" src="{{ item.bundle.image.url }}" alt="{{ item.bundle.title }}">
+                  {% endif %}
                 </div>
                 <div class="col-9">
-                  <p class="my-0 logo-font"><strong>{{ item.course.title }}</strong></p>
-                  <p class="my-0 small">€{{ item.course.price }}</p>
+                  <p class="my-0 logo-font">
+                    <strong>
+                      {% if item.course %}
+                        {{ item.course.title }}
+                      {% elif item.bundle %}
+                        {{ item.bundle.title }}
+                       {% endif %}
+                      </strong>
+                    </p>
+                  <p class="my-0 small">
+                    €
+                    {% if item.course %}
+                      {{ item.course.price }}
+                    {% elif item.bundle %}
+                      {{ item.bundle.price }}
+                    {% endif %}
+                    </p>
                 </div>
               </div>
           {% endfor %}

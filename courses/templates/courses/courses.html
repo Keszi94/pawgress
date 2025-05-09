@@ -4,11 +4,13 @@
 {% block body_class %}courses-page{% endblock %}
 
 {% block page_header %}
-    <div class="container header-container">
-        <div class="row">
-            <div class="col"></div>
+<div class="container header-container list-pages-headers">
+    <div class="row">
+        <div class="col">
+            <h2 class="text-center text-uppercase">Courses</h2>
         </div>
     </div>
+</div>
 {% endblock %}
 
 
@@ -40,6 +42,8 @@
                                     <form action="{% url 'add_to_cart' course.id %}" method="POST">
                                         {% csrf_token %}
                                         <input type="hidden" name="redirect_url" value="{{ request.path }}">
+                                        <!-- cart has to handle both bundles and courses -->
+                                        <input type="hidden" name="item_type" value="course">
                                         <button type="submit" class="add-to-cart-link text-uppercase btn border border-1 border-black">
                                             Add to cart
                                         </button>
