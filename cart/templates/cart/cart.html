@@ -38,15 +38,23 @@
                                     <tr>
                                         <td class="p-3 w-50">
                                             <div class="d-flex align-items-center">
-                                                <img src="{{ item.course.image.url }}" alt="{{ item.course.title }}" class="img-fluid rounded me-3" style="width: 100px; height: auto;">
-                                                <div>
-                                                    <p class="my-0"><strong>{{ item.course.title }}</strong></p>
-                                                    <p class="my-0 small text-muted">{{ item.course.category }}</p>
-                                                </div>
+                                                {% if item.course %}
+                                                    <img src="{{ item.course.image.url }}" alt="{{ item.course.title }}" class="img-fluid rounded me-3 cart-item-img">
+                                                    <div>
+                                                        <p class="my-0"><strong>{{ item.course.title }}</strong></p>
+                                                        <p class="my-0 small text-muted">{{ item.course.category }}</p>
+                                                    </div>
+                                                {% elif item.bundle %}
+                                                    <img src="{{ item.bundle.image.url }}" alt="{{ item.bundle.title }}" class="img-fluid rounded me-3 cart-item-img">
+                                                    <div>
+                                                        <p class="my-0"><strong>{{ item.bundle.title }}</strong></p>
+                                                        <p class="my-0 small text-muted">{{ item.bundle.category }}</p>
+                                                    </div>
+                                                {% endif %}
                                             </div>
                                         </td>
                                         <td class="py-3 text-end align-middle">
-                                            €{{ item.course.price }}
+                                            €{{ item.price }}
                                         </td>
                                         <td class="py-3 text-end align-middle">
                                             <a href="#" class="text-danger remove-item" id="remove_{{ item.item_key }}" data-item_key="{{ item.item_key }}">
