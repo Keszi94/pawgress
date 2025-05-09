@@ -17,6 +17,8 @@ def add_to_cart(request, item_id):
     """
     Adds a course or a bundle to the cart
     Only one of each course can be added
+    Can't add a course it it's already in a bundle in the cart
+    Can't add a bundle it it has a course already in the cart
     """
 
     item_type = request.POST.get('item_type', 'course')
@@ -41,6 +43,19 @@ def add_to_cart(request, item_id):
                         f'"{bundle.title}" in your cart.'
                     )
                     return redirect(redirect_url)
+
+    # check if a bundle has a course that is already added in the cart
+    if item_type == 'bundle':
+        bundle = get_object_or_404(Bundle, pk=item_id)
+        for course in bundle.courses.all():
+            course_key = f"course_{course.id}"
+            if course_key in cart:
+                messages.info(
+                    request,
+                    f'Bundle "{bundle.title}" already includes the course '
+                    f'"{course.title}", which is in your cart.'
+                )
+                return redirect(redirect_url)
 
     # Only add an item if it's not in the cart already
     if item_key not in cart:
