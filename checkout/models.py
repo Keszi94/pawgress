@@ -4,6 +4,7 @@ from django.db import models
 from django.contrib.auth.models import User
 from courses.models import Course
 from bundles.models import Bundle
+from django.db.models import Sum
 
 # Create your models here.
 
@@ -37,6 +38,12 @@ class Purchase(models.Model):
     def __str__(self):
         return f'Purchase {self.purchase_number}'
 
+    # calculates the total
+    def update_total(self):
+        total = self.items.aggregate(Sum('item_total'))['item_total__sum'] or 0
+        self.grand_total = total
+        self.save()
+
 
 # Represents an item in the purchase (course or bundle)
 class PurchaseItem(models.Model):
@@ -57,7 +64,7 @@ class PurchaseItem(models.Model):
         if self.course:
             self.item_total = self.course.price * self.quantity
         elif self.bundle:
-            self.item_total = self.course.price * self.quantity
+            self.item_total = self.bundle.price * self.quantity
         super().save(*args, **kwargs)
 
     def __str__(self):
