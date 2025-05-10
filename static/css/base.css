@@ -273,6 +273,12 @@ a.secure-checkout-btn:focus {
     height: auto;
 }
 
+
+/* -------------------------------- 404 page */
+.page-not-found {
+    min-height: 70vh;
+}
+
 /* -------------------------------- Media Queries */
 
 /* Slightly larger container on xl screens */
