@@ -2,7 +2,7 @@
 {% load static %}
 
 {% block extracss %}
-    <link rel="stylesheet" href="{% static checkout/css/checkout.css %}">
+    <link rel="stylesheet" href="{% static 'checkout/css/checkout.css' %}">
 {% endblock %}
 
 {% block page_header %}
@@ -19,14 +19,95 @@
         <div class="row">
             <div class="col">
                 <hr>
-                <h2 class="logo-font mb-4">Your Cart</h2>
+                <h2 class="logo-font mb-4">Checkout</h2>
                 <hr>
             </div>
         </div>
 
         <div class="row">
+            <!-- Order Summary -->
+            <div class="col-12 col-lg-6 order-lg-last mb-5">
+                <h3 class="mb-4">Order Summary</h3>
+                <p class="text-muted">Order Summary ({{ product_count }})</p>
+                <div class="row">
+                    <div class="col-7 offset-2">
+                        <p class="mb-1 mt-0 small text-muted">Subtotal</p>
+                    </div>
+                </div>
+                {% for item in cart_items %}
+                    <div class="row">
+                        <div class="col-2 mb-1">
+                            {% if item.course %}
+                                {% if item.course.image %}
+                                    <img class="w-100" src="{{ item.course.image.url }}" alt="{{ item.course.title }}">
+                                {% else %}
+                                    <img class="w-100" src="{{ MEDIA_URL }}noimage.png" alt="{{ item.course.title }}">
+                                {% endif %}
+                            {% elif item.bundle %}
+                                {% if item.bundle.image %}
+                                    <img class="w-100" src="{{ item.bundle.image.url }}" alt="{{ item.bundle.title }}">
+                                {% else %}
+                                    <img class="w-100" src="{{ MEDIA_URL }}noimage.png" alt="{{ item.bundle.title }}">
+                                {% endif %}
+                            {% endif %}
+                        </div>
+
+                        <div class="col-7">
+                            {% if item.course %}
+                                <p class="my-0"><strong>{{ item.course.title }}</strong></p>
+                            {% elif item.bundle %}
+                                <p class="my-0"><strong>{{ item.bundle.title }}</strong></p>
+                            {% endif %}
+                            <p class="my-0 small text-muted">Qty: {{ item.quantity }}</p>
+                        </div>
+
+                        <div class="col-3 text-end">
+                            <p class="my-0 small text-muted">€{{ item.price|floatformat:2 }}</p>
+                        </div>
+                    </div>
+                {% endfor %}
+                <hr class="my-0">
+                <div class="row text-black text-end">
+                    <div class="col-7 offset-2">
+                        <p class="my-0">Total: </p>
+                    </div>
+                    <div class="col-3">
+                        <p class="my-0"><strong>€{{ grand_total|floatformat:2 }}</strong></p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Checkout Form -->
             <div class="col-12 col-lg-6">
                 <p class="text-muted">Please fill out our form below in order to proceed with your purchase</p>
+                <form action="{% url 'checkout' %}" method="POST" id="payment-form">
+                    {% csrf_token %}
+                    <fieldset class="rounded px-3 mb-5">
+                        <legend class="fieldset-label small text-black px-2 w-auto">Details</legend>
+                        {{ form.email|as_crispy_field }}
+                    </fieldset>
+
+                    <fieldset class="px-3">
+                        <legend class="fieldset-label small text-black px-2 w-auto">Payment</legend>
+                        <div class="mb-3" id="card-element"></div>
+                        <div class="mb-3 text-danger" id="card-errors" role="alert"></div>
+                    </fieldset>
+
+                    <div class="submit-button text-end mt-5 mb-2">
+                        <a href="{% url 'view_cart' %}" class="btn btn-outline-dark rounded-0">
+                            <span class="icon"><i class="fa-solid fa-dog"></i></span>
+                            <span class="fw-bold">Adjust Cart</span>
+                        </a>
+                        <button id="submit-button" class="btn btn-dark rounded-0">
+                            <span class="icon"><i class="fas fa-lock"></i></span>
+                            <span class="fw-bold">Complete Purchase</span>
+                        </button>
+                        <p class="small text-danger my-0 mt-2">
+                            <span class="icon"><i class="fas fa-exclamation-circle"></i></span>
+                            <span>Your card will be charged <strong>€{{ grand_total|floatformat:2 }}</strong></span>
+                        </p>
+                    </div>
+                </form>
             </div>
         </div>
     </div>

@@ -12,7 +12,7 @@ def cart_contents(request):
     cart_items = []
     # changed total to grand_total to match base.html
     grand_total = 0
-    course_count = 0
+    product_count = 0
     # get the cart from current section or an empty one
     cart = request.session.get('cart', {})
 
@@ -25,7 +25,7 @@ def cart_contents(request):
             # Gets the actual course object
             course = get_object_or_404(Course, pk=item_id)
             grand_total += course.price
-            course_count += 1
+            product_count += 1
             cart_items.append({
                 'item_key': item_key,
                 'course': course,
@@ -44,7 +44,7 @@ def cart_contents(request):
     context = {
         'cart_items': cart_items,
         'grand_total': grand_total,
-        'course_count': course_count,
+        'product_count': product_count,
     }
 
     return context

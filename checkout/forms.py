@@ -15,7 +15,7 @@ class PurchaseForm(forms.ModelForm):
         }
 
         # sets the autofocus on the email field
-        set.fields['email'].widgets.attrs['autofocus'] = True
+        self.fields['email'].widget.attrs['autofocus'] = True
 
         for field_name, field in self.fields.items():
             # adds a star to required fields
