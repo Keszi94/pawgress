@@ -5,13 +5,22 @@ from .models import Purchase
 class PurchaseForm(forms.ModelForm):
     class Meta:
         model = Purchase
-        fields = ('email',)
+        fields = ('email', 'full_name', 'company_name',
+                  'street_address1', 'street_address2',
+                  'city', 'postcode', 'country')
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
 
         placeholders = {
             'email': 'Email address',
+            'full_name': 'Full Name',
+            'company_name': 'Company Name (Optional)',
+            'street_address1': 'Street Address 1',
+            'street_address2': 'Street Address 2',
+            'city': 'City',
+            'postcode': 'ZIP/Postal code',
+            'country': 'Country'
         }
 
         # sets the autofocus on the email field

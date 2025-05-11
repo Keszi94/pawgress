@@ -19,12 +19,28 @@ class Purchase(models.Model):
         null=True, blank=True)
     email = models.EmailField(max_length=254, null=False, blank=False)
     date = models.DateTimeField(auto_now_add=True)
+
+    # billing fields
+    full_name = models.CharField(max_length=80, null=False, blank=True)
+
+    # Optional bussiness info
+    company_name = models.CharField(max_length=100, blank=True, null=True)
+    street_address1 = models.CharField(max_length=80, null=False, blank=True)
+    street_address2 = models.CharField(max_length=80, null=True, blank=True)
+    city = models.CharField(max_length=40, null=False, blank=False)
+    postcode = models.CharField(max_length=40, null=False, blank=False)
+    country = models.CharField(max_length=40, null=False, blank=False)
+
+    # Payment data
     grand_total = models.DecimalField(
         max_digits=10, decimal_places=2,
         null=False, default=0.00)
     is_paid = models.BooleanField(default=False)
     stripe_payment_intent = models.CharField(
         max_length=255, blank=True, null=True)
+
+    # Course access
+    access_granted = models.BooleanField(default=False)
 
     # auto-generates a random order number
     def _generate_purchase_number(self):
@@ -35,14 +51,14 @@ class Purchase(models.Model):
             self.purchase_number = self._generate_purchase_number()
         super().save(*args, **kwargs)
 
-    def __str__(self):
-        return f'Purchase {self.purchase_number}'
-
     # calculates the total
     def update_total(self):
         total = self.items.aggregate(Sum('item_total'))['item_total__sum'] or 0
         self.grand_total = total
         self.save()
+
+    def __str__(self):
+        return f'Purchase {self.purchase_number}'
 
 
 # Represents an item in the purchase (course or bundle)

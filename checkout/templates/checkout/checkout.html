@@ -91,6 +91,17 @@
                     <fieldset class="rounded px-3 mb-5">
                         <legend class="fieldset-label small text-black px-2 w-auto">Details</legend>
                         {{ form.email|as_crispy_field }}
+                        {{ form.full_name|as_crispy_field }}
+                    </fieldset>
+
+                    <fieldset class="rounded px-3 mb-5">
+                        <legend class="fieldset-label small text-black px-2 w-auto">Billing Address</legend>
+                        {{ form.company_name|as_crispy_field }}
+                        {{ form.street_address1|as_crispy_field }}
+                        {{ form.street_address2|as_crispy_field }}
+                        {{ form.city|as_crispy_field }}
+                        {{ form.postcode|as_crispy_field }}
+                        {{ form.country|as_crispy_field }}
                     </fieldset>
 
                     <fieldset class="px-3">
