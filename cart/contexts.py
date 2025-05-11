@@ -35,6 +35,7 @@ def cart_contents(request):
         elif item_type == 'bundle':
             bundle = get_object_or_404(Bundle, pk=item_id)
             grand_total += bundle.price
+            product_count += 1
             cart_items.append({
                 'item_key': item_key,
                 'bundle': bundle,
