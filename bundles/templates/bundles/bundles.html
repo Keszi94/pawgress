@@ -52,7 +52,14 @@
                                     </div>
                                 </div>
                                 <div class="card-footer text-center pb-4">
-                                    <h5 class="mb-3">€{{ bundle.price }}</h5>
+                                    <!-- Savings -->
+                                    {% if bundle.savings > 0 %}
+                                        <p class="saving-on-bundle fst-italic text-secondary">
+                                            <i class="fa-solid fa-money-bills me-1"></i> Total course value: €{{ bundle.total_value }} – <strong>You save: €{{ bundle.savings }}!</strong>
+                                        </p>
+                                    {% endif %}
+                                    <!-- Bundle price -->
+                                    <h4 class="mb-4">€{{ bundle.price }}</h4>
                                     <form action="{% url 'add_to_cart' bundle.id %}" method="POST">
                                         {% csrf_token %}
                                         <input type="hidden" name="redirect_url" value="{{ request.path }}">

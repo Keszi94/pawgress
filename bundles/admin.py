@@ -9,7 +9,14 @@ class BundleAdmin(admin.ModelAdmin):
         'title',
         'price',
         'get_courses_count',
-        'created_at'
+        'created_at',
+        'total_value',
+        'savings'
+    )
+
+    readonly_fields = (
+        'total_value',
+        'savings'
     )
 
     ordering = (

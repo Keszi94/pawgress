@@ -232,6 +232,12 @@ body.course-detail {
     text-decoration: underline solid 1px !important;
 }
 
+/* -------------------------------- Bundles page */
+
+.saving-on-bundle {
+    color: #f06543 !important;
+}
+
 /* -------------------------------- Cart page */
 
 /* class for the empty and not empty cart as well */
