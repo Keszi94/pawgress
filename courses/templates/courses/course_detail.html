@@ -15,6 +15,7 @@
                 <div class="col-12 col-md-6 text-center text-md-start">
                     <h1 class="logo-font mb-3">{{ course.title }}</h1>
                     <p class="lead mb-4">{{ course.description }}</p>
+                    <p class="card-text"><strong><i class="fa-solid fa-calendar me-2"></i> Training Duration: </strong>{{ course.get_time_frame_display }}</p>
                 </div>
             </div>
         </div>
@@ -37,7 +38,7 @@
                         {% csrf_token %}
                         <input type="hidden" name="redirect_url" value="{{ request.path }}">
                         <button type="submit" class="btn btn-lg rounded-0 text-uppercase py-3 border border-black border-1 add-to-cart-btn">
-                            Add to cart
+                           <i class="fa-solid fa-cart-shopping me-1"></i> Add to cart
                         </button>
                     </form>
                 </div>

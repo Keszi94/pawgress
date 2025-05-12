@@ -9,7 +9,8 @@ class CourseAdmin(admin.ModelAdmin):
         'title',
         'category',
         'price',
-        'image'
+        'image',
+        'time_frame'
     )
 
     ordering = ('title', )

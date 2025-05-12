@@ -22,7 +22,6 @@ class Purchase(models.Model):
 
     # billing fields
     full_name = models.CharField(max_length=80, null=False, blank=True)
-
     # Optional bussiness info
     company_name = models.CharField(max_length=100, blank=True, null=True)
     street_address1 = models.CharField(max_length=80, null=False, blank=True)

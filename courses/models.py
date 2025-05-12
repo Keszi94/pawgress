@@ -21,6 +21,15 @@ class Category(models.Model):
 
 
 class Course(models.Model):
+    DURATION_CHOICES = [
+        ('1w', '1 Week'),
+        ('2w', '2 Weeks'),
+        ('3w', '3 Weeks'),
+        ('1m', '1 Month'),
+        ('2m', '2 Months'),
+        ('3m', '3 Months'),
+    ]
+
     title = models.CharField(max_length=255)
     slug = models.SlugField(
         unique=True,
@@ -42,6 +51,14 @@ class Course(models.Model):
     # helps keeping site content up to date
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateField(auto_now=True)
+
+    # time frame - how long it takes to implement changes with dogs
+    time_frame = models.CharField(
+        max_length=2, choices=DURATION_CHOICES,
+        default='2w',
+        help_text="Estimated time to complete"
+        " the course with consistent practice"
+        )
 
     def save(self, *args, **kwargs):
         if not self.slug:
