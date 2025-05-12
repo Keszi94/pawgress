@@ -269,3 +269,19 @@
 * Reference: [Django Docs]( https://docs.djangoproject.com/en/5.2/ref/request-response/#django.http.HttpRequest.META)
 
 ---
+
+8. Checkout throws error for missing country field despite it being in initial migration
+ 
+    During testing, submitting a purchase form resulted in a server error claiming the `country` field was missing from the Purchase model. The field was already present in my 0001_initial.py, and migrations had been applied. After some debugging, I found online advice suggesting to delete `db.sqlite3`, assuming that would reset things. I didn’t realize this would also delete all the data. This led to fixture load failures, missing superuser, duplicate slug errors, and the loss of bundle data.
+
+* Cause:
+
+    Deleting `db.sqlite3` removed not just data, but the entire schema. Upon re-running migrate, the initial migration lacked country, likely due to earlier inconsistent migration states. Fixture files were also outdated or malformed, missing required fields or causing `UNIQUE`/`NOT NULL` errors.
+
+* Solution:
+  
+    Manually fixed fixture files to include all required fields (`created_at`, `updated_at`, `unique slugs`), then recreated the database with `python manage.py migrate` and reloaded the corrected fixtures. Readded the superuser and manually recreated bundles via the admin panel.
+
+* Resources:
+
+    I asked [ChatGPT](https://chatgpt.com/)to create the slug fields from the names/titles so I can paste them into the json files.

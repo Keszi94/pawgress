@@ -3,35 +3,40 @@
         "model": "courses.category",
         "pk": "1",
         "fields": {
-            "name": "Puppy Training"
+            "name": "Puppy Training",
+            "slug": "puppy-training"
         }
     },
     {
         "model": "courses.category",
         "pk": "2",
         "fields": {
-            "name": "Basic Obedience"
+            "name": "Basic Obedience",
+            "slug": "basic-obedience"
         }
     },
     {
         "model": "courses.category",
         "pk": "3",
         "fields": {
-            "name": "Reactivity & Behavior"
+            "name": "Reactivity & Behavior",
+            "slug": "reactivity-behavior"
         }
     },
     {
         "model": "courses.category",
         "pk": "4",
         "fields": {
-            "name": "Advanced Skills & Tricks"
+            "name": "Advanced Skills & Tricks",
+            "slug": "advanced-skills-tricks"
         }
     },
     {
         "model": "courses.category",
         "pk": "5",
         "fields": {
-            "name": "Rescue Support"
+            "name": "Rescue Support",
+            "slug": "rescue-support"
         }
     }
 ]

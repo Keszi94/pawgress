@@ -115,7 +115,10 @@
                             <span class="icon"><i class="fa-solid fa-dog"></i></span>
                             <span class="fw-bold"> Adjust Cart</span>
                         </a>
-                        <button id="submit-button" class="btn btn-dark rounded-0 complete-purchase-btn">
+
+                        <input type="hidden" name="client_secret" value="{{ client_secret }}">
+
+                        <button id="submit-button" class="btn btn-outline-dark rounded-0 complete-purchase-btn">
                             <span class="icon"><i class="fas fa-lock"></i></span>
                             <span class="fw-bold"> Complete Purchase</span>
                         </button>

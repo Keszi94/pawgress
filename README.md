@@ -62,6 +62,9 @@ The color palette for the website was created using [coolors](https://coolors.co
 
 ### Typography
 
+I have decided to use The font [Archivo](https://fonts.google.com/specimen/Archivo) from [Google Fonts](https://fonts.google.com/).
+
+![Archivo font](readme_assets/images/archivo_font.png)
 
 ## Features
 
@@ -105,6 +108,7 @@ All documentation regarding the testing on this project can be viewed in this se
 
 * [This article on bastakiss.com](https://bastakiss.com/blog/django-6/effective-implementation-of-django-templates-structure-inheritance-and-best-practices-800) helped me with template structuring.
 * I gathered information from the [Django Documentation](https://www.djangoproject.com/) throughout the build.
+* All Course and Bundle contents, including titles and descriptions were created by [ChatGPT](https://chatgpt.com/).
 
 ### Media
 
@@ -165,5 +169,8 @@ All documentation regarding the testing on this project can be viewed in this se
 
     * [Ugur Arpaci](https://unsplash.com/@ugurarpaci) on [Unsplash](https://unsplash.com/photos/a-white-dog-standing-on-top-of-a-leaf-covered-ground-JXkQe3V40Wo)
 
+* 404 page image
+
+    * Downloaded from [Rawpixel](https://www.rawpixel.com/image/9221355/black-pug-dog-png-transparent-background)
 
 ### Acknowledgments
