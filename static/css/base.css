@@ -144,7 +144,7 @@ body.courses-page {
     background: white;
 }
 
-.card-img-top {
+.card-img-top-courses {
     height: 250px;
     object-fit: cover;
     width: 100%;
@@ -236,6 +236,15 @@ body.course-detail {
 
 .saving-on-bundle {
     color: #f06543 !important;
+}
+
+.card-img-top-bundles {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+    display: block;
+    border-top-left-radius: 0.5rem;
+    border-top-right-radius: 0.5rem;
 }
 
 /* -------------------------------- Cart page */

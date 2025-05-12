@@ -18,6 +18,7 @@
             <div class="col">
                 <hr>
                 <h2 class="logo-font mb-4">Courses</h2>
+                <h4 class="text-muted">Browse our individual courses to focus on specific dog training skills — perfect for targeted learning at your own pace.</h4>
                 <hr>
             </div>
         </div>
@@ -31,11 +32,11 @@
                             <div class="card h-100">
                                 {% if course.image %}
                                 <a href="{% url 'course_detail' course.id %}">
-                                    <img src="{{ course.image.url }}" class="card-img-top" alt="{{ course.title }}" loading="lazy">
+                                    <img src="{{ course.image.url }}" class="card-img-top-courses" alt="{{ course.title }}" loading="lazy">
                                 </a>
                                 {% else %}
                                 <a href="{% url 'course_detail' course.id %}">
-                                    <img src="{{ MEDIA_URL }}noimage.jpg" class="card-img-top" alt="{{ course.title }}" loading="lazy">
+                                    <img src="{{ MEDIA_URL }}noimage.jpg" class="card-img-top-courses" alt="{{ course.title }}" loading="lazy">
                                 </a>
                                 {% endif %}
                                 <div class="card-body">
