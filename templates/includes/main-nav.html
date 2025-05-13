@@ -2,6 +2,12 @@
 
 <div class="collapse navbar-collapse" id="main-nav">
     <ul class="navbar-nav w-auto mx-auto">
+        <!-- Home -->
+        <li class="nav-item dropdown">
+            <a href="{% url 'home' %}" class="main-nav-link logo-font fw-bold nav-link me-5" id="team-link">
+                Home
+            </a>
+        </li>
         <!-- All Courses -->
         <li class="nav-item dropdown">
             <a href="{% url 'courses' %}" class="main-nav-link logo-font fw-bold nav-link me-5" id="all-courses-link">
@@ -25,12 +31,6 @@
         <li class="nav-item dropdown">
             <a href="{% url 'bundles' %}" class="main-nav-link logo-font fw-bold nav-link me-5" id="bundles-link">
                 Course Bundles
-            </a>
-        </li>
-        <!-- Meet the Team -->
-        <li class="nav-item dropdown">
-            <a href="#" class="main-nav-link logo-font fw-bold nav-link me-5" id="team-link">
-                Meet the Team
             </a>
         </li>
     </ul>

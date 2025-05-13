@@ -110,6 +110,7 @@
                         <div class="mb-3 text-danger" id="card-errors" role="alert"></div>
                     </fieldset>
 
+                    <!-- Adjust cart button -->
                     <div class="submit-button text-end mt-5 mb-2">
                         <a href="{% url 'view_cart' %}" class="btn btn-outline-dark rounded-0 adjust-cart-btn">
                             <span class="icon"><i class="fa-solid fa-dog"></i></span>
@@ -118,6 +119,7 @@
 
                         <input type="hidden" name="client_secret" value="{{ client_secret }}">
 
+                        <!-- Complete purchase button -->
                         <button id="submit-button" class="btn btn-outline-dark rounded-0 complete-purchase-btn">
                             <span class="icon"><i class="fas fa-lock"></i></span>
                             <span class="fw-bold"> Complete Purchase</span>
