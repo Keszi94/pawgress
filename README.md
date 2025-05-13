@@ -241,4 +241,8 @@ All documentation regarding the testing on this project can be viewed in this se
 
     * Downloaded from [Rawpixel](https://www.rawpixel.com/image/9221355/black-pug-dog-png-transparent-background)
 
+* Favicons
+  
+    * The favicons were created on [favicon.io](https://favicon.io/)
+
 ### Acknowledgments

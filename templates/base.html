@@ -10,10 +10,37 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <!-- responsive design on mobile -->
         <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <!-- https://developer.x.com/en/docs/x-for-websites/cards/overview/summary -->
+        <!-- https://ogp.me/ -->
+        <!-- Essential Meta Tags -->
+        <meta name="description" content="Pawgress is a premium platform offering dog training courses and bundles created by professionals. Train your pup with confidence, at home.">
+        <meta name="keywords" content="dog training, online dog training, dog courses, puppy training, dog behavior, pawgress, dog training at home, online dog training courses">
+        <meta name="author" content="Pawgress">
+        <meta name="robots" content="index, follow">
+
+        <!-- Open Graph (Facebook, LinkedIn, etc.) -->
+        <meta property="og:title" content="Pawgress – Online Dog Training Courses">
+        <meta property="og:description" content="Train your dog with professional courses and bundles, created by experts. Accessible, affordable, and effective.">
+        <meta property="og:type" content="website">
+        <meta property="og:url" content="https://.com/">
+        <meta property="og:image" content="https://.com/static/favicon/android-chrome-512x512.png">
+
+        <!-- Twitter Cards -->
+        <meta name="twitter:card" content="summary_large_image">
+        <meta name="twitter:title" content="Pawgress – Online Dog Training Courses">
+        <meta name="twitter:description" content="Train your dog with expert-led courses and bundles. Accessible, affordable, and effective.">
+        <meta name="twitter:image" content="https://.com/static/favicon/android-chrome-512x512.png">
     {% endblock %}
 
-    <!-- Page title -->
-                    <!-- Opt.: Extra title for other pages -->
+    <!-- Favicons -->
+    <link rel="apple-touch-icon" sizes="180x180" href="{% static 'favicon/apple-touch-icon.png' %}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{% static 'favicon/favicon-32x32.png' %}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{% static 'favicon/favicon-16x16.png' %}">
+    <link rel="manifest" href="{% static 'favicon/site.webmanifest' %}">
+    
+    
+    <!-- Opt.: Extra title for other pages -->
     <title>Pawgress{% block extratitle %}{% endblock %}</title>
 
     <!-- Opt.: Extra meta tags for other pages  -->
