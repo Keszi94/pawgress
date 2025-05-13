@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect, HttpResponse, get_object_or_404
 from django.contrib import messages
 from django.views.decorators.http import require_POST
+from django.contrib.auth.decorators import login_required
 
 from courses.models import Course
 from bundles.models import Bundle
@@ -8,11 +9,13 @@ from bundles.models import Bundle
 # Create your views here.
 
 
+@login_required
 def view_cart(request):
     """ A viw that renders the cart contents page """
     return render(request, 'cart/cart.html')
 
 
+@login_required
 def add_to_cart(request, item_id):
     """
     Adds a course or a bundle to the cart
@@ -88,6 +91,7 @@ def add_to_cart(request, item_id):
 
 
 # this view handles only POST requests
+@login_required
 @require_POST
 def remove_from_cart(request, item_key):
     """ Removes a course or bundle from the shopping cart """

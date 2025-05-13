@@ -6,6 +6,7 @@ from django.http import HttpResponse
 from django.views.decorators.http import require_POST
 from django.shortcuts import render, redirect, reverse, get_object_or_404
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
 
 from .forms import PurchaseForm
 from .models import PurchaseItem, Purchase
@@ -35,6 +36,7 @@ def cache_checkout_data(request):
         return HttpResponse(content=e, status=400)
 
 
+@login_required
 def checkout(request):
     cart = request.session.get('cart', {})
 
@@ -55,13 +57,20 @@ def checkout(request):
         }
 
         form = PurchaseForm(form_data)
+
         if form.is_valid():
             purchase = form.save(commit=False)
+
+            # save logged-in user
+            if request.user.is_authenticated:
+                purchase.user = request.user
+
             purchase.stripe_payment_intent = (
                 request.POST.get('client_secret').split('_secret')[0]
                 )
             purchase.save()
 
+            # create items
             for item_key, item_data in cart.items():
                 if '_' not in item_key:
                     continue
@@ -126,11 +135,11 @@ def checkout(request):
     return render(request, template, context)
 
 
+@login_required
 def checkout_success(request, purchase_number):
     """
     Handles successful checkouts
     """
-    save_info = request.session.get('save_info')
 
     purchase = get_object_or_404(Purchase, purchase_number=purchase_number)
 
