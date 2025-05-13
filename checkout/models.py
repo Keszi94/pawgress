@@ -37,6 +37,7 @@ class Purchase(models.Model):
     is_paid = models.BooleanField(default=False)
     stripe_payment_intent = models.CharField(
         max_length=255, blank=True, null=True)
+    original_cart = models.TextField(null=False, blank=False, default='')
 
     # Course access
     access_granted = models.BooleanField(default=False)

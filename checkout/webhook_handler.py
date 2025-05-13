@@ -1,3 +1,4 @@
+# Code based on Boutique Ado wt project
 import stripe
 import json
 import time
@@ -65,11 +66,12 @@ class StripeWH_Handler:
                     email__iexact=billing_details.email,
                     full_name__iexact=billing_details.name,
                     street_address1__iexact=billing_details.address.line1,
-                    street_address2__iexact=billing_details.address.line2,
+                    street_address2__iexact=billing_details.address.line2 or "",
                     city__iexact=billing_details.address.city,
-                    postcode__ieaxact=billing_details.address.postal_code,
+                    postcode__iexact=billing_details.address.postal_code,
                     country__iexact=billing_details.address.country,
                     grand_total=grand_total,
+                    original_cart=json.dumps(cart),
                     stripe_payment_intent=pid,
                 )
                 order_exists = True
@@ -96,6 +98,7 @@ class StripeWH_Handler:
                 postcode=billing_details.address.postal_code,
                 country=billing_details.address.country,
                 grand_total=grand_total,
+                original_cart=json.dumps(cart),
                 stripe_payment_intent=pid,
             )
 

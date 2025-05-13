@@ -1,3 +1,4 @@
+# Code based on Boutique Ado wt project
 import stripe
 
 from django.conf import settings
