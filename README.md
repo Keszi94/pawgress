@@ -113,11 +113,41 @@ I have decided to use The font [Archivo](https://fonts.google.com/specimen/Archi
 ## SEO and Web Marketing
 
 ### Keyword Research
-### Markting Strategy
+### Marketing Strategy
 ### SEO implementation
 
 
 ## Techonologies Used
+
+  * Python 3 – Core programming language.
+
+  * Django 5.2 – High-level Python web framework for rapid development and clean design.
+
+  * PostgreSQL – Relational database, accessed via psycopg2.
+
+  * Gunicorn – WSGI HTTP server for running the Django application in production.
+
+  * Amazon S3 + Boto3 – For media and static file storage, integrated via django-storages.
+
+  * Stripe API – Used for handling payments.
+
+  * Django Allauth – Handles user authentication, registration, and third-party logins.
+
+  * Crispy Forms with Bootstrap 5 – Enhaanced form rendering and styling.
+
+  * django-countries – Provides a country field for Django models.
+
+  * DefusedXML – Protects against XML-based security issues.
+
+  * Flake8 – Tool for enforcing Python code style and linting.
+
+  * Requests & OAuthLib – HTTP requests and OAuth support for external APIs.
+
+  * Pillow – Python Imaging Library for image processing.
+
+  * dj-database-url – Simplifies database configuration from environment variables.
+
+  * Cryptography & CFFI – Used for secure data handling and encryption.
 
 
 
