@@ -2,6 +2,8 @@ import uuid
 
 from django.db import models
 from django.contrib.auth.models import User
+from django_countries.fields import CountryField
+
 from courses.models import Course
 from bundles.models import Bundle
 from django.db.models import Sum
@@ -28,7 +30,7 @@ class Purchase(models.Model):
     street_address2 = models.CharField(max_length=80, null=True, blank=True)
     city = models.CharField(max_length=40, null=False, blank=False)
     postcode = models.CharField(max_length=40, null=False, blank=False)
-    country = models.CharField(max_length=40, null=False, blank=False)
+    country = CountryField(blank_label='Country *', blank=True, null=False)
 
     # Payment data
     grand_total = models.DecimalField(

@@ -61,3 +61,30 @@
     background: #f09d51 !important;
     color: black;
 }
+
+/* Country field in form */
+
+select.stripe-style-input {
+    border: 1px solid #000;
+    border-radius: 0;
+    padding: 8px;
+    font-size: 1rem;
+    background-color: #fff;
+}
+
+select.stripe-style-input:invalid {
+    color: #adb5bd; 
+}
+
+select.stripe-style-input option {
+    color: #212529;
+}
+
+select.stripe-style-input option[value=""] {
+    color: #6c757d;
+}
+
+img.country-select-flag,
+img[src*="data:image"] {
+    display: none !important;
+}
