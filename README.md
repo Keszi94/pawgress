@@ -68,6 +68,44 @@ I have decided to use The font [Archivo](https://fonts.google.com/specimen/Archi
 
 ## Features
 
+### Home Page
+
+### Courses page
+
+* The courses are displayed as cards and upon hovering the card size scales up.
+
+  ![courses page](readme_assets/images/courses_page.png)
+
+* The course cards feature:
+  * The course image
+  * A Category link, which upon clicking will refresh the page and display only the courses under that category
+  * The training duration of the course
+  * The course description
+  * The price of the course
+  * An 'Add to Cart' button, which will add the course to the cart, except if the course is alredy in the cart, either by itself or in a bundle. The button changes background color when hovering ove it.
+  
+    ![course card](readme_assets/images/course_card.png)
+
+### Course Detail Pages
+
+### Bundles page
+
+* The Bundles are also displayed as cards and upon hovering the card size scales up.
+
+   ![bundles page](readme_assets/images/bundles_page.png)
+
+* The bundle cards feature:
+  * The bundle's image 
+  * The bundle's title
+  * The description
+  * A list of the included courses, all of which are live links to their respected course detail page, so customers can read the individual course descriptions if they wish to
+  * The added up total value of all the courses included and the amount of money a potential customer will save on the bundle, all calculated automatically. It is intentionally displayed above the total price of the bundle, so the first information the customer sees is how much money they can save on a bundle. The color grabs attention and there is an emphasis on the amount they can save, but the text size is smaller compared to the actual bundle price.
+  * The actual discounted bundle price
+  * An 'Add To Cart' button, which will add the bundle to the cart if it's not already in, or if there is no course in the cart already that is included in the bundle. The button changes background color upon hoverring over it.
+  
+    ![bundle card](readme_assets/images/bundle_card.png)
+
+* The bundles do not have detail pages, since upon purchase the customer gains access to all the courses included in the bundle, therefore they only need acces to the specific course detail pages
 
 ## Future Features
 
