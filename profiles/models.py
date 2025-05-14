@@ -10,14 +10,6 @@ Profile app models:
 """
 
 
-class UserProfile(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
-
-    # displays the username
-    def __str__(self):
-        return self.user.usename
-
-
 class CourseCompletion(models.Model):
     # The user who completd the course
     user = models.ForeignKey(User, on_delete=models.CASCADE)

@@ -1,12 +1,7 @@
 from django.contrib import admin
-from .models import UserProfile, CourseCompletion
+from .models import CourseCompletion
 
 # Register your models here.
-
-
-@admin.register(UserProfile)
-class UserProfileAdmin(admin.ModelAdmin):
-    list_display = ('user',)
 
 
 @admin.register(CourseCompletion)
