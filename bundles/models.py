@@ -5,7 +5,13 @@ from django.dispatch import receiver
 from django.db.models.signals import m2m_changed
 from decimal import Decimal, ROUND_HALF_UP
 
-# Create your models here.
+"""
+Bundles app models:
+- Bundle: A collection of related courses offered
+  together at a discounted price.
+  Supports automatic price aggregation,
+  savings calculaation and course management.
+"""
 
 
 class Bundle(models.Model):

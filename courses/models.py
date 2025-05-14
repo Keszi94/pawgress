@@ -1,7 +1,13 @@
 from django.db import models
 from django.utils.text import slugify
 
-# Create your models here.
+"""
+Courses app models:
+- Category: Defines categories for the courses.
+- Course: Represents individual training courses with pricing,
+  content, and duration.
+  Supports categorization, estimated completion time, and descreiptions.
+"""
 
 
 class Category(models.Model):
