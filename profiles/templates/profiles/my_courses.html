@@ -1,0 +1,74 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block page_header %}
+<div class="container mt-5">
+    <div class="row">
+        <div class="col"></div>
+    </div>
+</div>
+{% endblock %}
+
+{% block content %}
+<div class="container mt-5 pb-5">
+    <h2 class="mb-4">{{ request.user.username }}'s Courses</h2>
+
+    {% if owned_courses %}
+        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+            {% for course in owned_courses %}
+                <div class="col">
+                    <!-- Course card -->
+                    <div class="card h-100">
+                        {% if course.image %}
+                            <img src="{{ course.image.url }}" class="card-img-top" alt="{{ course.title }}">
+                        {% endif %}
+                        <div class="card-body d-flex flex-column">
+                            <h5 class="card-title">{{ course.title }}</h5>
+                            <p class="card-text">{{ course.description }}</p>
+                            
+                            <!-- Course completed checkbox -->
+                            <form method="POST" action="{% url 'toggle_completion' course.id %}" class="mt-auto">
+                                {% csrf_token %}
+                                <div class="form-check mb-3">
+                                    <input class="form-check-input completion-toggle" type="checkbox"
+                                           name="completed"
+                                           id="completed-{{ course.id }}"
+                                           {% if course.completed %}checked{% endif %}>
+                                    <label class="form-check-label" for="completed-{{ course.id }}"> Mark as completed</label>
+                                </div>
+                                <!-- Go to Course button -->
+                                <a href="{% url 'course_detail' course.id %}" class="btn btn-primary go-to-course-btn text-uppercase border border-1 border-black">
+                                    Go to Course
+                                </a>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <p class="pb-3">You haven't purchased any courses yet.</p>
+        <a href="{% url 'courses' %}" class="btn btn-lg rounded-0 text-uppercase py-3 profile-browse-btn border border-black border-1">
+            <span class="icon">
+                <i class="fa-solid fa-dog"></i>
+            </span>
+            <span class="text-uppercase">Browse Courses</span>
+        </a>
+    {% endif %}
+</div>
+{% endblock %}
+
+<!-- Handles the checkbox logic -->
+{% block postloadjs %}
+{{ block.super }}
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const checkboxes = document.querySelectorAll('.completion-toggle');
+        checkboxes.forEach(box => {
+            box.addEventListener('change', function () {
+                this.form.submit();
+            });
+        });
+    });
+</script>
+{% endblock %}

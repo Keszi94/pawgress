@@ -157,6 +157,7 @@ body.courses-page {
     padding-bottom: 0.5rem;
 }
 
+/* ~~~~~~~~~~~~~ all cards on the website */
 .card {
     margin-bottom: 20px;
     border: 1px solid black;
@@ -192,14 +193,16 @@ body.courses-page {
 }
 
 /* courses page add to cart on cards */
-.add-to-cart-link {
+.add-to-cart-link,
+.go-to-course-btn {
     color: black !important;
     background-color: transparent;
     transition: background-color 0.3s ease;
     font-weight: 500;
 }
 
-.add-to-cart-link:hover {
+.add-to-cart-link:hover,
+.go-to-course-btn:hover {
     background-color: #aae1e7 !important;
 }
 
@@ -249,8 +252,9 @@ body.course-detail {
 
 /* -------------------------------- Cart page */
 
-/* class for the empty and not empty cart as well */
-.cart-browse-btn {
+/* class for the empty and not empty cart as well as the profile browse button */
+.cart-browse-btn,
+.profile-browse-btn {
     border: none;
     color: #000;
     background-color: transparent;
@@ -258,7 +262,9 @@ body.course-detail {
 }
 
 .cart-browse-btn:hover,
-.cart-browse-btn:focus {
+.cart-browse-btn:focus,
+.profile-browse-btn:hover,
+.profile-browse-btn:focus {
     background-color: #aae1e7;
     text-decoration: none;
 }

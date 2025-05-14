@@ -38,7 +38,7 @@
                 {% if request.user.is_superuser %}
                     <a href="{% url 'account_logout' %}" class="dropdown-item">Add New Course</a>
                 {% endif %}
-                <a href="" class="dropdown-item">My Profile</a>
+                <a href="{% url 'my_courses' %}" class="dropdown-item">My Courses</a>
                 <a href="{% url 'account_logout' %}" class="dropdown-item">Logout</a>
             {% else %}
                 <a href="{% url 'account_signup' %}" class="dropdown-item">Register</a>
