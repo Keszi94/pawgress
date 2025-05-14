@@ -2,6 +2,8 @@ from django.shortcuts import render, redirect, reverse, get_object_or_404
 from django.contrib import messages
 # Generates a search query
 from django.db.models import Q
+
+from checkout.models import Purchase
 from .models import Course, Category
 
 # Create your views here.
@@ -61,8 +63,24 @@ def course_detail(request, course_id):
 
     course = get_object_or_404(Course, pk=course_id)
 
+    # Default to false
+    has_access = False
+
+    # Get all confirmed purchases from the user
+    purchases = Purchase.objects.filter(user=request.user, access_granted=True)
+
+    # Loop through each purchase and the items in them
+    for purchase in purchases:
+        for item in purchase.items.all():
+            if item.course == course:
+                has_access = True
+            elif item.bundle:
+                if course in item.bundle.courses.all():
+                    has_access = True
+
     context = {
         'course': course,
+        'has_access': has_access
     }
 
     return render(request, 'courses/course_detail.html', context)
