@@ -23,68 +23,55 @@
         <div class="row">
             <div class="col">
                 {% if cart_items %}
-                    <div class="table-responsive rounded">
-                        <table class="table table-sm table-borderless">
-                            <thead class="text-black">
-                                <tr>
-                                    <th scope="col">Course Info</th>
-                                    <th scope="col" class="text-end">Price</th>
-                                    <!-- Remove from cart col -->
-                                    <th scope="col" class="text-end"></th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {% for item in cart_items %}
-                                    <tr>
-                                        <td class="p-3 w-50">
-                                            <div class="d-flex align-items-center">
-                                                {% if item.course %}
-                                                    <img src="{{ item.course.image.url }}" alt="{{ item.course.title }}" class="img-fluid rounded me-3 cart-item-img">
-                                                    <div>
-                                                        <p class="my-0"><strong>{{ item.course.title }}</strong></p>
-                                                        <p class="my-0 small text-muted">{{ item.course.category }}</p>
-                                                    </div>
-                                                {% elif item.bundle %}
-                                                    <img src="{{ item.bundle.image.url }}" alt="{{ item.bundle.title }}" class="img-fluid rounded me-3 cart-item-img">
-                                                    <div>
-                                                        <p class="my-0"><strong>{{ item.bundle.title }}</strong></p>
-                                                        <p class="my-0 small text-muted">{{ item.bundle.category }}</p>
-                                                    </div>
-                                                {% endif %}
-                                            </div>
-                                        </td>
-                                        <td class="py-3 text-end align-middle">
-                                            €{{ item.price }}
-                                        </td>
-                                        <td class="py-3 text-end align-middle">
-                                            <a href="#" class="text-danger remove-item" id="remove_{{ item.item_key }}" data-item_key="{{ item.item_key }}">
-                                                Remove from Cart
-                                            </a>
-                                        </td>
-                                    </tr>
-                                {% endfor %}
-                                <tr class="pt-5">
-                                    <td colspan="3" class="text-end pt-5">
-                                        <h4>
-                                            <strong>Grand Total:</strong> €{{ grand_total|floatformat:2 }}
-                                        </h4>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    
-                                    <td colspan="3" class="text-end">
-                                        <!-- Keep Browsing btn -->
-                                        <a href="{% url 'courses' %}" class="btn btn-sm rounded-0 text-uppercase py-3 cart-browse-btn border border-black border-1">
-                                            <i class="fa-solid fa-dog me-1"></i> Keep Browsing
-                                        </a>
-                                        <!-- Secure Checkout btn -->
-                                        <a href="{% url 'checkout' %}" class="btn btn-sm rounded-0 text-uppercase py-3 secure-checkout-btn border border-black border-1">
-                                            <i class="fa-solid fa-lock me-1"></i> Secure Checkout
-                                        </a>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
+                    <div class="rounded">
+                        <div class="cart-items-wrapper">
+                            {% for item in cart_items %}
+                                <div class="row mb-4 p-3 border rounded align-items-center">
+                                <!-- Image -->
+                                <div class="col-4 col-md-2">
+                                    {% if item.course %}
+                                    <img src="{{ item.course.image.url }}" alt="{{ item.course.title }}" class="img-fluid rounded">
+                                    {% elif item.bundle %}
+                                    <img src="{{ item.bundle.image.url }}" alt="{{ item.bundle.title }}" class="img-fluid rounded">
+                                    {% endif %}
+                                </div>
+
+                                <!-- Title & category -->
+                                <div class="col-8 col-md-6">
+                                    {% if item.course %}
+                                    <p class="mb-1 fw-bold">{{ item.course.title }}</p>
+                                    <p class="mb-0 text-muted small">{{ item.course.category }}</p>
+                                    {% elif item.bundle %}
+                                    <p class="mb-1 fw-bold">{{ item.bundle.title }}</p>
+                                    <p class="mb-0 text-muted small">{{ item.bundle.category }}</p>
+                                    {% endif %}
+                                </div>
+
+                                <!-- Price & remove -->
+                                <div class="col-12 col-md-4 text-md-end mt-3 mt-md-0">
+                                    <p class="mb-1"><strong>€{{ item.price }}</strong></p>
+                                    <a href="#" class="text-danger remove-item" id="remove_{{ item.item_key }}" data-item_key="{{ item.item_key }}">
+                                    Remove from Cart
+                                    </a>
+                                </div>
+                                </div>
+                            {% endfor %}
+
+                            <!-- Grand total -->
+                            <div class="text-end mt-4">
+                                <h4><strong>Grand Total:</strong> €{{ grand_total|floatformat:2 }}</h4>
+                            </div>
+
+                            <!-- Buttons -->
+                            <div class="d-flex flex-column flex-sm-row justify-content-end mt-3 gap-2">
+                                <a href="{% url 'courses' %}" class="btn btn-sm rounded-0 text-uppercase py-3 cart-browse-btn border border-black border-1">
+                                <i class="fa-solid fa-dog me-1"></i> Keep Browsing
+                                </a>
+                                <a href="{% url 'checkout' %}" class="btn btn-sm rounded-0 text-uppercase py-3 secure-checkout-btn border border-black border-1">
+                                <i class="fa-solid fa-lock me-1"></i> Secure Checkout
+                                </a>
+                            </div>
+                        </div>
                     </div>
                 {% else %}
                     <p class="lead mb-5">Your cart is empty</p>
