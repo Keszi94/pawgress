@@ -8,7 +8,13 @@ from courses.models import Course
 from bundles.models import Bundle
 from django.db.models import Sum
 
-# Create your models here.
+"""
+Checkout app models:
+- Purchase: Stores transaction data for a completed checkout.
+  Includes billing information, total cost, and access control.
+- PurchaseItem: Represents an individual item (course or bundle)
+  included in a purchase, used to calculate totals.
+"""
 
 
 # Represents a simple completed purchase

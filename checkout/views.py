@@ -144,6 +144,11 @@ def checkout_success(request, purchase_number):
 
     purchase = get_object_or_404(Purchase, purchase_number=purchase_number)
 
+    # TEMP: For development/testing only — in production, use Stripe webhooks
+    purchase.is_paid = True
+    purchase.access_granted = True
+    purchase.save()
+
     messages.success(
         request,
         f'Your order was processed successfully! Your order number is: '
