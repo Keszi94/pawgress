@@ -25,9 +25,17 @@
                 <div class="row">
                   <div class="col-3 my-1">
                     {% if item.course %}
-                      <img class="w-100 rounded" src="{{ item.course.image.url }}" alt="{{ item.course.title }}">
+                      {% if item.course.image %}
+                        <img src="{{ item.course.image.url }}" alt="{{ item.course.title }}" class="w-100 rounded">
+                      {% else %}
+                        <img src="{{ MEDIA_URL }}noimage.jpg" alt="No image available" class="w-100 rounded">
+                      {% endif %}
                     {% elif item.bundle %}
-                      <img class="w-100 rounded" src="{{ item.bundle.image.url }}" alt="{{ item.bundle.title }}">
+                      {% if item.bundle.image %}
+                        <img src="{{ item.bundle.image.url }}" alt="{{ item.bundle.title }}" class="w-100 rounded" >
+                      {% else %}
+                        <img src="{{ MEDIA_URL }}noimage.jpg" alt="No image available" class="w-100 rounded">
+                      {% endif %}
                     {% endif %}
                   </div>
                   <div class="col-9">

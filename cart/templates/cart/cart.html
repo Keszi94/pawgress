@@ -30,9 +30,17 @@
                                 <!-- Image -->
                                 <div class="col-4 col-md-2">
                                     {% if item.course %}
-                                    <img src="{{ item.course.image.url }}" alt="{{ item.course.title }}" class="img-fluid rounded">
+                                        {% if item.course.image %}
+                                            <img src="{{ item.course.image.url }}" alt="{{ item.course.title }}" class="img-fluid rounded">
+                                        {% else %}
+                                            <img src="{{ MEDIA_URL }}noimage.jpg" alt="No image available" class="img-fluid rounded">
+                                        {% endif %}
                                     {% elif item.bundle %}
-                                    <img src="{{ item.bundle.image.url }}" alt="{{ item.bundle.title }}" class="img-fluid rounded">
+                                        {% if item.bundle.image %}
+                                            <img src="{{ item.bundle.image.url }}" alt="{{ item.bundle.title }}" class="img-fluid rounded">
+                                        {% else %}
+                                            <img src="{{ MEDIA_URL }}noimage.jpg" alt="No image available" class="img-fluid rounded">
+                                        {% endif %}
                                     {% endif %}
                                 </div>
 
