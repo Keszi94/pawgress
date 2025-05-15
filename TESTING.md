@@ -64,7 +64,9 @@
 
   This successfully merged the remote and local histories and I was able to push my code as expected.
 
-  [Solution found on this page](https://stackoverflow.com/questions/37937984/git-refusing-to-merge-unrelated-histories-on-rebase)
+* Resources:
+
+    * [Solution found on this page](https://stackoverflow.com/questions/37937984/git-refusing-to-merge-unrelated-histories-on-rebase)
 
 ---
 
@@ -86,7 +88,9 @@
 
   After this I ran the `python manage.py migrate`command and it worked as expected.
 
-  [Solution found on this page](https://stackoverflow.com/questions/77012106/django-allauth-modulenotfounderror-no-module-named-allauth-account-middlewar?utm_source=chatgpt.com)
+* Resources:
+  
+    * [StackOverflow](https://stackoverflow.com/questions/77012106/django-allauth-modulenotfounderror-no-module-named-allauth-account-middlewar?utm_source=chatgpt.com)
 
 ---
 
@@ -105,7 +109,9 @@
 
   After this, all course data was successfully imported into the database.
 
-  Solution found on these pages: [reddit](https://www.reddit.com/r/django/comments/10zift2/help_me_understand_how_to_load_data_into_the/), [Dev.to](https://dev.to/documendous/using-django-fixtures-with-foreign-keys-without-hardcoded-ids-1pa0)
+* Resources: 
+  
+    * [reddit](https://www.reddit.com/r/django/comments/10zift2/help_me_understand_how_to_load_data_into_the/), [Dev.to](https://dev.to/documendous/using-django-fixtures-with-foreign-keys-without-hardcoded-ids-1pa0)
 
 ---
 
@@ -115,12 +121,12 @@
 
 * Cause:
 
-  I have incorrectly set the ImageField in the Course model to `upload_to='media/'`,  which caused Django to create duplicate paths (media/media/). After I updated that Course model, the error still displayed. That’s when I realised that I have also included `”media/` at the start of the “image” paths (`"media/puppy_leash.jpg"`) in the course.json file, which led to the same issue.
+    I have incorrectly set the ImageField in the Course model to `upload_to='media/'`,  which caused Django to create duplicate paths (media/media/). After I updated that Course model, the error still displayed. That’s when I realised that I have also included `”media/` at the start of the “image” paths (`"media/puppy_leash.jpg"`) in the course.json file, which led to the same issue.
 
 * 	Solution:
 
-  First, I have updated the Course model so that the ImageField doesn't add an extra "media/": `image = models.ImageField(upload_to='', blank=True, null=True)`. 
-  After that I’ve removed all “media/” prefixes from the “image” fields in courses.json and then re-ran `python manage.py loaddata categories` and `python manage.py loaddata courses`.
+    First, I have updated the Course model so that the ImageField doesn't add an extra "media/": `image = models.ImageField(upload_to='', blank=True, null=True)`. 
+    After that I’ve removed all “media/” prefixes from the “image” fields in courses.json and then re-ran `python manage.py loaddata categories` and `python manage.py loaddata courses`.
 
 ---
 
@@ -179,16 +185,18 @@
 
   Filtering by category using `?category=slug` now works perfectly. The category dropdown links also function as they expected to.
 
-  A few websites/threads that helped me find the solution: 
+* Resources:
+  
     * [Django Docs](https://docs.djangoproject.com/en/5.2/ref/models/fields/) 
-    * a few threads on Stack Overflow:
+    
+    * various threads on Stack Overflow:
     [Changing model field within the Django Shell](https://stackoverflow.com/questions/32899609/changing-model-field-within-the-django-shell) |
     [How to auto fill SlugField instead of overriding save()?](https://stackoverflow.com/questions/50615561/how-to-auto-fill-slugfield-instead-of-overriding-save) |
     [UNIQUE constraint failed on adding a new model field in django](https://stackoverflow.com/questions/58631272/unique-constraint-failed-on-adding-a-new-model-field-in-django)
 
 ---
 
-6. `AssertionError` and `ImproperlyConfigured` errors when starting the server (django-allauth compatibility)
+1. `AssertionError` and `ImproperlyConfigured` errors when starting the server (django-allauth compatibility)
 
     After restarting my computer, I suddenly couldn’t run the development server anymore. Running `python manage.py runserver` threw an `AssertionError` related to `allauth.account.app_settings`, and later a `ModuleNotFoundError` for middleware that didn’t exist. This was strange because everything had worked the day before.
 
@@ -209,6 +217,7 @@
   ```
 
 * Solution:
+
     *	I deleted the invalid middleware line from settings.py.
 
     *	I have changed the incorrect login method setting to this: 
@@ -226,15 +235,15 @@
     
   After implementing all these changes, the server ran again with no errors.
 
-  Documentation that helped me find the solution: 
+* Resources:
 
-  * [Allauth Quickstart](https://docs.allauth.org/en/dev/installation/quickstart.html?utm_source=chatgpt.com)
+    * [Allauth Quickstart](https://docs.allauth.org/en/dev/installation/quickstart.html?utm_source=chatgpt.com)
 
-  * [Allauth Configuration](https://docs.allauth.org/en/dev/account/configuration.html?utm_source=chatgpt.com)
+    * [Allauth Configuration](https://docs.allauth.org/en/dev/account/configuration.html?utm_source=chatgpt.com)
   
 ---
 
-7. Submitting an empty search field redirects to the `/courses/` page
+1. Submitting an empty search field redirects to the `/courses/` page
 
     When submitting the global search form without entering any text (from the homepage or any other page), I was unexpectedly redirected to the courses page even though the view correctly the empty input.
 
@@ -266,11 +275,13 @@
     query = request.GET['q'].strip()
     ```
 
-* Reference: [Django Docs]( https://docs.djangoproject.com/en/5.2/ref/request-response/#django.http.HttpRequest.META)
+* Resources:
+    
+    * [Django Docs]( https://docs.djangoproject.com/en/5.2/ref/request-response/#django.http.HttpRequest.META)
 
 ---
 
-8. Checkout throws error for missing country field despite it being in initial migration
+1. Checkout throws error for missing country field despite it being in initial migration
  
     During testing, submitting a purchase form resulted in a server error claiming the `country` field was missing from the Purchase model. The field was already present in my 0001_initial.py, and migrations had been applied. After some debugging, I found online advice suggesting to delete `db.sqlite3`, assuming that would reset things. I didn’t realize this would also delete all the data. This led to fixture load failures, missing superuser, duplicate slug errors, and the loss of bundle data.
 
@@ -345,3 +356,37 @@
 
     * [Django docs]( https://docs.djangoproject.com/en/5.2/ref/templates/api/#writing-your-own-context-processors)
     * [boutique_ado_v1](https://github.com/Code-Institute-Solutions/boutique_ado_v1)
+
+---
+
+10. Bundle creation error in admin panel
+
+    While trying to add a new bundle through the admin, I got this error: `<Bundle: Test Bundle>" needs to have a value for field "id" before this many-to-many relationship can be used.`
+
+* Cause: 
+   
+    I had code in the `save()` method of the Bundle model that tried to access the list of courses (a many-to-many field) before the bundle was actually saved. But Django doesn't let you work with M2M fields until the object has an ID, which only happens after it’s saved.
+
+* Solution :
+
+    * I deleted the following M2M price calculation code from the save() method in :
+    
+    ```python
+    course_prices = (
+        self.courses.aggregate(total=models.Sum('price'))['total'] or 0.00
+        )
+    self.total_value = course_prices
+    self.savings = (
+        course_prices - self.price
+        ).quantize(Decimal('0.01'), rounding=ROUND_HALF_UP)
+    ```
+
+    *	I kept the signal `@receiver(m2m_changed)` in update_bundle_totals, which updates the total value and savings automatically whenever courses are added or removed from a bundle . Now the bundle saves without crashing, and the total and savings fields still update as expected.
+
+* Sources: 
+
+    * [Django docs](https://docs.djangoproject.com/en/5.2/ref/models/fields/#manytomanyfield)
+    * [Django docs](https://docs.djangoproject.com/en/5.2/ref/signals/#m2m-changed)
+  
+---
+

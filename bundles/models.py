@@ -46,16 +46,6 @@ class Bundle(models.Model):
     def save(self, *args, **kwargs):
         if not self.slug:
             self.slug = slugify(self.title)
-
-        # Recalculate the values before saving
-        course_prices = (
-            self.courses.aggregate(total=models.Sum('price'))['total'] or 0.00
-            )
-        self.total_value = course_prices
-        self.savings = (
-            course_prices - self.price
-            ).quantize(Decimal('0.01'), rounding=ROUND_HALF_UP)
-
         super().save(*args, **kwargs)
 
     def get_courses_count(self):
