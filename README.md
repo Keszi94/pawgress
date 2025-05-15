@@ -177,6 +177,7 @@ All documentation regarding the testing on this project can be viewed in this se
 * [This article on bastakiss.com](https://bastakiss.com/blog/django-6/effective-implementation-of-django-templates-structure-inheritance-and-best-practices-800) helped me with template structuring.
 * I gathered information from the [Django Documentation](https://www.djangoproject.com/) throughout the build.
 * All Course and Bundle contents, including titles and descriptions were created by [ChatGPT](https://chatgpt.com/).
+* [Flake8 documentation](https://flake8.pycqa.org/en/3.1.1/index.html)
 
 ### Media
 

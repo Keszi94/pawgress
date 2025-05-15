@@ -17,7 +17,7 @@ import os
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 if os.path.isfile(os.path.join(BASE_DIR, 'env.py')):
-    import env
+    import env  # noqa: F401
 
 
 # Quick-start development settings - unsuitable for production
