@@ -1,5 +1,6 @@
 from django.test import TestCase
 from decimal import Decimal
+from django.urls import reverse
 
 from bundles.models import Bundle
 from courses.models import Course
@@ -31,3 +32,27 @@ class TestBundle(TestCase):
 if __name__ == "__main__":
     import unittest
     unittest.main()
+
+
+class AllBundlesViewTest(TestCase):
+
+    def setUp(self):
+        Bundle.objects.create(
+            title="Test Bundle",
+            description="Test description",
+            price=29.99
+            )
+
+    def test_all_bundles_view_status_code(self):
+        response = self.client.get(reverse('bundles'))
+        self.assertEqual(response.status_code, 200)
+
+    def test_all_bundles_view_template_used(self):
+        response = self.client.get(reverse('bundles'))
+        self.assertTemplateUsed(response, 'bundles/bundles.html')
+
+    def test_all_bundles_context(self):
+        response = self.client.get(reverse('bundles'))
+        self.assertIn('bundles', response.context)
+        self.assertEqual(len(response.context['bundles']), 1)
+        self.assertEqual(response.context['bundles'][0].title, "Test Bundle")
