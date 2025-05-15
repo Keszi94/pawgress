@@ -51,7 +51,7 @@
                                   <p class="card-text">{{ course.description }}</p>
                                   {% if user.is_superuser %}
                                     <!-- Edit link -->
-                                    <a href="#" class="small text-decoration-none me-2 text-primary">Edit</a>
+                                    <a href="{% url 'course_edit' course.id %}" class="small text-decoration-none me-2 text-primary">Edit</a>
                                     <!-- Delete link -->
                                     <a href="{% url 'course_delete' course.id %}" class="small text-danger text-decoration-none" 
                                         onclick="return confirm('Are you sure you want to delete this course?');">Delete</a>

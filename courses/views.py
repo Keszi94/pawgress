@@ -129,3 +129,35 @@ def course_delete(request, course_id):
         f'Course "{title}" has been deleted successfully!'
         )
     return redirect('courses')
+
+
+def course_edit(request, course_id):
+    """
+    A view that allows superusers to eit an existing course
+    """
+    if not request.user.is_authenticated or not request.user.is_superuser:
+        messages.error(
+            request,
+            "Only site admins are allowed to access this page!"
+            )
+        return redirect('home')
+
+    course = get_object_or_404(Course, pk=course_id)
+    form = CourseForm(
+        request.POST or None,
+        request.FILES or None,
+        instance=course
+        )
+
+    if form.is_valid():
+        form.save()
+        messages.success(
+            request,
+            f'Course "{course.title}" has been updated successfully!'
+        )
+        return redirect('courses')
+
+    return render(request, 'courses/course_form.html', {
+        'form': form,
+        'form_title': f'Edit Course: {course.title}',
+    })
