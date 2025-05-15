@@ -1,5 +1,6 @@
 from django.db import models
 from django.utils.text import slugify
+from ckeditor.fields import RichTextField
 
 """
 Courses app models:
@@ -45,7 +46,7 @@ class Course(models.Model):
         help_text="Leave blank, autogenerates from the title."
         )
     description = models.TextField(max_length=300)
-    content = models.TextField()
+    content = RichTextField()  # ck editor
     price = models.DecimalField(max_digits=6, decimal_places=2)
     category = models.ForeignKey(
         Category, on_delete=models.SET_NULL, null=True, related_name='courses'

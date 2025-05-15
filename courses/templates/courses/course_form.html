@@ -1,0 +1,116 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block body_class %}add-course-page{% endblock %}
+
+{% block extra_head %}
+    {{ form.media }}
+{% endblock %}
+
+{% block page_header %}
+<div class="container mt-5">
+    <div class="row">
+        <div class="col"></div>
+    </div>
+</div>
+{% endblock %}
+
+{% block content %}
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col">
+                <hr>
+                <h2 class="logo-font mb-4">Add a Course</h2>
+                <hr>
+            </div>
+        </div>
+        <div class="row justify-content-center">
+            <div class="col-12 col-md-10 col-lg-8">
+
+                {% if user.is_authenticated and user.is_superuser %}
+                    <form method="POST" enctype="multipart/form-data">
+                        {% csrf_token %}
+
+                        <!-- Title -->
+                        <div class="mb-4">
+                            <p class="form-label fw-bold">Title</p>
+                            {{ form.title }}
+                            {% for error in form.title.errors %}
+                                <div class="text-danger">{{ error }}</div>
+                            {% endfor %}
+                        </div>
+
+                        <!-- Description -->
+                        <div class="mb-4">
+                            <p class="form-label fw-bold">Description</p>
+                            {{ form.description }}
+                            {% for error in form.description.errors %}
+                                <div class="text-danger">{{ error }}</div>
+                            {% endfor %}
+                        </div>
+
+                        <!-- Content -->
+                        <div class="mb-4">
+                            <p class="form-label fw-bold">Content</p>
+                            {{ form.content }}
+                            {% for error in form.content.errors %}
+                                <div class="text-danger">{{ error }}</div>
+                            {% endfor %}
+                        </div>
+
+                        <!-- Price -->
+                        <div class="mb-4">
+                            <p class="form-label fw-bold">Price</p>
+                            {{ form.price }}
+                            {% for error in form.price.errors %}
+                                <div class="text-danger">{{ error }}</div>
+                            {% endfor %}
+                        </div>
+
+                        <!-- Category -->
+                        <div class="mb-4">
+                            <p class="form-label fw-bold">Category</p>
+                            {{ form.category }}
+                            {% for error in form.category.errors %}
+                                <div class="text-danger">{{ error }}</div>
+                            {% endfor %}
+                        </div>
+
+                        <!-- Image -->
+                        <div class="mb-4">
+                            <p class="form-label fw-bold">Image</p>
+                            {{ form.image }}
+                            {% for error in form.image.errors %}
+                                <div class="text-danger">{{ error }}</div>
+                            {% endfor %}
+                        </div>
+
+                        <!-- Time frame -->
+                        <div class="mb-4">
+                            <p class="form-label fw-bold">Time frame</p>
+                            {{ form.time_frame }}
+                            {% if form.time_frame.help_text %}
+                                <small class="form-text text-muted">{{ form.time_frame.help_text }}</small>
+                            {% endif %}
+                            {% for error in form.time_frame.errors %}
+                                <div class="text-danger">{{ error }}</div>
+                            {% endfor %}
+                        </div>
+
+                        <!-- Buttons -->
+                        <div class="mt-4 d-flex justify-content-start gap-2">
+                            <button type="submit" class="btn btn-success">Save</button>
+                            <a href="{% url 'courses' %}" class="btn btn-secondary">Cancel</a>
+                        </div>
+                    </form>
+                {% else %}
+                    <div class="alert alert-danger mt-4">
+                        You must be a superuser to access this page.
+                    </div>
+                {% endif %}
+
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

@@ -58,6 +58,7 @@ INSTALLED_APPS = [
     # Other
     'crispy_forms',
     'crispy_bootstrap5',
+    'ckeditor',
 ]
 
 MIDDLEWARE = [
@@ -187,6 +188,14 @@ STATICFILES_DIRS = [
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+CKEDITOR_CONFIGS = {
+    'default': {
+        'toolbar': 'full',
+        'height': 300,
+        'width': '100%',
+    }
+}
 
 STRIPE_PUBLIC_KEY = os.environ.get('STRIPE_PUBLIC_KEY', '')
 STRIPE_SECRET_KEY = os.environ.get('STRIPE_SECRET_KEY', '')

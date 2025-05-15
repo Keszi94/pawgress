@@ -3,6 +3,7 @@ from django.contrib import messages
 # Generates a search query
 from django.db.models import Q
 
+from .forms import CourseForm
 from checkout.models import Purchase
 from .models import Course, Category
 
@@ -84,3 +85,26 @@ def course_detail(request, course_id):
     }
 
     return render(request, 'courses/course_detail.html', context)
+
+
+def course_create(request):
+    """
+    A view to allow superusers to create a new course on the fornt-end
+    """
+    if not request.user.is_authenticated or not request.user.is_superuser:
+        messages.error(
+            request,
+            "You do not have permission to access this page."
+            )
+        return redirect('home')
+
+    form = CourseForm(request.POST or None, request.FILES or None)
+    if form.is_valid():
+        form.save()
+        messages.success(request, "Course created successfully!")
+        return redirect('courses')
+
+    return render(request, 'courses/course_form.html', {
+        'form': form,
+        'form_title': 'Add New Course'
+        })

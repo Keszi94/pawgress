@@ -38,6 +38,10 @@
     <link rel="icon" type="image/png" sizes="32x32" href="{% static 'favicon/favicon-32x32.png' %}">
     <link rel="icon" type="image/png" sizes="16x16" href="{% static 'favicon/favicon-16x16.png' %}">
     <link rel="manifest" href="{% static 'favicon/site.webmanifest' %}">
+
+    {% block extra_head %}
+        {{ form.media }}
+    {% endblock %}
     
     
     <!-- Opt.: Extra title for other pages -->
@@ -76,7 +80,7 @@
                 <form action="{% url 'courses' %}" method="GET">
                     <div class="input-group w-100">
                         <input type="text" class="form-control border border-white rounded-0" name="q" placeholder="Find the pawfect course...">
-                        <button class="btn search-btn border-white rounded-0 px-4" type="submit">
+                        <button class="btn search-btn border-white rounded-1 px-4" type="submit">
                             <i class="fa-solid fa-magnifying-glass fa-lg"></i>
                         </button>
                     </div>
@@ -97,7 +101,7 @@
                         <div class="dropdown-menu border-0" aria-labelledby="user-options">
                             {% if request.user.is_authenticated %}
                                 {% if request.user.is_superuser %}
-                                    <a href="" class="dropdown-item">Add New Course</a>
+                                    <a href="{% url 'course_create' %}" class="dropdown-item">Add New Course</a>
                                 {% endif %}
                                 <a href="{% url 'my_courses' %}" class="dropdown-item">My Courses</a>
                                 <a href="{% url 'account_logout' %}" class="dropdown-item">Logout</a>
