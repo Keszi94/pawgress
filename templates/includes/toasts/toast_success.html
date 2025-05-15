@@ -17,38 +17,40 @@
           </div>
         </div>
 
-        {% if grand_total %}
+        {% if grand_total and cart_items %}
           <p class=""><strong>Your cart ({{ cart_items|length }})</strong></p>
           <div class="cart-notification-wrapper">
             {% for item in cart_items %}
-              <div class="row">
-                <div class="col-3 my-1">
-                  {% if item.course %}
-                    <img class="w-100 rounded" src="{{ item.course.image.url }}" alt="{{ item.course.title }}">
-                  {% elif item.bundle %}
-                    <img class="w-100 rounded" src="{{ item.bundle.image.url }}" alt="{{ item.bundle.title }}">
-                  {% endif %}
-                </div>
-                <div class="col-9">
-                  <p class="my-0 logo-font">
-                    <strong>
-                      {% if item.course %}
-                        {{ item.course.title }}
-                      {% elif item.bundle %}
-                        {{ item.bundle.title }}
-                       {% endif %}
-                      </strong>
-                    </p>
-                  <p class="my-0 small">
-                    €
+              {% if item.course or item.bundle %}
+                <div class="row">
+                  <div class="col-3 my-1">
                     {% if item.course %}
-                      {{ item.course.price }}
+                      <img class="w-100 rounded" src="{{ item.course.image.url }}" alt="{{ item.course.title }}">
                     {% elif item.bundle %}
-                      {{ item.bundle.price }}
+                      <img class="w-100 rounded" src="{{ item.bundle.image.url }}" alt="{{ item.bundle.title }}">
                     {% endif %}
-                    </p>
+                  </div>
+                  <div class="col-9">
+                    <p class="my-0 logo-font">
+                      <strong>
+                        {% if item.course %}
+                          {{ item.course.title }}
+                        {% elif item.bundle %}
+                          {{ item.bundle.title }}
+                        {% endif %}
+                        </strong>
+                      </p>
+                    <p class="my-0 small">
+                      €
+                      {% if item.course %}
+                        {{ item.course.price }}
+                      {% elif item.bundle %}
+                        {{ item.bundle.price }}
+                      {% endif %}
+                      </p>
+                  </div>
                 </div>
-              </div>
+              {% endif %}
           {% endfor %}
         </div>
         

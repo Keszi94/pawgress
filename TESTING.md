@@ -285,3 +285,63 @@
 * Resources:
 
     I asked [ChatGPT](https://chatgpt.com/)to create the slug fields from the names/titles so I can paste them into the json files.
+
+---
+
+9. Deleting a course causes the entire site to crash if the course was in a user's cart
+
+    During testing, I added a course to the cart via the front-end and later deleted that course in the Django admin panel. Upon reloading the site, every page immediately returned a `Course.DoesNotExist` error. Even the homepage, which didn’t visibly display any course or cart content, became completely inaccessible.
+
+* Cause:
+  
+    The crash was caused by the cart_contents context processor. It used get_object_or_404() to retrieve course and bundle objects based on IDs stored in the session cart:
+
+    ```Python
+    course = get_object_or_404(Course, pk=item_id)
+    ```
+
+    When a course in the cart was deleted, this raised a `Http404` exception, breaking the entire request before the templates were rendered. Since the context processor is loaded in base.html globally, every page broke, including the ones not related to courses.
+    Further, toast_success.html included logic like:
+
+    ```django
+    {% for item in cart_items %}
+      {{ item.course.title }}
+    {% endfor %}
+    ```
+
+    This also raised errors if `item.course` no longer existed.
+
+* Solution:
+
+  *	I replaced all get_object_or_404() calls in the context processor with safe try...except blocks:
+    
+    ```python
+    try:
+        course = Course.objects.get(pk=item_id)
+    except Course.DoesNotExist:
+        continue
+    ```
+
+  *	Updated the cart preview section in toast_success.html to guard every item access:
+        
+    ```python
+    try:
+        course = Course.objects.get(pk=item_id)
+    except Course.DoesNotExist:
+        continue
+    ```
+
+  * Wrapped the cart rendering logic with:
+
+    ```django
+    {% if grand_total and cart_items %}
+    ```
+
+    …to avoid attempting to display empty or broken cart states.
+
+  After these changes the site’s stability was restored. It no longer crashes when a deleted item remains in a user's cart. 
+  
+* Resources:
+
+    * [Django docs]( https://docs.djangoproject.com/en/5.2/ref/templates/api/#writing-your-own-context-processors)
+    * [boutique_ado_v1](https://github.com/Code-Institute-Solutions/boutique_ado_v1)
