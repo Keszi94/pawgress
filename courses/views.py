@@ -108,3 +108,24 @@ def course_create(request):
         'form': form,
         'form_title': 'Add New Course'
         })
+
+
+def course_delete(request, course_id):
+    """
+    A view that allows superusers to delete a course from the front-end
+    """
+    if not request.user.is_authenticated or not request.user.is_superuser:
+        messages.error(
+            request,
+            "Only site admins are allowed to perform this action!"
+        )
+        return redirect('home')
+
+    course = get_object_or_404(Course, pk=course_id)
+    title = course.title
+    course.delete()
+    messages.success(
+        request,
+        f'Course "{title}" has been deleted successfully!'
+        )
+    return redirect('courses')

@@ -40,7 +40,7 @@
                                 </a>
                                 {% endif %}
                                 <div class="card-body">
-                                    <!-- Category -->
+                                  <!-- Category -->
                                   <a href="#"><p class="course-category">{{ course.category }}</p></a>
                                   <!-- Duration -->
                                   <p class="card-text">
@@ -49,6 +49,13 @@
                                   <a href="{% url 'course_detail' course.id %}"><h3 class="card-title">{{ course.title }}</h3></a>
                                   <!-- Description -->
                                   <p class="card-text">{{ course.description }}</p>
+                                  {% if user.is_superuser %}
+                                    <!-- Edit link -->
+                                    <a href="#" class="small text-decoration-none me-2 text-primary">Edit</a>
+                                    <!-- Delete link -->
+                                    <a href="{% url 'course_delete' course.id %}" class="small text-danger text-decoration-none" 
+                                        onclick="return confirm('Are you sure you want to delete this course?');">Delete</a>
+                                  {% endif %}
                                 </div>
 
                                 <!-- Card Footer -->
