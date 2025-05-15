@@ -20,6 +20,7 @@
             </div>
         </div>
     </div>
+    <hr>
 {% endblock %}
 
 
@@ -37,7 +38,7 @@
                     <form action="{% url 'add_to_cart' course.id %}" method="POST">
                         {% csrf_token %}
                         <input type="hidden" name="redirect_url" value="{{ request.path }}">
-                        <button type="submit" class="btn btn-lg rounded-0 text-uppercase py-3 border border-black border-1 add-to-cart-btn">
+                        <button type="submit" class="btn btn-lg rounded-1 text-uppercase py-3 border border-black border-1 add-to-cart-btn">
                            <i class="fa-solid fa-cart-shopping me-1"></i> Add to cart
                         </button>
                     </form>

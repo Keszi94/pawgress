@@ -66,7 +66,9 @@ class StripeWH_Handler:
                     email__iexact=billing_details.email,
                     full_name__iexact=billing_details.name,
                     street_address1__iexact=billing_details.address.line1,
-                    street_address2__iexact=billing_details.address.line2 or "",
+                    street_address2__iexact=(
+                        billing_details.address.line2 or ""
+                        ),
                     city__iexact=billing_details.address.city,
                     postcode__iexact=billing_details.address.postal_code,
                     country__iexact=billing_details.address.country,

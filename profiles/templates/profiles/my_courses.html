@@ -52,11 +52,11 @@
     {% else %}
         <p class="pb-3">You haven't purchased any courses yet.</p>
         <div class="d-flex justify-content-end mt-auto">
-        <a href="{% url 'courses' %}" class="btn btn-lg rounded-0 text-uppercase py-3 profile-browse-btn border border-black border-1">
+            <!-- Browse courses button -->
+            <a href="{% url 'courses' %}" class="btn btn-lg rounded-1 text-uppercase py-3 profile-browse-btn border border-black border-1">
             <span class="icon">
                 <i class="fa-solid fa-dog"></i>
             </span>
-            <!-- Browse courses button -->
             <span class="text-uppercase">Browse Courses</span>
         </a>
     {% endif %}

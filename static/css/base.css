@@ -11,7 +11,7 @@ html, body {
 body.home-page {
     background: url('/media/homepage_header.jpg') no-repeat center center fixed;
     background-size: cover;
-    background-position: 25% center;
+    background-position: 15% center;
     overflow: hidden; /* Stop page from scrolling on home page */
 }
 
@@ -139,7 +139,6 @@ header {
 }
 
 /* -------------------------------- Courses page */
-
 body.courses-page {
     background: white;
 }
@@ -208,7 +207,7 @@ body.courses-page {
 
 /* -------------------------------- Course Detail page */
 
-body.course-detail {
+/* body.course-detail {
     background: white;
 }
 
@@ -221,10 +220,17 @@ body.course-detail {
     padding-top: 5rem;
     padding-bottom: 5rem;
 
+} */
+
+/* -------------------------------- Add Course page */
+/* Fix for CKEditor making the page scroll */
+.cke, .cke_inner, .cke_contents {
+    height: auto !important;
+    max-height: none !important;
+    overflow: visible !important;
 }
 
-/* -------------------------------- Course Detail page */
-
+/* -------------------------------- Bundles page */
 .incl-courses-links {
     color: black;
     text-decoration: none;
@@ -234,8 +240,6 @@ body.course-detail {
     color: #227c9d;
     text-decoration: underline solid 1px !important;
 }
-
-/* -------------------------------- Bundles page */
 
 .saving-on-bundle {
     color: #f06543 !important;
@@ -251,7 +255,6 @@ body.course-detail {
 }
 
 /* -------------------------------- Cart page */
-
 /* class for the empty and not empty cart as well as the profile browse button */
 .cart-browse-btn,
 .profile-browse-btn {
@@ -301,7 +304,6 @@ a.secure-checkout-btn:focus {
 }
 
 /* -------------------------------- Media Queries */
-
 /* Slightly larger container on xl screens */
 @media (min-width: 1200px) {
   .container {
@@ -324,9 +326,3 @@ a.secure-checkout-btn:focus {
     }
 }
 
-/* Add in if any added content is hidden by the nav on mobile later */
-/* @media (max-width: 991px) {
-    body.courses-page {
-        padding-top: 116px;
-    }
-} */
