@@ -1,6 +1,7 @@
 from django.test import TestCase
 from decimal import Decimal
 from django.contrib.auth.models import User
+from django.shortcuts import reverse
 
 from courses.models import Course
 from bundles.models import Bundle
@@ -8,7 +9,7 @@ from checkout.models import Purchase, PurchaseItem
 # Create your tests here.
 
 
-# ------- Model
+# ------- Models
 class PurchaseModelTests(TestCase):
     """
     Test that the Purchase and PurchaseItem models:
@@ -20,7 +21,8 @@ class PurchaseModelTests(TestCase):
     def setUp(self):
         # create a test user
         self.user = User.objects.create_user(
-            username='tester', password='testpassword'
+            username='testEszter',
+            password='testpassword'
             )
 
         # create a test course & bundle
@@ -109,3 +111,54 @@ class PurchaseModelTests(TestCase):
             quantity=2
         )
         self.assertEqual(str(item), f'{self.bundle.title} (x2)')
+
+    # ------- Views
+    """
+    Test if:
+    - Checkout view renders with valid cart
+    - Checkout view handles empty cart
+    - checkout_success marks purchase as paid and grants access
+    """
+    def test_checkout_view_with_empty_cart(self):
+        """
+        Test redirect if the cart is empty
+        """
+        self.client.login(
+            username='testEszter',
+            password='testpassword'
+            )
+        session = self.client.session
+        session['cart'] = {}
+        session.save()
+
+        response = self.client.get('/checkout/')
+        self.assertEqual(response.status_code, 302)
+        self.assertRedirects(response, '/courses/')
+
+    def test_checkout_success_view_is_paid(self):
+        """
+        Test if the checkout_success view updtaes payment status
+        """
+        # ensure that the purchase is unpaid first
+        self.purchase.is_paid = False
+        self.purchase.access_granted = False
+        self.purchase.save()
+
+        # log in user
+        self.client.login(
+            username='testEszter',
+            password='testpassword'
+            )
+
+        response = self.client.get(
+            reverse(
+                'checkout_success',
+                args=[self.purchase.purchase_number]
+                )
+        )
+        self.assertEqual(response.status_code, 200)
+
+        # refresh and check flags
+        self.purchase.refresh_from_db()
+        self.assertTrue(self.purchase.is_paid)
+        self.assertTrue(self.purchase.access_granted)
