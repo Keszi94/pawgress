@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% load i18n account socialaccount %}
+
+{% block page_header %}
+<div class="container mt-5">
+    <div class="row">
+        <div class="col"></div>
+    </div>
+</div>
+{% endblock %}
+
+{% block content %}
+<div class="container py-5 mt-5">
+  <div class="row justify-content-center">
+    <div class="col-md-6 col-lg-5">
+      <div class="card shadow">
+        <div class="card-body">
+          <h2 class="text-center mb-4">{% trans "Log Out" %}</h2>
+          <p class="text-center">{% trans "Are you sure you want to log out?" %}</p>
+          <form method="post" action="{% url 'account_logout' %}" class="logout-form">
+            {% csrf_token %}
+            <button type="submit" class="btn allauth-danger-btn w-100 rounded-1 border border-black border-1 mt-3">
+              {% trans "Log Out" %}
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

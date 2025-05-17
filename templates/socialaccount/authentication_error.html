@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block content %}
+<div class="container py-5 text-center">
+  <h2 class="text-danger">{% trans "Login Failed" %}</h2>
+  <p>{% trans "There was an error while trying to authenticate with your social account." %}</p>
+  <a href="{% url 'account_login' %}" class="btn btn-primary mt-3">{% trans "Try Again" %}</a>
+</div>
+{% endblock %}

@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block page_header %}
+<div class="container mt-5">
+    <div class="row">
+        <div class="col"></div>
+    </div>
+</div>
+{% endblock %}
+
+{% block content %}
+<div class="container py-5 text-center">
+  <h2>{% trans "Confirm Email Address" %}</h2>
+  {% if confirmation %}
+    <p>{% blocktrans with email=confirmation.email_address.email %}Confirm email address {{ email }}{% endblocktrans %}</p>
+    <form method="post" action="">
+      {% csrf_token %}
+      <button type="submit" class="btn allauth-success-btn rounded-1 border border-black border-1">{% trans "Confirm" %}</button>
+    </form>
+  {% else %}
+    <p>{% trans "This confirmation link has expired or is invalid." %}</p>
+  {% endif %}
+</div>
+{% endblock %}

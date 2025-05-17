@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block content %}
+<div class="container py-5">
+  <h2>{% trans "Connected Social Accounts" %}</h2>
+  {% if form.accounts %}
+    <form method="post" action="{% url 'socialaccount_connections' %}">
+      {% csrf_token %}
+      <ul class="list-group">
+        {% for base_account in form.accounts %}
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+          {{ base_account.account.get_provider.name }}
+          <button name="account" value="{{ base_account.account.pk }}" type="submit" class="btn allauth-danger-btn btn-sm border border-black border-1">
+            {% trans "Disconnect" %}
+          </button>
+        </li>
+        {% endfor %}
+      </ul>
+    </form>
+  {% else %}
+    <p>{% trans "You currently have no social accounts connected." %}</p>
+  {% endif %}
+</div>
+{% endblock %}

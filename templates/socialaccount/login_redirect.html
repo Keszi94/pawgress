@@ -1,0 +1,11 @@
+{% load i18n %}
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="refresh" content="0;URL='{{ redirect_to }}'">
+  <title>{% trans "Redirecting..." %}</title>
+</head>
+<body>
+  <p>{% trans "Redirecting... If not redirected, click " %}<a href="{{ redirect_to }}">{% trans "here" %}</a>.</p>
+</body>
+</html>

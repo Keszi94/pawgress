@@ -164,7 +164,8 @@ body.courses-page {
     transition: transform 0.3s ease;
 }
 
-.card:hover {
+.bundles-cards:hover,
+.courses-cards:hover {
     transform: scale(1.05);
 }
 
@@ -301,6 +302,39 @@ a.secure-checkout-btn:focus {
 /* -------------------------------- 404 page */
 .page-not-found {
     min-height: 70vh;
+}
+
+/* -------------------------------- Allauth Templates */
+.allauth-success-btn {
+    background-color: #aae1e7 !important;
+    color: #000;
+}
+
+.allauth-success-btn:hover,
+.allauth-success-btn:focus {
+    background-color: #bdf8ff !important;
+    color: #000;
+}
+
+.allauth-danger-btn {
+    background: #f06543 !important;
+    color: black;
+}
+
+.allauth-danger-btn:hover,
+.allauth-danger-btn:focus {
+    background: #f09d51 !important;
+    color: black;
+}
+
+.signup-form .form-control {
+  border: 1px solid black !important;
+  border-radius: 4px;
+}
+
+.login-form .form-control {
+  border: 1px solid black !important;
+  border-radius: 4px;
 }
 
 /* -------------------------------- Media Queries */

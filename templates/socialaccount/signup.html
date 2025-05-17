@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% load i18n account socialaccount %}
+
+{% block page_header %}
+<div class="container mt-5">
+  <div class="row"><div class="col"></div></div>
+</div>
+{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+  <div class="row justify-content-center">
+    <div class="col-md-6 col-lg-5">
+      <div class="card shadow text-center">
+        <div class="card-body">
+          <h2 class="mb-3">{% trans "Complete Sign Up" %}</h2>
+          <p class="text-muted">
+            {% blocktrans with email=form.email.value %}
+                The Google account <strong>{{ email }}</strong> is not registered on our website.
+                Please create an account to continue.
+            {% endblocktrans %}
+            </p>
+
+            <p class="mt-3">
+            {% trans "Already have an account?" %} <a href="{% url 'account_login' %}">{% trans "Log in here." %}</a>
+            </p>
+
+          <form method="post" action="{% url 'socialaccount_signup' %}">
+            {% csrf_token %}
+            {{ form.as_p }}
+            {{ redirect_field }}
+            <button type="submit" class="btn allauth-success-btn w-100 rounded-1 border border-black border-1">
+              {% trans "Sign Up" %}
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

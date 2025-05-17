@@ -83,12 +83,14 @@
                     </div>
                 {% else %}
                     <p class="lead mb-5">Your cart is empty</p>
-                    <a href="{% url 'courses' %}" class="btn btn-lg rounded-1 text-uppercase py-3 cart-browse-btn border border-black border-1">
-                        <span class="icon">
-                            <i class="fa-solid fa-dog"></i>
-                        </span>
-                        <span class="text-uppercase">Browse Courses</span>
-                    </a>
+                    <div class="w-100">
+                            <a href="{% url 'courses' %}" class="btn btn-lg rounded-1 text-uppercase py-3 cart-browse-btn border border-black border-1">
+                                <span class="icon">
+                                    <i class="fa-solid fa-dog"></i>
+                                </span>
+                                <span class="text-uppercase">Browse Courses</span>
+                            </a>
+                    </div>
                 {% endif %}
             </div>
         </div>

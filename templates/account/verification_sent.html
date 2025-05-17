@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block page_header %}
+<div class="container mt-5">
+    <div class="row">
+        <div class="col"></div>
+    </div>
+</div>
+{% endblock %}
+
+{% block content %}
+<div class="container py-5 text-center">
+  <h2>{% trans "Email Verification Sent" %}</h2>
+  <p>{% trans "We've emailed you a link to verify your email address. Please check your inbox." %}</p>
+</div>
+{% endblock %}
