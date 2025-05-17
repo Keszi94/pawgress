@@ -1,8 +1,10 @@
-from django.test import TestCase, RequestFactory
+from django.test import TestCase, RequestFactory, Client
+from django.urls import reverse
 from decimal import Decimal
 from django.contrib.sessions.middleware import SessionMiddleware
+from django.contrib.auth.models import User
 
-from courses.models import Course
+from courses.models import Course, Category
 from bundles.models import Bundle
 from cart.contexts import cart_contents
 
@@ -73,4 +75,80 @@ class CartContextTests(TestCase):
         # check that the bundle title appears in the cart data
         self.assertEqual(
             context['cart_items'][1]['bundle'].title, "Test Bundle"
+            )
+
+
+class CartViewTests(TestCase):
+    """
+    Test if the cart view:
+    - renders correctly
+    - Cours and bundles can be added
+    - Course/Bundle can be removes
+    """
+    def setUp(self):
+        self.client = Client()
+
+        # test user and login
+        self.user = User.objects.create_user(
+            username='tester',
+            password='testpassword'
+            )
+        self.client.login(
+            username='tester', password='testpassword'
+            )
+
+        self.category = Category.objects.create(name="Training")
+        # test course
+        self.course = Course.objects.create(
+            title="Test Course",
+            price=Decimal("39.99"),
+            description="description",
+            content="content",
+            category=self.category
+        )
+        # test bundle
+        self.bundle = Bundle.objects.create(
+            title="Test Bundle",
+            description="description",
+            price=Decimal("19.00")
+        )
+        # add the course to the bundle
+        self.bundle.courses.set([self.course])
+
+    def test_view_cart_template(self):
+        """
+        View cart returns http 200 and it uses the correct template
+        """
+        response = self.client.get(reverse('view_cart'))
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, 'cart/cart.html')
+
+    def test_add_course_to_cart(self):
+        """
+        Add a course to the cart
+        """
+        self.client.post(
+            reverse(
+                'add_to_cart',
+                args=[self.course.id]), {
+                    'item_type': 'course',
+                    'redirect_url': reverse('courses')
+                })
+        session = self.client.session
+        self.assertIn(f'course_{self.course.id}', session['cart'])
+
+    def test_remove_course_from_cart(self):
+        """
+        Remove a course from the cart
+        """
+        session = self.client.session
+        session['cart'] = {f'course_{self.course.id}': 1}
+        session.save()
+
+        response = self.client.post(
+            reverse('remove_from_cart', args=[f'course_{self.course.id}'])
+            )
+        self.assertEqual(response.status_code, 200)
+        self.assertNotIn(
+            f'course_{self.course.id}', self.client.session.get('cart', {})
             )
