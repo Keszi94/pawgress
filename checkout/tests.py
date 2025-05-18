@@ -8,6 +8,7 @@ from django.http import HttpResponse
 from courses.models import Course
 from bundles.models import Bundle
 from checkout.models import Purchase, PurchaseItem
+from checkout.forms import PurchaseForm
 # Create your tests here.
 
 
@@ -217,3 +218,58 @@ class WebhookTests(TestCase):
             mock_event
             )
         self.assertEqual(response.status_code, 200)
+
+
+# ------- Form
+class PurchaseFormTest(TestCase):
+    """
+    Test that the PurchaseForm:
+    - accepts valid input
+    - rejects missing or invalid input
+    """
+    def setUp(self):
+        # set up a valid data dictionery
+        self.valid_data = {
+            'email': 'test@test.com',
+            'full_name': 'Test Name',
+            'company_name': 'Test Co',
+            'street_address1': '19 Test Street',
+            'street_address2': 'Block 7',
+            'city': 'Test City',
+            'postcode': '424242',
+            'country': 'IE'
+        }
+
+    def test_form_valid_data(self):
+        """
+        Form is valid with all required fields
+        """
+        form = PurchaseForm(data=self.valid_data)
+        # should pass validation
+        self.assertTrue(form.is_valid())
+
+    def test_form_missing_required_field(self):
+        """
+        Form is invalid if required field is missing
+        """
+        invalid_data = self.valid_data.copy()
+        # remove email
+        invalid_data.pop('email')
+        form = PurchaseForm(data=invalid_data)
+        # should not pass
+        self.assertFalse(form.is_valid())
+        # email field should trigger error
+        self.assertIn('email', form.errors)
+
+    def test_form_invalid_country(self):
+        """
+        Form is invalid with missing country
+        """
+        invladi_data = self.valid_data.copy()
+        # set country to blank
+        invladi_data['country'] = ''
+        form = PurchaseForm(data=invladi_data)
+        # should not pass
+        self.assertFalse(form.is_valid())
+        # country field should raise an error
+        self.assertIn('country', form.errors)
