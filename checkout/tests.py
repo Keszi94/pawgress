@@ -2,6 +2,8 @@ from django.test import TestCase
 from decimal import Decimal
 from django.contrib.auth.models import User
 from django.shortcuts import reverse
+from unittest.mock import patch, MagicMock
+from django.http import HttpResponse
 
 from courses.models import Course
 from bundles.models import Bundle
@@ -162,3 +164,56 @@ class PurchaseModelTests(TestCase):
         self.purchase.refresh_from_db()
         self.assertTrue(self.purchase.is_paid)
         self.assertTrue(self.purchase.access_granted)
+
+
+# ------- Webhooks
+class WebhookTests(TestCase):
+    """
+    Test that the webhook view:
+    - correctly handles valid Stripe events
+    - rejects invalid signatures
+    """
+
+    @patch('checkout.webhooks.StripeWH_Handler')
+    @patch('checkout.views.stripe.Webhook.construct_event')
+    def test_webhook_success_event(
+        self,
+        mock_construct_event,
+        mock_handler_cls
+    ):
+        """
+        Test that a successful payment_intent event returns http 200
+        """
+        # mock the event returned by stripe
+        mock_event = {
+            'type': 'payment_intent.succeeded',
+            'data': {
+                'object': {
+                    'id': 'pi_test123',
+                }
+            }
+        }
+
+        # makes stripe construct_event return the mock_vent
+        mock_construct_event.return_value = mock_event
+
+        # mock the handler method that should be called
+        mock_handler = MagicMock()
+        mock_handler.handle_payment_intent_succeeded.return_value = (
+            HttpResponse(status=200)
+            )
+        mock_handler_cls.return_value = mock_handler
+
+        # send the request
+        response = self.client.post(
+            reverse('webhook'),
+            data=b'{}',
+            content_type='application/json',
+            **{'HTTP_STRIPE_SIGNATURE': 'test_signature'}
+        )
+
+        # check that the correct handler methos was called
+        mock_handler.handle_payment_intent_succeeded.assert_called_once_with(
+            mock_event
+            )
+        self.assertEqual(response.status_code, 200)
