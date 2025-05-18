@@ -1,6 +1,7 @@
 from django.test import TestCase
 from django.urls import reverse
 from decimal import Decimal
+from django.contrib.auth.models import User
 
 from courses.forms import CourseForm
 from courses.models import Course, Category
@@ -102,3 +103,54 @@ class TestCourseForm(TestCase):
         self.assertFalse(form.is_valid())
         self.assertIn('title', form.errors)
         self.assertIn('price', form.errors)
+
+
+class CourseCreateViewTest(TestCase):
+    """
+    Tests for the course_create view:
+    - only superusers are allowed to access it
+    - regular users and not logged in users should be redirected
+    """
+    def setUp(self):
+        # create a normal user
+        self.user = User.objects.create_user(
+            username='user',
+            password='userpassword'
+        )
+
+        # create a superuser
+        self.superuser = User.objects.create_superuser(
+            username='admin',
+            password='adminpassword',
+            email='admin@testing.com'
+        )
+
+    def test_superuser_can_access(self):
+        """
+        Superusers should get 200 ok and see the course form
+        """
+        self.client.login(
+            username='admin',
+            password='adminpassword'
+            )
+        response = self.client.get(reverse('course_create'))
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, 'courses/course_form.html')
+
+    def test_regular_user_redirect(self):
+        """
+        Regular user should be redirected to the home page
+        """
+        self.client.login(
+            username='user',
+            password='userpassword'
+        )
+        response = self.client.get(reverse('course_create'))
+        self.assertRedirects(response, reverse('home'))
+
+    def test_logged_out_user_redirected(self):
+        """
+        Looged-out users should be redirected to the hone page
+        """
+        response = self.client.get(reverse('course_create'))
+        self.assertRedirects(response, reverse('home'))
