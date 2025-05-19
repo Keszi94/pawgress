@@ -33,7 +33,7 @@
                                 {% if bundle.image %}
                                     <img src="{{ bundle.image.url }}" class="card-img-top-bundles" alt="{{ bundle.title }}" loading="lazy">
                                 {% else %}
-                                    <img src="{% static 'images/{% static 'images/noimage.jpg' %}' %}" class="card-img-top-bundles" alt="No image available" loading="lazy">
+                                    <img src="{% static 'images/noimage.jpg' %}" class="card-img-top-bundles" alt="No image available" loading="lazy">
                                 {% endif %}
                                 <div class="card-body">
                                     <h3 class="bundle-card-title text-center">{{ bundle.title }}</h3>

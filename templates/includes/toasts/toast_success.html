@@ -1,5 +1,7 @@
 <!-- Code grabbed from bootstrap docs https://getbootstrap.com/docs/5.3/components/toasts/#overview -->
 <!-- Flexbox container for aligning the toasts -->
+{% load static %}
+
 <div class="toast-container position-fixed top-0 end-0 p-3" aria-live="polite" aria-atomic="true">
 
     <div class="toast align-items-center border-0 show bg-success text-white custom-toast" role="alert" aria-live="assertive" aria-atomic="true" data-bs-autohide="true" data-bs-delay="5000">
@@ -28,13 +30,13 @@
                       {% if item.course.image %}
                         <img src="{{ item.course.image.url }}" alt="{{ item.course.title }}" class="w-100 rounded">
                       {% else %}
-                        <img src="{{ MEDIA_URL }}{% static 'images/noimage.jpg' %}" alt="No image available" class="w-100 rounded">
+                        <img src="{% static 'images/noimage.jpg' %}" alt="No image available" class="w-100 rounded">
                       {% endif %}
                     {% elif item.bundle %}
                       {% if item.bundle.image %}
                         <img src="{{ item.bundle.image.url }}" alt="{{ item.bundle.title }}" class="w-100 rounded" >
                       {% else %}
-                        <img src="{{ MEDIA_URL }}{% static 'images/noimage.jpg' %}" alt="No image available" class="w-100 rounded">
+                        <img src="{% static 'images/noimage.jpg' %}" alt="No image available" class="w-100 rounded">
                       {% endif %}
                     {% endif %}
                   </div>

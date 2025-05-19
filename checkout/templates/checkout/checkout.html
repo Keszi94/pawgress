@@ -48,13 +48,13 @@
                                 {% if item.course.image %}
                                     <img class="w-100" src="{{ item.course.image.url }}" alt="{{ item.course.title }}">
                                 {% else %}
-                                    <img class="w-100" src="{{ MEDIA_URL }}noimage.png" alt="{{ item.course.title }}">
+                                    <img class="w-100" src="{% static 'images/noimage.jpg' %}" alt="{{ item.course.title }}">
                                 {% endif %}
                             {% elif item.bundle %}
                                 {% if item.bundle.image %}
                                     <img class="w-100" src="{{ item.bundle.image.url }}" alt="{{ item.bundle.title }}">
                                 {% else %}
-                                    <img class="w-100" src="{{ MEDIA_URL }}noimage.png" alt="{{ item.bundle.title }}">
+                                    <img class="w-100" src="{% static 'images/noimage.jpg' %}" alt="{{ item.bundle.title }}">
                                 {% endif %}
                             {% endif %}
                         </div>
