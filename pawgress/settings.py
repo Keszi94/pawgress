@@ -223,6 +223,8 @@ if os.environ.get('USE_AWS', '').lower() == 'true':
     STATIC_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/{STATICFILES_LOCATION}/'
     MEDIA_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/{MEDIAFILES_LOCATION}/'
 
+    print("AWS S3 storage enabled!")
+
 # CKEditor
 CKEDITOR_CONFIGS = {
     'default': {
