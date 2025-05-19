@@ -202,7 +202,6 @@ MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 if 'USE_AWS' in os.environ:
-    print("AWS block activated")
     # Bucket config
     AWS_STORAGE_BUCKET_NAME = 'pawgress-bucket'
     AWS_S3_REGION_NAME = 'us-east-1'
@@ -221,10 +220,8 @@ if 'USE_AWS' in os.environ:
     # Override URLs in production
     STATIC_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/{STATICFILES_LOCATION}/'
     MEDIA_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/{MEDIAFILES_LOCATION}/'
-else:
-    STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-    # only set static root if not using aws
 
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 # CKEditor
 CKEDITOR_CONFIGS = {

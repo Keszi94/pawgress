@@ -1,11 +1,6 @@
 from django.conf import settings
 from storages.backends.s3boto3 import S3Boto3Storage
 
-print(
-    "STATICFILES_LOCATION:",
-    getattr(settings, 'STATICFILES_LOCATION', 'Not found')
-    )
-
 
 class StaticStorage(S3Boto3Storage):
     location = settings.STATICFILES_LOCATION
