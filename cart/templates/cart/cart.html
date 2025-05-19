@@ -33,13 +33,13 @@
                                         {% if item.course.image %}
                                             <img src="{{ item.course.image.url }}" alt="{{ item.course.title }}" class="img-fluid rounded">
                                         {% else %}
-                                            <img src="{{ MEDIA_URL }}noimage.jpg" alt="No image available" class="img-fluid rounded">
+                                            <img src="{{ MEDIA_URL }}{% static 'images/noimage.jpg' %}" alt="No image available" class="img-fluid rounded">
                                         {% endif %}
                                     {% elif item.bundle %}
                                         {% if item.bundle.image %}
                                             <img src="{{ item.bundle.image.url }}" alt="{{ item.bundle.title }}" class="img-fluid rounded">
                                         {% else %}
-                                            <img src="{{ MEDIA_URL }}noimage.jpg" alt="No image available" class="img-fluid rounded">
+                                            <img src="{{ MEDIA_URL }}{% static 'images/noimage.jpg' %}" alt="No image available" class="img-fluid rounded">
                                         {% endif %}
                                     {% endif %}
                                 </div>

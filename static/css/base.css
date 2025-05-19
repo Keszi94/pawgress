@@ -9,7 +9,7 @@ html, body {
 }
 
 body.home-page {
-    background: url('/media/homepage_header.jpg') no-repeat center center fixed;
+    background: url('/static/images/homepage_header.jpg') no-repeat center center fixed;
     background-size: cover;
     background-position: 15% center;
     overflow: hidden; /* Stop page from scrolling on home page */

@@ -28,13 +28,13 @@
                       {% if item.course.image %}
                         <img src="{{ item.course.image.url }}" alt="{{ item.course.title }}" class="w-100 rounded">
                       {% else %}
-                        <img src="{{ MEDIA_URL }}noimage.jpg" alt="No image available" class="w-100 rounded">
+                        <img src="{{ MEDIA_URL }}{% static 'images/noimage.jpg' %}" alt="No image available" class="w-100 rounded">
                       {% endif %}
                     {% elif item.bundle %}
                       {% if item.bundle.image %}
                         <img src="{{ item.bundle.image.url }}" alt="{{ item.bundle.title }}" class="w-100 rounded" >
                       {% else %}
-                        <img src="{{ MEDIA_URL }}noimage.jpg" alt="No image available" class="w-100 rounded">
+                        <img src="{{ MEDIA_URL }}{% static 'images/noimage.jpg' %}" alt="No image available" class="w-100 rounded">
                       {% endif %}
                     {% endif %}
                   </div>
