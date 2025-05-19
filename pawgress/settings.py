@@ -198,10 +198,12 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static')
 ]
 
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
-if 'USE_AWS' in os.environ:
+if os.environ.get('USE_AWS', '').lower() == 'true':
     # Bucket config
     AWS_STORAGE_BUCKET_NAME = 'pawgress-bucket'
     AWS_S3_REGION_NAME = 'us-east-1'
