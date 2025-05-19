@@ -206,6 +206,7 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATICFILES_LOCATION = 'static'
 MEDIAFILES_LOCATION = 'media'
 
+print("ENV CHECK DURING BUILD:", os.environ.get('USE_AWS'))
 if 'USE_AWS' in os.environ:
     # Bucket config
     AWS_STORAGE_BUCKET_NAME = 'pawgress-bucket'
