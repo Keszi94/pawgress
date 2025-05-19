@@ -203,6 +203,9 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
+STATICFILES_LOCATION = 'static'
+MEDIAFILES_LOCATION = 'media'
+
 if 'USE_AWS' in os.environ:
     # Bucket config
     AWS_STORAGE_BUCKET_NAME = 'pawgress-bucket'
@@ -214,10 +217,8 @@ if 'USE_AWS' in os.environ:
     # ------- Static & Media files
     # Static files
     STATICFILES_STORAGE = 'custom_storages.StaticStorage'
-    STATICFILES_LOCATION = 'static'
     # Media files
     DEFAULT_FILE_STORAGE = 'custom_storages.MediaStorage'
-    MEDIAFILES_LOCATION = 'media'
 
     # Override URLs in production
     STATIC_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/{STATICFILES_LOCATION}/'
