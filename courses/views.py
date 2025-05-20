@@ -67,17 +67,20 @@ def course_detail(request, course_id):
     # Default to false
     has_access = False
 
-    # Get all confirmed purchases from the user
-    purchases = Purchase.objects.filter(user=request.user, access_granted=True)
-
-    # Loop through each purchase and the items in them
-    for purchase in purchases:
-        for item in purchase.items.all():
-            if item.course == course:
-                has_access = True
-            elif item.bundle:
-                if course in item.bundle.courses.all():
+    if request.user.is_authenticated:
+        # Get all confirmed purchases from the user
+        purchases = Purchase.objects.filter(
+            user=request.user,
+            access_granted=True
+            )
+        # Loop through each purchase and the items in them
+        for purchase in purchases:
+            for item in purchase.items.all():
+                if item.course == course:
                     has_access = True
+                elif item.bundle:
+                    if course in item.bundle.courses.all():
+                        has_access = True
 
     context = {
         'course': course,
