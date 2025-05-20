@@ -235,6 +235,22 @@ STRIPE_SECRET_KEY = os.environ.get('STRIPE_SECRET_KEY', '')
 STRIPE_CURRENCY = 'eur'
 STRIPE_WH_SECRET = os.environ.get('STRIPE_WH_SECRET', '')
 
+# ------------------------------------------------------------------------
+# Emails
+# ------------------------------------------------------------------------
+if 'DEVELOPMENT' in os.environ:
+    EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+    DEFAULT_FROM_EMAIL = 'pawgress@example.com'
+else:
+    # email settings for Gmail
+    EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+    EMAIL_USE_TLS = True
+    EMAIL_PORT = 587
+    EMAIL_HOST = 'smtp.gmail.com'
+    EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER')
+    EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASS')
+    DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 
@@ -244,6 +260,6 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 print("DEFAULT_FILE_STORAGE = ", DEFAULT_FILE_STORAGE)
 
-from cloudinary_storage.storage import MediaCloudinaryStorage
-from django.core.files.storage import default_storage
+from cloudinary_storage.storage import MediaCloudinaryStorage  # noqa E402
+from django.core.files.storage import default_storage  # noqa E402
 default_storage._wrapped = MediaCloudinaryStorage()
