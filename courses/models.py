@@ -1,6 +1,7 @@
 from django.db import models
 from django.utils.text import slugify
 from ckeditor.fields import RichTextField
+from cloudinary.models import CloudinaryField
 
 """
 Courses app models:
@@ -52,8 +53,8 @@ class Course(models.Model):
         Category, on_delete=models.SET_NULL, null=True, related_name='courses'
         )
     # added two seperate folders for course and bundle images for neatness
-    image = models.ImageField(
-        upload_to='course_images/', blank=True, null=True
+    image = CloudinaryField(
+        folder='course_images', blank=True, null=True
         )
     # helps keeping site content up to date
     created_at = models.DateTimeField(auto_now_add=True)

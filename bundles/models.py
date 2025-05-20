@@ -1,6 +1,7 @@
 from django.db import models
 from courses.models import Course
 from django.utils.text import slugify
+from cloudinary.models import CloudinaryField
 
 """
 Bundles app models:
@@ -26,8 +27,8 @@ class Bundle(models.Model):
     courses = models.ManyToManyField(Course, related_name='bundles')
     price = models.DecimalField(max_digits=6, decimal_places=2)
     # added two seperate folders for course and bundle images for neatness
-    image = models.ImageField(
-        upload_to='bundle_images/', blank=True, null=True
+    image = CloudinaryField(
+        folder='bundle_images', blank=True, null=True
         )
     # helps keeping site content up to date
     created_at = models.DateTimeField(auto_now_add=True)
