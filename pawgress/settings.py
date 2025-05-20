@@ -54,6 +54,7 @@ INSTALLED_APPS = [
     'allauth.socialaccount',
     # ... include the providers you want to enable:
     'allauth.socialaccount.providers.google',
+    # my apps
     'home',
     'courses',
     'cart',
@@ -65,6 +66,8 @@ INSTALLED_APPS = [
     'crispy_bootstrap5',
     'ckeditor',
     'storages',
+    'cloudinary_storage',
+    'cloudinary'
 ]
 
 MIDDLEWARE = [
