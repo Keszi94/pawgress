@@ -65,7 +65,6 @@ INSTALLED_APPS = [
     'crispy_forms',
     'crispy_bootstrap5',
     'ckeditor',
-    'storages',
     'cloudinary_storage',
     'cloudinary'
 ]
