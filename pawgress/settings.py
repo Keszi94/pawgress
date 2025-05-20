@@ -243,3 +243,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # Cloudinary
 DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 print("DEFAULT_FILE_STORAGE = ", DEFAULT_FILE_STORAGE)
+
+from cloudinary_storage.storage import MediaCloudinaryStorage
+from django.core.files.storage import default_storage
+default_storage._wrapped = MediaCloudinaryStorage()
