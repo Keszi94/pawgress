@@ -1,0 +1,18 @@
+Hi there {{ user.username }},
+
+Thank you for joining Pawgress!
+
+To complete your registration, please confirm your email address by clicking the link below:
+
+{{ activate_url }}
+
+If you didn't register on Pawgress, no worries - you can just ignore this email.
+
+
+Happy Traning!
+The Pawgress Team
+
+---
+
+Please do not reply to this email, this inbox is not monitored.
+If you need help, visit our facebook page for support.
