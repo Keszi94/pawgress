@@ -145,8 +145,10 @@ LOGIN_REDIRECT_URL = '/'
 WSGI_APPLICATION = 'pawgress.wsgi.application'
 
 
+# ------------------------------------------------------------------------
 # Database
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
+# ------------------------------------------------------------------------
 
 if 'DATABASE_URL' in os.environ:
     DATABASES = {
@@ -160,8 +162,10 @@ else:
         }
     }
 
+# ------------------------------------------------------------------------
 # Password validation
 # https://docs.djangoproject.com/en/5.2/ref/settings/#auth-password-validators
+# ------------------------------------------------------------------------
 
 AUTH_PASSWORD_VALIDATORS = [
     {
@@ -194,10 +198,11 @@ USE_I18N = True
 
 USE_TZ = True
 
-
+# ------------------------------------------------------------------------
 # Static files (CSS, JavaScript, Images)
+# ------------------------------------------------------------------------
 # https://docs.djangoproject.com/en/5.2/howto/static-files/
-# WHITENOISE
+# WhiteNoise
 STATIC_URL = 'static/'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static')
@@ -205,23 +210,18 @@ STATICFILES_DIRS = [
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
+# ------------------------------------------------------------------------
 # Media files
+# ------------------------------------------------------------------------
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
-if os.environ.get('USE_AWS', '').lower() == 'true':
-    # Bucket config
-    DEFAULT_FILE_STORAGE = 'custom_storages.MediaStorage'
-    AWS_STORAGE_BUCKET_NAME = 'pawgress-bucket'
-    AWS_S3_REGION_NAME = 'us-east-1'
-    AWS_ACCESS_KEY_ID = os.environ['AWS_ACCESS_KEY_ID']
-    AWS_SECRET_ACCESS_KEY = os.environ['AWS_SECRET_ACCESS_KEY']
+# Cloudinary
+DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 
-    AWS_S3_CUSTOM_DOMAIN = f'{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com'
-
-    MEDIA_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/media/'
-
+# ------------------------------------------------------------------------
 # CKEditor
+# ------------------------------------------------------------------------
 CKEDITOR_CONFIGS = {
     'default': {
         'toolbar': 'full',
@@ -230,7 +230,10 @@ CKEDITOR_CONFIGS = {
     }
 }
 
+# ------------------------------------------------------------------------
 # Stripe
+# ------------------------------------------------------------------------
+
 STRIPE_PUBLIC_KEY = os.environ.get('STRIPE_PUBLIC_KEY', '')
 STRIPE_SECRET_KEY = os.environ.get('STRIPE_SECRET_KEY', '')
 STRIPE_CURRENCY = 'eur'
