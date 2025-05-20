@@ -215,9 +215,6 @@ STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
-# Cloudinary
-DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
-
 # ------------------------------------------------------------------------
 # CKEditor
 # ------------------------------------------------------------------------
@@ -242,3 +239,7 @@ STRIPE_WH_SECRET = os.environ.get('STRIPE_WH_SECRET', '')
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# Cloudinary
+DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
+print("DEFAULT_FILE_STORAGE = ", DEFAULT_FILE_STORAGE)
