@@ -25,17 +25,18 @@ Billing Information:
 
 Full name: {{ purchase.full_name }}
 Email: {{ purchase.email }}
-Phone number: {{ purchase.phone_number }}
-Address: 
-{{ purchase.street_address1 }}
-{% if purchase.street_address2 %}{{ purchase.street_address2 }}{% endif %}
-{{ purchase.town_or_city }}, {{ purchase.postcode }}
-{{ purchase.country }}
 
+Address:
+
+Street Address 1: {{ purchase.street_address1 }}
+Street Address 2: {% if purchase.street_address2 %}{{ purchase.street_address2 }}{% endif %}
+Yown or City: {{ purchase.town_or_city }}
+ZIP/Postal code: {{ purchase.postcode }}
+Country: {{ purchase.country }}
 
 If you have any questions, feel free to reach out to us on Facebook.
 
-Happy Traning!
+Happy Training!
 The Pawgress Team
 
 ---
