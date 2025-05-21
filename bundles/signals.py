@@ -12,7 +12,7 @@ def update_bundle_totals(sender, instance, action, **kwargs):
     if action in ['post_add', 'post_remove', 'post_clear']:
         course_prices = (
             instance.courses.aggregate(
-                total=models.Sum('price'))['total'] or 0.00
+                total=models.Sum('price'))['total'] or Decimal('0.00')
             )
         instance.total_value = course_prices
         instance.savings = (course_prices - instance.price).quantize(
