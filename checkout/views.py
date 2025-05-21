@@ -7,6 +7,8 @@ from django.views.decorators.http import require_POST
 from django.shortcuts import render, redirect, reverse, get_object_or_404
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
+from django.core.mail import send_mail
+from django.template.loader import render_to_string
 
 from .forms import PurchaseForm
 from .models import PurchaseItem, Purchase
@@ -148,6 +150,7 @@ def checkout_success(request, purchase_number):
     purchase.is_paid = True
     purchase.access_granted = True
     purchase.save()
+    send_purchase_confirmation(purchase)
 
     messages.success(
         request,
@@ -165,3 +168,21 @@ def checkout_success(request, purchase_number):
     }
 
     return render(request, template, context)
+
+
+def send_purchase_confirmation(purchase):
+    subject = f'Pawgress Purchase confirmation - #{purchase.purchase_number}'
+    body = render_to_string(
+        'checkout/confirmation_email.txt',
+        {
+            'purchase': purchase,
+            'username': purchase.user.username if purchase.user else 'there',
+        }
+    )
+    send_mail(
+        subject,
+        body,
+        settings.DEFAULT_FROM_EMAIL,
+        [purchase.email],
+        fail_silently=False,
+    )

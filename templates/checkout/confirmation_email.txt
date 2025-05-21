@@ -1,0 +1,42 @@
+Hi {{ purchase.full_name }},
+
+Thank you for your purchase on Pawgress!
+
+Your purchase number is: {{ purchase.purchase_number }}
+A copy of this confirmation will serve as your receipt.
+
+Your purchased courses are now available in your profile.
+
+---
+
+Order Summary:
+
+{% for item in purchase.items.all %}
+- {{ item.course.title|default:item.bundle.title }} — €{{ item.course.price|default:item.bundle.price }}
+{% endfor %}
+
+Total: €{{ purchase.total }}
+
+---
+
+Billing Information:
+
+Full name: {{ purchase.full_name }}
+Email: {{ purchase.email }}
+Phone number: {{ purchase.phone_number }}
+Address: 
+{{ purchase.street_address1 }}
+{% if purchase.street_address2 %}{{ purchase.street_address2 }}{% endif %}
+{{ purchase.town_or_city }}, {{ purchase.postcode }}
+{{ purchase.country }}
+
+
+If you have any questions, feel free to reach out to us on Facebook.
+
+Happy Traning!
+The Pawgress Team
+
+---
+
+Please do not reply to this email, this inbox is not monitored.
+If you need help, visit our facebook page for support.
