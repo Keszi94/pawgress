@@ -7,6 +7,7 @@ from django.contrib.auth.models import User
 from courses.models import Course, Category
 from bundles.models import Bundle
 from cart.contexts import cart_contents
+from checkout.models import Purchase, PurchaseItem
 
 # Create your tests here.
 
@@ -151,4 +152,29 @@ class CartViewTests(TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertNotIn(
             f'course_{self.course.id}', self.client.session.get('cart', {})
+            )
+
+    def test_prevent_adding_already_owned_course(self):
+        """
+        Already purchased courses should not be added to the cart again
+        """
+        # simulate a purchase
+        purchase = Purchase.objects.create(
+            user=self.user,
+            access_granted=True
+            )
+        PurchaseItem.objects.create(purchase=purchase, course=self.course)
+
+        response = self.client.post(
+            reverse('add_to_cart', args=[self.course.id]), {
+                'item_type': 'course',
+                'redirect_url': reverse('courses')
+            })
+
+        session = self.client.session
+        self.assertNotIn(f'course_{self.course.id}', session.get('cart', {}))
+
+        messages = list(response.wsgi_request._messages)
+        self.assertTrue(
+            any("already own the course" in str(m) for m in messages)
             )

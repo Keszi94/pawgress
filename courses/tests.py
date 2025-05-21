@@ -154,3 +154,33 @@ class CourseCreateViewTest(TestCase):
         """
         response = self.client.get(reverse('course_create'))
         self.assertRedirects(response, reverse('home'))
+
+
+class TestCourseDetailSuperuserAccess(TestCase):
+    """
+    Test that superusers can access all course content at all times
+    """
+    def setUp(self):
+        self.category = Category.objects.create(name="Superu Test Category")
+        self.course = Course.objects.create(
+            title="Superu Test Course",
+            description="Description",
+            content="<p>Super secret content</p>",
+            price=Decimal('15.00'),
+            category=self.category,
+            time_frame='2w',
+        )
+        # create a superuser
+        self.superuser = User.objects.create_superuser(
+            username='admin',
+            password='adminpassword',
+            email='admin@test.com'
+        )
+
+    def test_superuser_sees_course_content(self):
+        self.client.login(username='admin', password='adminpassword')
+        response = self.client.get(
+            reverse('course_detail', args=[self.course.id])
+            )
+        self.assertEqual(response.status_code, 200)
+        self.assertContains(response, 'Super secret content')
