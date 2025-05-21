@@ -12,10 +12,12 @@ Your purchased courses are now available in your profile.
 Order Summary:
 
 {% for item in purchase.items.all %}
-- {{ item.course.title|default:item.bundle.title }} — €{{ item.course.price|default:item.bundle.price }}
+{% if item.course %}
+- {{ item.course.title }} — €{{ item.course.price }}
+{% elif item.bundle %}
+- {{ item.bundle.title }} — €{{ item.bundle.price }}
+{% endif %}
 {% endfor %}
-
-Total: €{{ purchase.total }}
 
 ---
 
