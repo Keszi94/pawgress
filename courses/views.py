@@ -67,7 +67,10 @@ def course_detail(request, course_id):
     # Default to false
     has_access = False
 
-    if request.user.is_authenticated:
+    # Automatically grant access to superusers
+    if request.user.is_authenticated and request.user.is_superuser:
+        has_access = True
+    elif request.user.is_authenticated:
         # Get all confirmed purchases from the user
         purchases = Purchase.objects.filter(
             user=request.user,
