@@ -56,20 +56,34 @@ class TestBundle(TestCase):
             description="Testing signals",
             price=Decimal(30.00)
         )
-
         # Add a course to trigger the m2m signal
-        bundle.courses.add(self.course1)
+        bundle.courses.add(self.course1, self.course2)
         bundle.refresh_from_db()
 
+        expected_total = self.course1.price + self.course2.price
+        expected_savings = expected_total - bundle.price
+
         # test if total_value was updated
-        self.assertEqual(bundle.total_value, self.course1.price)
+        self.assertEqual(bundle.total_value, expected_total)
         # test that the savings calculation is correct
         self.assertEqual(
-            bundle.savings,
-            Decimal(
-                (self.course1.price) - bundle.price).quantize(
-                    Decimal('0.01')
-                    )
+            bundle.savings, expected_savings.quantize(Decimal('0.01'))
+        )
+
+    def test_update_bundle_totals_on_price_change(self):
+        """
+        Test that changing the bundle's price recalculates savings
+        """
+        self.bundle.price = Decimal('15.00')
+        self.bundle.save()
+        self.bundle.refresh_from_db()
+
+        expected_total = self.course1.price + self.course2.price
+        expected_savings = expected_total - self.bundle.price
+
+        self.assertEqual(self.bundle.total_value, expected_total)
+        self.assertEqual(
+            self.bundle.savings, expected_savings.quantize(Decimal('0.01'))
         )
 
 
@@ -85,7 +99,7 @@ class AllBundlesViewTest(TestCase):
         Bundle.objects.create(
             title="Test Bundle",
             description="Test description",
-            price=29.99
+            price=Decimal('29.99')
             )
 
     def test_all_bundles_view_status_code(self):

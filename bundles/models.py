@@ -1,7 +1,9 @@
-from django.db import models
-from courses.models import Course
 from django.utils.text import slugify
 from cloudinary.models import CloudinaryField
+from decimal import Decimal, ROUND_HALF_UP
+
+from django.db import models
+from courses.models import Course
 
 """
 Bundles app models:
@@ -45,6 +47,18 @@ class Bundle(models.Model):
         if not self.slug:
             self.slug = slugify(self.title)
         super().save(*args, **kwargs)
+
+        total = self.courses.aggregate(
+            total=models.Sum('price')
+        )['total'] or Decimal('0.00')
+
+        savings = (total - self.price).quantize(
+            Decimal('0.01'), rounding=ROUND_HALF_UP)
+
+        Bundle.objects.filter(pk=self.pk).update(
+            total_value=total,
+            savings=savings
+        )
 
     def get_courses_count(self):
         # amount of courses in the bundle
