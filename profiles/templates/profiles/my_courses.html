@@ -20,7 +20,7 @@
                     <!-- Course card -->
                     <div class="card h-100">
                         {% if course.image %}
-                            <img src="{{ course.image.url }}" class="card-img-top" alt="{{ course.title }}">
+                            <img src="{{ course.image.url }}" class="card-img-top-courses" alt="{{ course.title }}">
                         {% endif %}
                         <div class="card-body d-flex flex-column">
                             <a href="{% url 'course_detail' course.id %}"><h5 class="card-title">{{ course.title }}</h5></a>
