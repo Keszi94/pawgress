@@ -188,6 +188,7 @@ You can also navigate to a specific section of the file by selecting one of the 
 * I used [CSS Gradient.io](https://cssgradient.io/) to generate the css code for the courses detail page header background.
 * All icons used on the side are from [Font Awesome](https://fontawesome.com/).
 * For the purchase setup I used the official [Stripe documentation](https://docs.stripe.com/).
+* I used [MailerLite](https://www.mailerlite.com/) for the newsletter implementation.
 
 
 ### Supporting Material
