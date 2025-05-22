@@ -44,22 +44,38 @@
     <!-- Newsletter Section -->
     <div class="newsletter-form mt-5 mb-4">
       <h4 class="mb-3">Subscribe to our Newsletter</h4>
-      <form action="https://assets.mailerlite.com/jsonp/1541624/forms/155108573540517809/subscribe"
-            method="post"
-            target="_blank"
-            class="d-flex flex-column flex-sm-row align-items-center gap-2">
+      <form id="newsletter-form" class="d-flex flex-column flex-sm-row align-items-center gap-2">
         <input type="email"
-              name="fields[email]"
+              name="email"
               placeholder="Enter your email"
               required
               class="form-control w-auto border border-black border-1"
               style="max-width: 300px;">
         <button type="submit" class="btn border border-black border-1 newsletter-btn">Subscribe</button>
       </form>
-      <script src="https://groot.mailerlite.com/js/w/webforms.min.js?v176e10baa5e7ed80d35ae235be3d5024" type="text/javascript"></script>
+      <div id="newsletter-success" class="text-success mt-2 d-none">Thanks for subscribing!</div>
       <p class="text-muted small mt-2">You can unsubscribe anytime.</p>
       <p class="text-muted small mt-2">© {{ now|date:"Y" }} Pawgress. All rights reserved.</p>
     </div>
   </div>
 </div>
+{% endblock %}
+
+{% block postloadjs %}
+  <script>
+    document.getElementById('newsletter-form').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const email = this.email.value;
+
+      fetch(`https://assets.mailerlite.com/jsonp/1541624/forms/155108573540517809/subscribe?fields[email]=${encodeURIComponent(email)}`, {
+        method: 'GET',
+        mode: 'no-cors'
+      }).then(() => {
+        document.getElementById('newsletter-success').classList.remove('d-none');
+        this.reset();
+      }).catch(() => {
+        alert('Oops! Something went wrong. Try again later.');
+      });
+    });
+  </script>
 {% endblock %}
