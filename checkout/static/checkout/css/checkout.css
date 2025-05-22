@@ -41,7 +41,6 @@
 .adjust-cart-btn {
     color: #000;
     background-color: transparent;
-    transition: background-color 0.2s ease, color 0.2 ease;
 }
 
 .adjust-cart-btn:hover,

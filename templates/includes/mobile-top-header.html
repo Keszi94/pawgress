@@ -25,7 +25,7 @@
 
     <!-- Account and cart -->
     <li class="list-inline-item dropdown">
-        <a class="text-white nav-link d-block d-lg-none" href="#" id="user-options" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <a class="text-white nav-link d-block d-lg-none" href="#" id="user-options-mobile" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             <div class="text-center">
                 <div><i class="fa-solid fa-user fa-lg"></i></div>
                 <p class="my-0">Account</p>
@@ -33,7 +33,7 @@
         </a>
 
         <!-- Account dropdown -->
-        <div class="dropdown-menu border-0" aria-labelledby="user-options">
+        <div class="dropdown-menu border-0" aria-labelledby="user-options-mobile">
             {% if request.user.is_authenticated %}
                 {% if request.user.is_superuser %}
                     <a href="{% url 'course_create' %}" class="dropdown-item">Add New Course</a>

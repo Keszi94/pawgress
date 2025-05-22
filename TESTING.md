@@ -48,7 +48,7 @@ A number of automated tests have been written to provide additional validation a
   * The correct template is rendered (bundles.html)
   * The view context comntains the expected bundle data
     
-    ![bundles test](readme_assets/images/testing_bundles.png)
+    ![bundles test](readme_assets/images/automated_tests/testing_bundles.png)
 
 ---
 ### cart app
@@ -68,7 +68,7 @@ A number of automated tests have been written to provide additional validation a
   * Courses and bundles can be added to and removed from the cart
   * Already owned courses cannot be added again and a warning message is shown
 
-    ![cart test](readme_assets/images/testing_cart.png)
+    ![cart test](readme_assets/images/automated_tests/testing_cart.png)
 
 ---
 ### checkout app
@@ -98,7 +98,7 @@ A number of automated tests have been written to provide additional validation a
   * Purchase form accepts valid input
   * Validates required fields and coountry selection
   
-    ![checkout test](readme_assets/images/testing_checkout.png)
+    ![checkout test](readme_assets/images/automated_tests/testing_checkout.png)
 
 ---
 ### courses app
@@ -124,7 +124,7 @@ A number of automated tests have been written to provide additional validation a
   * Course form validates with complete data
   * Errors are raised when required fields are missing
 
-    ![courses test](readme_assets/images/testing_courses.png)
+    ![courses test](readme_assets/images/automated_tests/testing_courses.png)
 
 ### profiles app
 
@@ -143,18 +143,56 @@ A number of automated tests have been written to provide additional validation a
   * `my_courses` view displays purchased courses and uses the correct template
   * `toggle_completion` creates a completion record and correctly toggles its status
 
-    ![profiles test](readme_assets/images/testing_profiles.png)
+    ![profiles test](readme_assets/images/automated_tests/testing_profiles.png)
+
+---
+During each test run I recieved the same warning: `CKEditor isn't supported anymore`. After looking into it, I decided to not upgrade to CKEditor 5 and continue using CKEditor 4.22.1 because the current security risks are not immediate or critical for my project. The current version remains functional and stable for my project’s scope.
+
+![CKEditor warning](readme_assets/images/automated_tests/testing_ckeditor_warning.png)
 
 ## Validator Testing
 
 ### PEP8
+
+All Python files were put through the [PEP8 CI tool](pep8ci.herokuapp.com). No issues were found in custom project files. 
+
+After running `flake8` in the terminal, the only warnings that appeared were in auto-generated files like migrations.py or defaullt app boilerplate. Where appropriate, I used # noqa (e.g., on the environment variable import for env in settings.py).
+
 ### W3C
+
+* HTML
+
+  All HTML templates were checked using the [W3C HTML Validator](https://validator.w3.org/). The only warnings were related to Django’s template syntax such as `{% block %}` and `{{ variable }}`, which the validator doesn’t recognize. Another common note was the missing lang attribute on the <html> tag. This is handled in base.html, which all templates extend with `{% extends "base.html %}`.
+
+  ![html warning](readme_assets/images/html_warning.png)
+
+  Besides these warnings, no actual HTML structure issues were found in the templates.
+
+* CSS
+
+  Both checkout.css and base.css have been passed through the [W3C CSS Validator](https://jigsaw.w3.org/css-validator/) and confimred to be free of any errors.
+
+  ![css testing](readme_assets/images/css_testing.png)
+
 ### JSHint
+
+All JavaScript code, including the contents of the postloadjs blocks and the separate stripe_element.js file was passed through [JSHint](https://jshint.com/) with no issues reported.
 
 
 ## Accessibility & Performance
 
 ### WAVE
+
+All pages were tested for accessibility using the [Wave Chrome Extension](https://chromewebstore.google.com/detail/wave-evaluation-tool/jbbplnpkjmmeebjpijfedlgcdilocofh).
+
+Across all pages, there were 2 warnings related to the navigation bar: an empty search button and a missing label on the search bar and search button. These were intentional visual design choices and do not affect usability. Additional page-specific warnings were:
+
+* Home page: Missing form labels in the newsletter form and a skipped heading level, both stylistic decisions.
+
+* Add Course page: Missing form labels related to CKEditor fields and multiple warnings on the CKEditor field.
+
+* Courses and Bundles pages: Some small text elements were flagged for bad color contrast (categories, savings). I double checked these using the [Coolors contrast checker](https://coolors.co/contrast-checker/112a46-acc8e5) and adjusted the text colors to improve readability.
+
 
 ### Lighthouse
 

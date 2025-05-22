@@ -190,7 +190,7 @@ body.courses-page {
 }
 
 .course-category {
-    color: #f06543;
+    color: #C64F32;
 }
 
 .course-category:hover {
@@ -253,7 +253,7 @@ body.courses-page {
 }
 
 .saving-on-bundle {
-    color: #f06543 !important;
+    color: #C64F32 !important;
 }
 
 .card-img-top-bundles {
@@ -272,7 +272,6 @@ body.courses-page {
     border: none;
     color: #000;
     background-color: transparent;
-    transition: background-color 0.2s ease, color 0.2 ease;
 }
 
 .cart-browse-btn:hover,

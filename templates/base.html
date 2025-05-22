@@ -191,7 +191,7 @@
     <!-- This runs after everything else -->
      {% block postloadjs %}
         {{ block.super }}
-        <script type="text/javascript">
+        <script>
             // js only runs after the DOM is ready
             $(document).ready(function () {
                 $('.toast').toast('show');
