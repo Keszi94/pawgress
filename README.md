@@ -1,6 +1,6 @@
 # Pawgress
 
-[Responsiveness]()
+![Responsiveness](readme_assets/images/am_i_responsive.png)
 
 [To see the Live site, click here!](https://pawgress-by-keszi94-02abbb46130d.herokuapp.com/)
 

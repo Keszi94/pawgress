@@ -155,8 +155,82 @@ A number of automated tests have been written to provide additional validation a
 ## Accessibility & Performance
 
 ### WAVE
+
 ### Lighthouse
 
+Lighthouse was used to generate performance and accessibility reports for both the desktop and mobile versions of the site.
+
+Under each page name, the first image on the left shows the performance scores for mobile devices, while the images on the right show the desktop test results.
+
+* Home page:
+
+  ![lighthouse mobile home](readme_assets/images/lighthouse/lighthouse_home_mobile.png)
+  ![lighthouse desktop home](readme_assets/images/lighthouse/lighthouse_home_desktop.png)
+
+* Courses page:
+
+  ![lighthouse mobile courses](readme_assets/images/lighthouse/lighthouse_courses_mobile.png)
+  ![lighthouse desktop courses](readme_assets/images/lighthouse/lighthouse_courses_desktop.png)
+
+* Bundles page:
+
+  ![lighthouse mobile bundles](readme_assets/images/lighthouse/lighthouse_bundles_mobile.png)
+  ![lighthouse desktop bundles](readme_assets/images/lighthouse/lighthouse_bundles_desktop.png)
+
+* My Courses page:
+
+  ![lighthouse mobile my courses](readme_assets/images/lighthouse/lighthouse_mycourses_mobile.png)
+  ![lighthouse desktop my courses](readme_assets/images/lighthouse/lighthouse_mycourses_desktop.png)
+
+* Cart page:
+
+  ![lighthouse mobile cart](readme_assets/images/lighthouse/lighthouse_cart_mobile.png)
+  ![lighthouse desktop cart](readme_assets/images/lighthouse/lighthouse_cart_desktop.png)
+
+* Checkout page:
+
+  ![lighthouse mobile checkout](readme_assets/images/lighthouse/lighthouse_checkout_mobile.png)
+  ![lighthouse desktop checkout](readme_assets/images/lighthouse/lighthouse_checkout_desktop.png)
+
+* Checkout Success page:
+
+  ![lighthouse mobile checkout success](readme_assets/images/lighthouse/lighthouse_checkout_success_mobile.png)
+  ![lighthouse desktop checkout success](readme_assets/images/lighthouse/lighthouse_checkout_success_desktop.png)
+
+* Course Detail page:
+
+  ![lighthouse mobile course detail](readme_assets/images/lighthouse/lighthouse_course_detail_mobile.png)
+  ![lighthouse desktop course detail](readme_assets/images/lighthouse/lighthouse_course_detail_desktop.png)
+
+* Add Course page:
+
+  ![lighthouse mobile add course](readme_assets/images/lighthouse/lighthouse_add_course_mobile.png)
+  ![lighthouse desktop add course](readme_assets/images/lighthouse/lighthouse_add_course_desktop.png)
+
+* Register page:
+
+  ![lighthouse mobile register](readme_assets/images/lighthouse/lighthouse_register_mobile.png)
+  ![lighthouse desktop register](readme_assets/images/lighthouse/lighthouse_register_desktop.png)
+
+* Login page:
+
+  ![lighthouse mobile login](readme_assets/images/lighthouse/lighthouse_login_mobile.png)
+  ![lighthouse desktop login](readme_assets/images/lighthouse/lighthouse_login_desktop.png)
+
+* Google Authentication page:
+
+  ![lighthouse mobile google auth](readme_assets/images/lighthouse/lighthouse_googleauth_mobile.png)
+  ![lighthouse desktop google auth](readme_assets/images/lighthouse/lighthouse_googleauth_desktop.png)
+
+* Logout page:
+
+  ![lighthouse mobile logout](readme_assets/images/lighthouse/lighthouse_logout_mobile.png)
+  ![lighthouse desktop logout](readme_assets/images/lighthouse/lighthouse_logout_desktop.png)
+
+* 404 page:
+
+  ![lighthouse mobile 404](readme_assets/images/lighthouse/lighthouse_pagenotfound_mobile.png)
+  ![lighthouse desktop 404](readme_assets/images/lighthouse/lighthouse_pagenotfound_desktop.png)
 
 ## Bugs & Bug Fixes
 
