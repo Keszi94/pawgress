@@ -2,12 +2,12 @@
 
 ## Contents
 
-  - [Automated Testing](#automated-testing)
   - [Manual Testing](#manual-testing)
     - [Navigation](#navigation)
     - [Responsiveness](#responsiveness)
     - [Authentication](#authentication)
     - [CRUD Functionality](#crud-functionality)
+  - [Automated Testing](#automated-testing)
   - [Validator Testing](#validator-testing)
     - [PEP8](#pep8)
     - [W3C](#w3c)
@@ -18,9 +18,6 @@
   - [Bugs \& Bug Fixes](#bugs--bug-fixes)
 
 
-## Automated Testing
-
-
 ## Manual Testing
 
 ### Navigation
@@ -28,6 +25,125 @@
 ### Authentication
 ### CRUD Functionality 
 
+
+## Automated Testing
+
+A number of automated tests have been written to provide additional validation alongside the manual tests.
+
+### bundles app
+[bundles app tests.py file](bundles/tests.py)
+
+#### Tests include:
+
+* Model tests:
+  
+  * String representation of bundles
+  * Auto-generating slugs from titles
+  * Accurate count of related courses
+  * Correct calculation of total bundle value and savings when courses are added or bundle price is updated
+
+* View tests:
+
+  * All bundles view returns a 200 OK response
+  * The correct template is rendered (bundles.html)
+  * The view context comntains the expected bundle data
+    
+    ![bundles test](readme_assets/images/testing_bundles.png)
+
+---
+### cart app
+[cart app tests.py file](cart/tests.py)
+
+#### Tests include:
+
+* Context processor tests:
+
+  * Cart items (courses and bundles) are correctly fetched from the session
+  * Total price and product count are accurately calculated
+  * Course and bundle titles appear in the cart data
+
+* View tests:
+
+  * The cart page renders with status code 200 and uses the correct template
+  * Courses and bundles can be added to and removed from the cart
+  * Already owned courses cannot be added again and a warning message is shown
+
+    ![cart test](readme_assets/images/testing_cart.png)
+
+---
+### checkout app
+
+* [checkout app tests.py file](checkout/tests.py)
+
+#### Tests include:
+
+* Models:
+
+  * Purhase and PurchaseItem string representation
+  * Purchase number generating and total updates
+  * Purchase item totals for both courses and bundles
+
+* Views:
+
+  * Redirect if the cart is empty during checkout
+  * `checkout_success` correctly marks a purchase as paid and grants access
+
+* Webhooks:
+
+  * Stripe webhook handler responds to valid `payment_intent.succeeded` events
+  * Invalid events are rejected
+
+* Forms:
+
+  * Purchase form accepts valid input
+  * Validates required fields and coountry selection
+  
+    ![checkout test](readme_assets/images/testing_checkout.png)
+
+---
+### courses app
+
+* [courses app tests.py file](courses/tests.py)
+
+#### Tests include:
+
+* Models:
+
+  * String representation for Course and Category
+  * Auto-generating slug
+  * Time frame display logic
+
+* Views:
+
+  * Course list view renders correctly and includes the expected course
+  * Superusers can access course creation and full content
+  * Regukar users and anonymous users are redirected from restricted content
+
+* Forms:
+
+  * Course form validates with complete data
+  * Errors are raised when required fields are missing
+
+    ![courses test](readme_assets/images/testing_courses.png)
+
+### profiles app
+
+* [profiles app tests.py file](profiles/tests.py)
+
+#### Tests include:
+
+* Models:
+
+  * CourseCompletion string output reflects completion status
+  * `completed ` defaults to False
+  * Enforces one completion record per user-course pair
+
+* Views:
+
+  * `my_courses` view displays purchased courses and uses the correct template
+  * `toggle_completion` creates a completion record and correctly toggles its status
+
+    ![profiles test](readme_assets/images/testing_profiles.png)
 
 ## Validator Testing
 
@@ -390,3 +506,135 @@
   
 ---
 
+11. AWS S3 Failed for Static & Media Files on Heroku - Switched to Cloudinary + WhiteNoise
+
+    I originally planned to use AWS S3 for both static and media files. Following the Boutique Ado walktrough project I set up the django-storages and AWS credentials. Neither static nor media files were actually being uploaded or served.
+
+* Static File Issue (Never Reached S3)
+  
+    I configured S3 for static files using:
+
+    ```python
+    STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+    ```
+
+    And set all required AWS environment variables via Heroku’s config panel.
+
+  * Problem:
+
+    Static files never uploaded to S3. Even with USE_AWS = True, Django didn’t route static files to S3, and Heroku required STATIC_ROOT locally or collectstatic would fail during deployment. This defeated the point of using S3.
+
+  * Solution:
+
+    I dropped S3 for static files and switched to WhiteNoise, which worked immediately.
+
+    ```python
+    STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+    ```
+
+* Media File Upload Issue (Blocked by Permissions & Fallbacks)
+
+    To handle uploaded images, I created a custom media storage class:
+
+    ```python
+    class MediaStorage(S3Boto3Storage):
+        location = settings.MEDIAFILES_LOCATION
+        default_acl = 'public-read'
+    ```
+
+    Then set in settings.py:
+    ```python
+    DEFAULT_FILE_STORAGE = 'custom_storages.MediaStorage'
+    MEDIA_URL = f'https://{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com/media/'
+    ```
+
+  * Problem:
+    Even though the code was correct, media uploads defaulted to FileSystemStorage. No media made it to the S3 bucket.
+    
+    What I Tried:
+
+    1. Reordering settings to define DEFAULT_FILE_STORAGE earlier
+    2. Hardcoding values
+    3. Running shell tests: `default_storage.__class__` always returned `FileSystemStorage`
+    4. Boto3 test showed: AccessDenied for S3 API
+
+* Final Solution:
+    I ended up using Cloudinary for Media and WhiteNoise for Static files.
+
+    After a full day of debugging and dead ends with AWS, I uninstalled all S3 related packages and switched to Cloudinary for media uploads and WhiteNoise for static file serving
+
+    ```python
+    DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
+    STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+    ```
+
+    Added to INSTALLED_APPS:
+
+    ```python
+    'cloudinary_storage',
+    'cloudinary',
+    ```
+
+  After all the fixes and changes the Static files load cleanly with WhiteNoise and the Media uploads are now sent to Cloudinary.
+
+* Sources:
+
+    * [WhiteNoise Docs](https://whitenoise.evans.io/en/stable/)
+    * [DJango Docs - storages, S3 Setup](https://django-storages.readthedocs.io/en/latest/backends/amazon-S3.html)
+    * [Cloudinary Docs](https://cloudinary.com/documentation/django_image_and_video_upload)
+    * [AWS Docs - access denied error messages](https://docs.aws.amazon.com/IAM/latest/UserGuide/troubleshoot_access-denied.html)
+    * [Heroku Dev center](https://devcenter.heroku.com/articles/django-assets)
+    * [Django Docs - default file storage](https://docs.djangoproject.com/en/stable/ref/settings/#default-file-storage)
+
+---
+
+12. Unauthenticated User Access Error in course_detail View
+
+    When a logged-out user tried to access the course detail page, the app threw an error when attempting to query Purchase.objects.filter(user=request.user) because `request.user` isn't a valid user object in that context.
+
+* Cause:
+
+    The course_detail view checked for course ownership without first verifying if the user was authenticated, which led to wrong database queries for anonymous users.
+
+* Solution:
+
+    I added a proper ` if request.user.is_authenticated` check before querying purchases to avoid running user specific logic for unauthenticated users.
+
+    ```python
+    if request.user.is_authenticated and request.user.is_superuser:
+        has_access = True
+    elif request.user.is_authenticated:
+        purchases = Purchase.objects.filter(user=request.user, access_granted=True)
+    ```
+
+  Now the page displays as expected to all users, logged in or not. Superusers always have access to course content, authenticated users see their purchased courses and their content but not the content of un-purchased courses, same as the anonymous users.
+
+---
+
+13. Bundle Savings Not Updating on Price Change
+
+    When editing a bundle’s price in the admin panel, the “savings” and actual value fields did not update to reflect the new price. This meant the site was still displaying outdated savings values even after manual price changes.
+
+* Cause:
+
+    The recalculation logic was originally only tied to changes in course relationships (via an m2m_changed signal), not the price updates.
+
+* Solution:
+
+    I moved the logic that updates the `total_value` and `savings` from the update_bundle_totals signal into the Bundle model’s save() method. This ensures that the calculations run every time the bundle is saved, for example when the price is edited:
+
+    ```python
+    total = self.courses.aggregate(
+    total=models.Sum('price')
+    )['total'] or Decimal('0.00')
+
+    savings = (total - self.price).quantize(
+        Decimal('0.01'), rounding=ROUND_HALF_UP)
+
+    Bundle.objects.filter(pk=self.pk).update(
+        total_value=total,
+        savings=savings
+    )
+    ```
+
+  After this addition, the savings now recalculate automatically based on the total value of the courses in the bundle minus the new bundle price.

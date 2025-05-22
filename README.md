@@ -153,7 +153,25 @@ I have decided to use The font [Archivo](https://fonts.google.com/specimen/Archi
 
 ## Testing
 
-All documentation regarding the testing on this project can be viewed in this seperate [TESTING.md file](TESTING.md).
+All documentation regarding the testing on this project can be viewed in this seperate [TESTING.md file](TESTING.md)(use CTRL + Click to this or any of the following links in a new tab/window).
+You can also navigate to a specific section of the file by selecting one of the content headings:
+
+### Testing Contents
+
+  - [Automated Testing](TESTING.md#automated-testing)
+  - [Manual Testing](TESTING.md#manual-testing)
+    - [Navigation](TESTING.md#navigation)
+    - [Responsiveness](TESTING.md#responsiveness)
+    - [Authentication](TESTING.md#authentication)
+    - [CRUD Functionality](TESTING.md#crud-functionality)
+  - [Validator Testing](TESTING.md#validator-testing)
+    - [PEP8](TESTING.md#pep8)
+    - [W3C](TESTING.md#w3c)
+    - [JSHint](TESTING.md#jshint)
+  - [Accessibility \& Performance](TESTING.md#accessibility--performance)
+    - [WAVE](TESTING.md#wave)
+    - [Lighthouse](TESTING.md#lighthouse)
+  - [Bugs \& Bug Fixes](TESTING.md#bugs--bug-fixes)
 
 ## Deployment
 
