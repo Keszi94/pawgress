@@ -8,31 +8,58 @@
 <!-- Header -->
 {% block page_header %}
 <div class="container-fluid header-container d-flex align-items-center justify-content-end h-100 responsive-hero-text">
-    <div class="text-end me-5">
-        <h1 class="display-2 logo-font text-black mt-5">Train Smarter, Not Harder</h1>
-        <div class="my-3">
-            <a href="{% url 'courses' %}" class="btn rounded-1 text-uppercase py-3 border border-black border-1 browse-courses-button">Browse Courses</a>
-        </div>
-        <br>
-        <!-- About Us -->
-        <div class="about-text-wrapper mt-4">
-          <div class="text-start mt-5 about-us-section">
-              <h3 class="mb-3"><strong>About Pawgress</strong></h3>
-              <p>
-                At Pawgress, we believe every dog deserves the chance to thrive.
-                Our expertly designed training courses help dog owners build trust,
-                confidence, and lifelong skills, one paw at a time.
-              </p>
-              <p>
-                Whether you're raising a puppy, working with a rescue, or fine-tuning
-                advanced behaviors, we're here to guide you through every step of your journey.
-              </p>
-              <br>
-              <a href="https://www.facebook.com/" target="_blank" aria-label="Visit our Facebook page"><i class="fa-brands fa-facebook me-3 fa-2x social-icons"></i></a>
-              <a href="https://www.instagram.com/" target="_blank" aria-label="Visit our Instagram page"><i class="fa-brands fa-instagram me-3 fa-2x social-icons"></i></a>
-              <a href="https://x.com/?lang=en" target="_blank" aria-label="Visit our X page"><i class="fa-brands fa-x-twitter me-3 fa-2x social-icons"></i></a>
-          </div>
-        </div>
+  <div class="text-end me-5">
+      <h1 class="display-2 logo-font text-black mt-5">Train Smarter, Not Harder</h1>
+      <div class="my-3">
+          <a href="{% url 'courses' %}" class="btn border border-black rounded-1 text-uppercase browse-courses-button">Browse Courses</a>
+      </div>
     </div>
+      <br>
+  </div>
+{% endblock %}
+
+{% block content %}
+  <div class="container-fluid header-container d-flex align-items-start justify-content-end responsive-hero-text">
+  <div class="me-5">
+    <!-- About Us Section -->
+    <div class="about-us-section">
+      <h3 class="mb-3"><strong>About Pawgress</strong></h3>
+      <p>
+        At Pawgress, we believe every dog deserves the chance to thrive.
+        Our expertly designed training courses help dog owners build trust,
+        confidence, and lifelong skills, one paw at a time.
+      </p>
+      <p>
+        Whether you're raising a puppy, working with a rescue, or fine-tuning
+        advanced behaviors, we're here to guide you through every step of your journey.
+      </p>
+      <div class="mt-3">
+        <a href="https://www.facebook.com/" target="_blank" aria-label="Visit our Facebook page"><i class="fa-brands fa-facebook me-3 fa-2x social-icons"></i></a>
+        <a href="https://www.instagram.com/" target="_blank" aria-label="Visit our Instagram page"><i class="fa-brands fa-instagram me-3 fa-2x social-icons"></i></a>
+        <a href="https://x.com/?lang=en" target="_blank" aria-label="Visit our X page"><i class="fa-brands fa-x-twitter me-3 fa-2x social-icons"></i></a>
+      </div>
+    </div>
+    <br>
+    <hr>
+    <!-- Newsletter Section -->
+    <div class="newsletter-form mt-5 mb-4">
+      <h4 class="mb-3">Subscribe to our Newsletter</h4>
+      <form action="https://assets.mailerlite.com/jsonp/1541624/forms/155108573540517809/subscribe"
+            method="post"
+            target="_blank"
+            class="d-flex flex-column flex-sm-row align-items-center gap-2">
+        <input type="email"
+              name="fields[email]"
+              placeholder="Enter your email"
+              required
+              class="form-control w-auto border border-black border-1"
+              style="max-width: 300px;">
+        <button type="submit" class="btn border border-black border-1 newsletter-btn">Subscribe</button>
+      </form>
+      <script src="https://groot.mailerlite.com/js/w/webforms.min.js?v176e10baa5e7ed80d35ae235be3d5024" type="text/javascript"></script>
+      <p class="text-muted small mt-2">You can unsubscribe anytime.</p>
+      <p class="text-muted small mt-2">© {{ now|date:"Y" }} Pawgress. All rights reserved.</p>
+    </div>
+  </div>
 </div>
 {% endblock %}

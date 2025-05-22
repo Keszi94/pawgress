@@ -33,7 +33,7 @@
 
                         <!-- Title -->
                         <div class="mb-4">
-                            <p class="form-label fw-bold">Title</p>
+                            <p class="form-label fw-bold">Title*:</p>
                             {{ form.title }}
                             {% for error in form.title.errors %}
                                 <div class="text-danger">{{ error }}</div>
@@ -42,7 +42,7 @@
 
                         <!-- Description -->
                         <div class="mb-4">
-                            <p class="form-label fw-bold">Description</p>
+                            <p class="form-label fw-bold">Description*:</p>
                             {{ form.description }}
                             {% for error in form.description.errors %}
                                 <div class="text-danger">{{ error }}</div>
@@ -51,7 +51,7 @@
 
                         <!-- Content -->
                         <div class="mb-4">
-                            <p class="form-label fw-bold">Content</p>
+                            <p class="form-label fw-bold">Content*:</p>
                             {{ form.content }}
                             {% for error in form.content.errors %}
                                 <div class="text-danger">{{ error }}</div>
@@ -60,7 +60,7 @@
 
                         <!-- Price -->
                         <div class="mb-4">
-                            <p class="form-label fw-bold">Price</p>
+                            <p class="form-label fw-bold">Price*:</p>
                             {{ form.price }}
                             {% for error in form.price.errors %}
                                 <div class="text-danger">{{ error }}</div>
@@ -69,7 +69,7 @@
 
                         <!-- Category -->
                         <div class="mb-4">
-                            <p class="form-label fw-bold">Category</p>
+                            <p class="form-label fw-bold">Category*:</p>
                             {{ form.category }}
                             {% for error in form.category.errors %}
                                 <div class="text-danger">{{ error }}</div>
@@ -87,7 +87,7 @@
 
                         <!-- Time frame -->
                         <div class="mb-4">
-                            <p class="form-label fw-bold">Time frame</p>
+                            <p class="form-label fw-bold">Time frame*:</p>
                             {{ form.time_frame }}
                             {% if form.time_frame.help_text %}
                                 <small class="form-text text-muted">{{ form.time_frame.help_text }}</small>

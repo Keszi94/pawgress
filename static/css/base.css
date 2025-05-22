@@ -12,7 +12,7 @@ body.home-page {
     background: url('/static/images/homepage_header.jpg') no-repeat center center fixed;
     background-size: cover;
     background-position: 15% center;
-    overflow: hidden; /* Stop page from scrolling on home page */
+    /* overflow: hidden; Stop page from scrolling on home page */
 }
 
 header {
@@ -69,7 +69,9 @@ header {
 .add-to-cart-btn {
     background: #f06543;
     color: black;
-    min-width: 260px;
+    padding: 0.75rem 2rem;
+    font-size: 1rem;
+    width: auto;
 }
 
 .search-btn {
@@ -78,6 +80,11 @@ header {
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+.newsletter-btn {
+    background: #f06543;
+    color: black;
 }
 
 .social-icons {
@@ -97,7 +104,10 @@ header {
 .search-btn:focus,
 .add-to-cart-btn:hover,
 .add-to-cart-btn:active,
-.add-to-cart-btn:focus {
+.add-to-cart-btn:focus,
+.newsletter-btn:hover,
+.newsletter-btn:active,
+.newsletter-btn:focus {
     background: #f09d51;
     color: black;
 }
@@ -360,3 +370,21 @@ a.secure-checkout-btn:focus {
     }
 }
 
+/* semi-transparent background for home page text */
+@media (max-width: 1598px) {
+  .about-us-section,
+  .newsletter-form {
+    background-color: rgba(255, 255, 255, 0.494);
+    padding: 1.5rem;
+    border-radius: 8px;
+  }
+}
+
+/* Make browse courses button smaller on small screens */
+@media (max-width: 486px) {
+  .browse-courses-button {
+    padding: 0.5rem 1rem;
+    font-size: 0.875rem;
+    width: fit-content;
+  }
+}
