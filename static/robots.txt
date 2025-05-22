@@ -1,0 +1,4 @@
+User-agent: *
+Disallow:
+
+Sitemap: https://pawgress-by-keszi94-02abbb46130d.herokuapp.com/sitemap.xml

@@ -1,5 +1,7 @@
 # Testing - Pawgress
 
+Note: This document focuses solely on the testing process and results for the Pawgress project. For the full project overview, including features, deployment and credits, please refer to the [README.md.](README.md) file.
+
 ## Contents
 
   - [Manual Testing](#manual-testing)
@@ -198,7 +200,7 @@ Across all pages, there were 2 warnings related to the navigation bar: an empty 
 
 Lighthouse was used to generate performance and accessibility reports for both the desktop and mobile versions of the site.
 
-Under each page name, the first image on the left shows the performance scores for mobile devices, while the images on the right show the desktop test results.
+Under each page name, the first image shows the performance scores for mobile devices, while the images on the bottom show the desktop test results.
 
 * Home page:
 
