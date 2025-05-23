@@ -2,7 +2,9 @@
 
 ![Responsiveness](readme_assets/images/am_i_responsive.png)
 
-[To see the Live site, click here!](https://pawgress-by-keszi94-02abbb46130d.herokuapp.com/)
+Pawgress is an online platform dedicated to helping dog owners build stronger, smarter relationships with their furry companions. Whether you're welcoming a puppy into your home, working through behavioral challenges or simply looking to sharpen your dog’s advanced skills, Pawgress offers a wide selection of professional training courses to guide you evry step of the way. Designed with accessibility, simplicity and professionalism in mind, the site provides a smooth and supportive learning experience for both seasoned owners and first time dog parents.
+
+[To visit the Live site, click here!](https://pawgress-by-keszi94-02abbb46130d.herokuapp.com/)
 
 ## Contents
 
@@ -72,6 +74,17 @@ Pawgress is aimed at dog owners of all experience levels who are looking for acc
 ### User Stories
 ### Wireframes
 ### Database Schema
+
+The database structure for this project centers around Django’s built-in User model, which manages authentication and user identity. From there, several other models are connected to enable core functionality for course purchases, content management and user progress tracking.
+
+* Each user can purchase multiple items (courses and/or bundles).
+* A Purchase contains one or more PurchaseItem entries, which can reference either a Course or a Bundle.
+* A Bundle groups multiple Courses, allowing users to buy several related trainings together at a discounted price.
+* Courses are categorized via the Category model, and each Course belongs to one Category.
+
+This design supports many-to-many relationships where needed (e.g.: bundles and courses) and avoids duplication by handling content and purchasing logic separately.
+
+![ER diagram](readme_assets/images/er_diagram.png)
 
 
 ## Design
@@ -442,6 +455,12 @@ You can also navigate to a specific section of the file by selecting one of the 
 * I gathered information from the [Django Documentation](https://www.djangoproject.com/) throughout the build.
 * All Course and Bundle contents, including titles and descriptions were created by [ChatGPT](https://chatgpt.com/).
 * [Flake8 documentation](https://flake8.pycqa.org/en/3.1.1/index.html)
+* I have gathered some useful information from the following youtube videos:
+    * [E-commerce Website With Django and Vue Tutorial (Django Rest Framework)](https://www.youtube.com/watch?v=Yg5zkd9nm6w&ab_channel=freeCodeCamp.org)
+    * [Django Project: Build a Micro eCommerce with Python, Django, Neon Postgres, Stripe, & TailwindCSS](https://www.youtube.com/watch?v=qx9nshX9CQQ&ab_channel=CodingEntrepreneurs)
+    * [Bootstrap 5 Crash Course](https://www.youtube.com/watch?v=Jyvffr3aCp0&ab_channel=WebDevSimplified)
+
+Extra resources are credited in the TESTING.md file, under the Bug Fixes section.
 
 ### Media
 
