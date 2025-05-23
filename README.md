@@ -129,6 +129,21 @@ More details on the project's progress and priorities can be found on te [Pawgre
   * Add meta tags (Essential Meta Tags Open Graph, Twitter Cards)
 
 ### Wireframes
+
+I created wireframes for the three main pages before starting development to plan the structure and layout of the site. These helped to guide the overall design and flow during the build.
+
+* Home page
+
+  ![wireframe home](readme_assets/images/wireframes/wireframe_home.png)
+
+* Courses page:
+
+  ![wireframe courses](readme_assets/images/wireframes/wireframe_courses.png)
+
+* Bundles page:
+
+  ![wireframe bundles](readme_assets/images/wireframes/wireframe_bundles.png)
+
 ### Database Schema
 
 The database structure for this project centers around Django’s built-in User model, which manages authentication and user identity. From there, several other models are connected to enable core functionality for course purchases, content management and user progress tracking.
@@ -704,6 +719,10 @@ Extra resources are credited in the TESTING.md file, under the Bug Fixes section
 * Favicons
   
     * The favicons were created on [favicon.io](https://favicon.io/)
+
+* Wireframes
+
+  The wireframes for the three main pages were created on [Moqups](https://app.moqups.com/).
 
 ### Acknowledgments
 
