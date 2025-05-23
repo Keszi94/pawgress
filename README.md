@@ -367,25 +367,67 @@ A custom 404 error page has been implemented to provide a friendly fallback when
 
 ## Future Features
 
+* Bundle Creation for admins from the front-end
+* Bundle edit/deletion from the front-end for admins
+
 
 ## SEO and Web Marketing
 
 ### Keyword Research
+
+Before beginning development, I conducted keyword research to identify relevant terms and queries the users might search for when looking for things related to dog training. The research focused on general dog training, owner support, and home based solutions.
+This helped with both the course content and the SEO strategy.
+
+![keyword research](readme_assets/images/seo_and_marketing/keyword_research.png)
+
 ### Marketing Strategy
+
+To begin building engagement, I created a mock [Facebook page](https://www.facebook.com/profile.php?id=61575934871651) for Pawgress. Since Facebook often removes test pages, I’ve took a screenshots of the page.
+
+![facebook page 1](readme_assets/images/seo_and_marketing/facebook_page_one.png)
+![facebook page 2](readme_assets/images/seo_and_marketing/facebook_page_two.png)
+![facebook page 3](readme_assets/images/seo_and_marketing/facebook_page_three.png)
+
+I also integrated newsletter signup using [MailerLite](https://www.mailerlite.com/). At the time of submission, my account is stil under review so while no emails have been sent yet, the sign-up form works correctly and the subscribers are being collected successfully. 
+
+Preview of the welcome email:
+
+  ![welcome newsletter](readme_assets/images/seo_and_marketing/welcome_newsletter_email.png)
+
+  ![subscriber count on mailite](readme_assets/images/seo_and_marketing/subscriber_count.png)
+
 ### SEO implementation
 
+To improve search engine visibility and user experience, several SEO best practices were implemented:
+
+* Meta Tags:
+  
+  These include a short description of the site, some keywords, and basic informaion for search engines such as who made the site and whether it should be indexed.
+
+  Example:
+
+  ```html
+  <meta name="description" content="Pawgress is a premium platform offering dog training courses and bundles created by professionals. Train your pup with confidence, at home.">
+  <meta name="keywords" content="dog training, online dog training, dog courses, puppy training, dog behavior, pawgress, dog training at home, online dog training courses">
+  ```
+
+* Open Graph and Twitter Cards:
+  
+  These make sure that if someone shares the site on platforms like Facebook or Twitter it shows a proper preview with a title, image, and description.
+
+* Favicon & Web Manifest:
+  
+  I set up favicons in all the right sizes and added a manifest file so the site works better across devices and platforms.
 
 ## Techonologies Used
 
   * Python 3 – Core programming language.
 
-  * Django 5.2 – High-level Python web framework for rapid development and clean design.
+  * Django 5.2 – High level Python web framework for rapid development and clean design.
 
   * PostgreSQL – Relational database, accessed via psycopg2.
 
   * Gunicorn – WSGI HTTP server for running the Django application in production.
-
-  * Amazon S3 + Boto3 – For media and static file storage, integrated via django-storages.
 
   * Stripe API – Used for handling payments.
 
@@ -403,10 +445,15 @@ A custom 404 error page has been implemented to provide a friendly fallback when
 
   * Pillow – Python Imaging Library for image processing.
 
-  * dj-database-url – Simplifies database configuration from environment variables.
-
   * Cryptography & CFFI – Used for secure data handling and encryption.
 
+  * Django CKEditor – Rich text editor for Django, used for course content creation.
+
+  * Django Cloudinary Storage – Enables integration with Cloudinary for storing uploaded media files: course and bundle images.
+
+  * Python3 openid – Used by Django Allauth to support third-party authentication, this instance Google sign-in.
+
+  * Whitenoise – Serves static files (like CSS and JavaScript) directly in production without extra setup.
 
 
 ## Testing
@@ -443,11 +490,11 @@ You can also navigate to a specific section of the file by selecting one of the 
 ### Code Used
 
 * I have grabbed various codes from the [Bootstrap Docs](https://getbootstrap.com/docs/5.3/getting-started/introduction/).
-* I used [CSS Gradient.io](https://cssgradient.io/) to generate the css code for the courses detail page header background.
 * All icons used on the side are from [Font Awesome](https://fontawesome.com/).
 * For the purchase setup I used the official [Stripe documentation](https://docs.stripe.com/).
 * I used [MailerLite](https://www.mailerlite.com/) for the newsletter implementation.
-
+* I followed Code Institute's [Boutique Ado walktrough project](https://github.com/Code-Institute-Solutions/boutique_ado_v1) as a reference throughout the development of my project.
+* The newsletter signup functionality was implemented using code provided by [Mailer lite's documentation](https://www.mailerlite.com/).
 
 ### Supporting Material
 
@@ -530,3 +577,7 @@ Extra resources are credited in the TESTING.md file, under the Bug Fixes section
     * The favicons were created on [favicon.io](https://favicon.io/)
 
 ### Acknowledgments
+
+I would like to acknowledge the following people who helped me along the way in completing this project:
+
+* My Code Institute mentor, [Graeme Taylor](https://github.com/G-Taylor). Thank you for your ongoing guidance and support, not just on this project, but throughout all of them over the past year.

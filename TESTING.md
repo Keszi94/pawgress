@@ -23,10 +23,97 @@ Note: This document focuses solely on the testing process and results for the Pa
 ## Manual Testing
 
 ### Navigation
+
+**Test**|**Steps**|**Expected**|**Result**
+-----|-----|-----|:-----:
+Home page loads from URL|Enter the website URL in the browser|Home page displays correctly|Pass
+Clicking on the site logo redirects to Home|Click on the site logo on any page|Redirects to the home page|Pass
+Navigate to "All Courses" via navbarr|Click 'All Courses' menu item in the navbar|Courses page loads|Pass
+Navigate to "Course Bundles" via navbar|Click 'Course Bundles' menu item in the navbar|Bundles page loads|Pass
+Search functionality in navbar|Type a keyword in the search bar and click search|Search results show relevant courses|Pass
+Dropdown menu for categories displays correctly|Click 'Categories' menu item in the navbar|Dropdown expands and shows category options|Pass
+Selecting a category displays relevan tcourses|Click on a category from the dropdown|Courses under the selected category are displayed|Pass
+Clicking on the category on a course card displays all relevant courses|Click on a categry on a course card|Courses under the selected category are displayed|Pass
+Navbar collapses on small screens|Resize window to mobile size|Hamburger menu appears|Pass
+Mobile menu expands correctly|Click hamburger icon|Mobile nav menu expands with links|Pass
+
 ### Responsiveness
+
+**Test**|**Steps**|**Expected**|**Result**
+-----|-----|-----|:-----:
+Navbar adapts to screen size|Resize browser window or view on different devices|Navbar colapses into a hamburger menu on smaller screens|Pass
+Logo displays under navbar on small screens|View all pages on small screens|Logo displays in top left of the page, blow navbar|Pass
+Course cards are responsive|View Courses page on various screen sizes|Cards display properly and inline on smaller screens|Pass
+Bundle cards are responsive|View Bundles page on various screen sizes|Cards display properly and inline on smaller screens|Pass
+Forms adapt to smaller screens|Test and checkout/authentication/new course form fields on mobile|Form fields stack properly and remain usable|Pass
+Hero section adapts on home page|View header text and "Browse Courses" button on different devices|Text resizes and button remains clickable and visible, text displays on semi-transparent white background|Pass
+Newsletter and About sections stack properly|View home page on mobile|Sections stack vertically and remain aligned under hero text|Pass
+
 ### Authentication
+
+**Test**|**Steps**|**Expected**|**Result**
+-----|-----|-----|:-----:
+Register with valid info|Go to Register page and fill out form with valid info|Confirmation email is sent with link|Pass
+Register with existing email|Try registering with an already used email|Error message displayes, registration denied|Pass
+Registration email link works|Register a new account, click link in confirmation email|Email link redirects to page, confirms account creation|Pass
+Login with correct credentials|Go to Login page, enter valid username/email and password|logged in and redirected to home page, success message shows|Pass
+Login with incorrect credentials|Enter wrong credentials on Login page|Error message appears, login fails|Pass
+Logout as logged-in user|Click “Logout” from profile navbar icon dropdown|Logged out and confirmation message shows|Pass
+Access login restricted page while logged out|Go to /my_courses without while loogged out|Redirected to login page|Pass
+Use Google sign-in|Click “Continue with Google” on Login page and confirmation page|Redirects to Google login|Pass
+Password reset request|Click “Forgot password?”, submit account email|Reset password email is sent with link|Pass
+Password reset email link works|Click the reset link received in teh email|Link opens reset form correctly|Pass
+Login with new password|Log in after password reset|Authentication works, redirected to home page|Pass
+Access signup page while logged in|Try opening signup page with direct URL while already logged in|Redirected to home page|Pass
+
+### Purchases
+
+**Test**|**Steps**|**Expected**|**Result**
+-----|-----|-----|:-----:
+Add individual course to cart|Click “Add to Cart” on a course card|Course is added and success toast is shown|Pass
+Add individual course again|Click “Add to Cart” on same course again|Info toast appears: item already in cart, item is not added to cart|Pass
+Add bundle to cart|Click “Add to Cart” on a bundle card	|Bundle is added and success toast is shown|Pass
+Add duplicate bundle|Click “Add to Cart” on same bundle again|Info toast: bundle already in cart, bundle is not added to cart|Pass
+Add bundle containing already added course|Add a course to cart, then bundle including that course|Info toast: course in bundle already in cart|Pass
+Add bundle containing already owned course|Log in, buy a course then try to add bundle with that course in it|Bundle is added to cart, success toast displays, warning toast lists already owned course(s)|Pass
+Add course already owned|Try to add already purchased course to cart|Info toast: course already owned, not added to cart|Pass
+View cart|Click cart icon in navbar|Cart page displays with correct items and prices|Pass
+Remove course from cart|Click “Remove” icon next to course|Course is removed from cart, success toast shown|Pass
+Remove bundle from cart|Click “Remove” icon next to bundle|Bundle is removed from cart, success toast shown|Pass
+Empty cart message|Remove all items|Empty cart message and "Back to courses" button displays correctly|Pass
+Proceed to checkout|Click “Secure Checkout” button in cart|Checkout page with billing address/card details form is displayed|Pass
+Submit invalid checkout form|Leave fields blank or incorrect|Form shows validation errors|Pass
+Complete checkout with Stripe|Fill out checkout, submit test Stripe detais|Order processes, success page displays|Pass
+View checkout success|After Stripe payment, view success page|Order summary displays, courses added to profile, purchase email is sent|Pass
+Purchase recorded in database|Check admin panel "Purchases"|Purchase appears with correct details|Pass
+
+### Access
+
+**Test**|**Steps**|**Expected**|**Result**
+-----|-----|-----|:-----:
+View course detail (not owned)|Visit course page as anonymous or logged-in user without purchase|Page displays image, description, duration, message about needing purchase and att to cart button|Pass
+View course detail (owned)|Purchase course, then return to course page|Full content displays below course details|Pass
+Access course from bundle|Purchase a bundle, then access one of its courses (from included courses list/courses page)|Course is owned, full content is visible|Pass
+Mark course as completed|On “My Courses” page, click checkbox next to owned course|Checkbox is checked, visible confirmation for completion|Pass
+Create course as admin|Log in as superuser, navigate to “Add New Course”|Access granted to add form|Pass
+Create course as non-admin|Log in as normal user/stay logged out, attempt to access “Add New Course” via direct URL|Redirected to home page, error toast displays|Pass
+Edit course as admin|Log in as superuser, "Edit" option displays on course cards, click “Edit”|Course edit form loads with prefilled values|Pass
+Edit course as normal user|Log in as normal user, attempt to access edit via direct URL|Redirected to home page, error toast displays|Pass
+Delete course as admin|Log in as superuser, click “Delete” on course|Confirmation prompt shown, course is removed after confirmation|Pass
+Admin can view all course content at all times|Log in as Admin, open not owned course's detail page|The whole course content displays|Pass
+
 ### CRUD Functionality 
 
+**Test**|**Steps**|**Expected**|**Result**
+-----|-----|-----|:-----:
+Admin can access "Add New Course" page|Log in as superuser, naigate to /courses/create/ or use direct link|Course creation form displays|Pass
+Course form fields accept valid input|Fill out form with valid title, description, contet, image, category, price, duration, click "Submit"|New course is created and confirmation toast appears|Pass
+New course appears on the Courses page|After creating a course, go to Courses page|Course card displays with all provided info|Pass
+New course can be previewed by clicking on it|Click on course card from Courses page|Course detail page displays with course info|Pass
+"Edit" link is visible to admin only|Log in as regular user, check course cards thhen repeat while logged in as admin|Edit button not visible for regular users, only for superusers|Pass
+Admin can edit course details|Log in as superuser, click "Edit" on course and modify data and submit|Updates reflect on course detail and Courses page|Pass
+Edit form is pre-filled|Click "Edit" on an existing course|Form fields display current course data|Pass
+Admin can delete a course|Click "Delete" on a course, confirm deletion in popup|Course is removed from Courses page and success toast displays|Pass
 
 ## Automated Testing
 
