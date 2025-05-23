@@ -40,10 +40,32 @@
 ## User Experience (UX)
 
 ### Target Audience
+
+Pawgress is aimed at dog owners of all experience levels who are looking for accessible, structured at-home training courses online. This includes first time puppy owners, adopters of rescue dogs, and more experienced handlers looking to build new skills.
+
 ### User Goals
+
+* Quickly find suitable dog training courses for their needs.
+* Understand what each course or bundle offers before purchasing.
+* Easily navigate the site and make secure purchases.
+* Track their owned courses and progress over time.
+
 ### Site Owner Goals
+
+* Present a clean, professional, and trustworthy platform for showcasing courses.
+* Make it easy for users to browse, buy and access their training courses.
+* Encourage signups to the newsletter for ongoing engagement.
+* Maintain a good user experience across all screen sizes and devices.
+* Demonstrate good development practices.
+
 ### UX Features
 
+* Clear call-to-action button on the homepage to guide users toward browsing courses.
+* Consistent navigation with mobile friendly responsiveness.
+* Cards for each course and bundle, making the info clear and esy to read.
+* A “My Courses” page to track purchased and completed courses.
+* Use of icons and styling for improved readablity and accessibility.
+* Visual feedback for functions adding to cart, delete from cart, etc.
 
 ## Planning
 
@@ -59,10 +81,11 @@
 ![Coolors palette](readme_assets/images/pawgress_palette.png)
 
 The color palette for the website was created using [coolors](https://coolors.co/).
+The color palette was one of the very first things I worked on when starting to style the site. I pulled the main light blue (#AAE1E7) straight from the homepage hero image, since it had a nice soft and friendly tone that felt right for the site. From there, I used Coolors to build out a full palette that would complement it, adding both warmer and cooler tones to give the site a cheerful but professiomal feel. The mix helped set the overall mood and made it easier to keep the design consistent across all the pages. The two main colors are deep orange(#F06543) and the aforementioned light blue (#AAE1E7) that are used on almost all the buttons on the site.
 
 ### Typography
 
-I have decided to use The font [Archivo](https://fonts.google.com/specimen/Archivo) from [Google Fonts](https://fonts.google.com/).
+I have decided to use The font [Archivo](https://fonts.google.com/specimen/Archivo) from [Google Fonts](https://fonts.google.com/). Archivo was designed for high-performance typography, which makes it a great fit for both large headlines and smaller body text. I like that it's modern and clean, which gives the site a professional and trustworthy feel while still being friendly and approachable. It's the ideal font for a site aimed at helping people train their dogs. It also pairs well with the site's minimal design and performs well across devices and screen sizes.
 
 ![Archivo font](readme_assets/images/archivo_font.png)
 
@@ -70,9 +93,21 @@ I have decided to use The font [Archivo](https://fonts.google.com/specimen/Archi
 
 ### Home Page
 
+* On the home page, just below the main header, there's a "Browse Courses" button that directs users straight to the course listings, making it quick and convenient to browse the content they're looking for. The button changes color upon hoverig, for a more interactive feel
+
+  ![home page browse button](readme_assets/images/home_browse_btn.png)
+
+* Just below the header text and "Browse courses" button, there’s a short "About Us" section to help visitors quickly understand what the site is about. Directly underneath are iconsl inking to the site's social media platforms. Each of the icons change color when hovered over, for a more interactive feel.
+
+  ![home page about us and social links](readme_assets/images/home_about_socials.png)
+
+* The homepage also features a “Subscribe to our Newsletter” section, giving users an easy way to stay updated with new courses, promotions and news. The form is quick to fill out, only requires an email address. A friendly success message confirms when the subscription is complete.
+
+  ![home page newsletter signup](readme_assets/images/home_newsletter.png)
+
 ### Courses page
 
-* The courses are displayed as cards and upon hovering the card size scales up.
+* The courses are displayed as cards and upon hovering the card size scales up for an interactive effect.
 
   ![courses page](readme_assets/images/courses_page.png)
 
@@ -80,32 +115,242 @@ I have decided to use The font [Archivo](https://fonts.google.com/specimen/Archi
   * The course image
   * A Category link, which upon clicking will refresh the page and display only the courses under that category
   * The training duration of the course
-  * The course description
+  * The course's description
   * The price of the course
-  * An 'Add to Cart' button, which will add the course to the cart, except if the course is alredy in the cart, either by itself or in a bundle. The button changes background color when hovering ove it.
+  * An 'Add to Cart' button, which will add the course to the cart unless:
+      <br>– It is already in the cart, either directly or inside a bundle
+      <br>– The course is already owned by the user
+      <br>The button also changes color on hover.
+ 
   
     ![course card](readme_assets/images/course_card.png)
 
 ### Course Detail Pages
 
+There are two views for all the course detail pages:
+
+  * If the user does **not** own the course:
+
+    * The course image
+    * The course description
+    * The estimated duration
+    * a text informing the user that the content is only available after purchase
+    * An "add to cart" button which: 
+      
+      <br>– For logged-in users, it adds the course to their cart 
+      <br>– For anonymous users, it redirects to the login page
+
+    ![course detail page not owned](readme_assets/images/course_detail_page_not_owned.png)
+
+* If the user **owns** the course, the full course content becomes visible, including:
+  
+  * The full training content becomes visible in plae of the message and "Add to cart" button
+
+  ![course detail page](readme_assets/images/course_detail_page_owned.png)
+
 ### Bundles page
 
-* The Bundles are also displayed as cards and upon hovering the card size scales up.
+* Like the coursses, bundles are displayed as cards and each card scales up slightly when hovered over.
 
    ![bundles page](readme_assets/images/bundles_page.png)
 
 * The bundle cards feature:
-  * The bundle's image 
-  * The bundle's title
+  * The bundle image 
+  * The bundle title
   * The description
-  * A list of the included courses, all of which are live links to their respected course detail page, so customers can read the individual course descriptions if they wish to
-  * The added up total value of all the courses included and the amount of money a potential customer will save on the bundle, all calculated automatically. It is intentionally displayed above the total price of the bundle, so the first information the customer sees is how much money they can save on a bundle. The color grabs attention and there is an emphasis on the amount they can save, but the text size is smaller compared to the actual bundle price.
-  * The actual discounted bundle price
-  * An 'Add To Cart' button, which will add the bundle to the cart if it's not already in, or if there is no course in the cart already that is included in the bundle. The button changes background color upon hoverring over it.
+  * A list of the included courses, each one linking to its respective course detail page so customers can read the individual course descriptions if they wish to
+  * The added up total value of all the courses included and the amount of money a potential customer will save on the bundle, all calculated automatically. It is intentionally displayed above the total price of the bundle, to first highlight how much money a customer can save on a bundle. The amount saved is displayed with attention-grabbing color, and there is an emphasis on the amount they can save, but uses a smaller font size then the actual bundle price.
+  * The actual, discounted bundle price
+  * An 'Add To Cart' button, which will add the bundle to the cart as long as: 
+    
+    <br>– The bundle itself is not already in the cart
+    <br>– None of the courses inside the bundle are already in the cart
+    <br>- If the user owns any course in the bundle, a warning message will list those specific courses, but still adds the bundle to the cart, because it would be wrong to refuse purchase on a discounted item
+    
+    <br>This ensures transparency, as only individual courses (not bundles) are tracked for ownership.
+    <br>The button also changes color on hover for visual feedback.
   
     ![bundle card](readme_assets/images/bundle_card.png)
 
 * The bundles do not have detail pages, since upon purchase the customer gains access to all the courses included in the bundle, therefore they only need acces to the specific course detail pages
+
+### Navigation
+
+The site features a responsive and intuitive navigation bar, designed for both desktop and mobile users.
+
+![navbar](readme_assets/images/navbar.png)
+
+* On larger screens, the logo is positioned on the left side of the navbar and links back to the homepage.
+* On smaller screens, the navbar adapts using a burger menu. The navigation items stack vertically, and all interactive elements (search, account, cart) remain accessible and functional.
+    
+  ![small nav burger menu](readme_assets/images/small_nav_burger.png)
+
+* Because of burger menu positioning, the logo shifts below the menu in the top left corner of the page and remains a clickable link to the homepage. Keeping the logo on all screen sizes helps visitors remember what site they are on.
+
+  ![small logo](readme_assets/images/small_logo.png)
+
+* Located at the center of the navbar is a search bar that allows users to easily search for courses. The search functionality checks both course and bundle titles, as well as the content of each course to deliver more relevant results. The search button is clearly visible for quick access.
+
+* Under the search bar, in the center of the page are the main nav links:
+  * Home
+  * All Courses
+  * Courses by Category (with a dropdown for filtering)
+  * Course Bundles
+
+  ![searcbar and nav links](readme_assets/images/searcbar_and_nav_links.png)
+
+* The Account icon, located on the right side of the navbar, opens a dropdown for:
+  *  registration and login/logout
+  *  'My courses' for logged in users
+  *  'Add New Course' for site admins
+  
+      ![account dropdown admin](readme_assets/images/account_dropdown_superuser.png)
+      ![account dropdown logged out](readme_assets/images/account_dropdown_logged_out.png)
+
+* To the right of the account is the Cart icon, which displays the total cart value in real-time if anything is in there.
+
+This layout ensures users can easily navigate the site, regardless of the device they’re using.
+
+### Cart and Checkout
+
+* Cart page:
+
+  The cart displays all added items, both individual courses and bundles with key details including the course/bundle title, price, and image. Each item has a clearly labeled "Remove from Cart" link, allowing for easy adjustments. The total cost is displayed at the bottom, along with two buttons:
+
+  * Keep Browsing takes users back to the courses page
+  * Secure Checkout proceeds to the Checkout page
+  * When the cart is empty, the user can browse on using the "Browse Courses" butoon, which takes them to the courses page
+
+  ![cart page](readme_assets/images/cart_page.png)
+
+* Checkout page:
+
+  At checkout, users are presented with a summary of their order alongside a simple, clean form to fill out their billing details. Stripe is integrated for secure payment handling.
+
+  * The Country field in the checkout form is a dropdown menu powered by Django’s `django_countries` package, helping users select their country quickly and reducing teh input errors.
+  * With the use of the "Adjust Cart" button, users can still go back and adjust the cart if they wish to
+  * A clear message shows the total amount charged
+  * The "Complete Purchase" button will become unclickable after the charging process starts
+  * After a successful purchase, the page redirects to the "Checkout Success" page
+
+  ![checkout page](readme_assets/images/checkout_page.png)
+
+* Checkout Success page:
+
+  Upon successful payment, users are directed to a confirmation page.
+
+    * A success message confirms the order, and a summary lists all purchased items
+    * A purchase ref. number is created and displayed
+    * A "Back to Courses" button helps users return to the courses page
+    * An email confirmation is sent automatically
+
+    ![checkout success](readme_assets/images/checkout_success.png)
+    ![purchase email confirm](readme_assets/images/purchase_confirmation_email.png)
+
+This flow ensures a smooth experience with minimal issues, even for first time users.
+
+### My Courses page
+
+Courses that have been purchased, either individually or through a bundle are displayed here with the familiar card layout, same as the Courses and Bundles pages. Each card includes the course image, title, training duration, and description. Both the image and the title are clickable and take the user to the course detail page.
+
+A unique feature of this page is the “Mark as completed” checkbox. This allows users to keep track of their progress manually, giving them a simple way to monitor which courses they've already worked through.
+
+![my courses page](readme_assets/images/my_courses_page.png)
+
+### Admin CRUD: Add/Edit/Delete Courses via Front-End
+
+* Admins can add new courses directly through a user-friendly front-end form. The form icludes fields for: 
+  * title
+  * description
+  * detailed content - the content field is enhanced with CKEditor, which allows admins to use rich text formatting for easier styling of the course material
+  * category dropdown
+  * estimated course duration dropdown
+  * image upload
+  * price
+
+  ![Add new course](readme_assets/images/add_course_frontend.png)
+
+* Courses can also be edited or deleted from the Courses page. These options are only visible to superusers. When editing, the form is pre-populated with the course’s existing data. Before deletion, JavaScript is used to trigger a browser confirmation, asking the user to confirm the action. 
+
+  ![delete/edit course](readme_assets/images/edit_delet_admin.png)
+  ![delete confirmation](readme_assets/images/delete-confirmation.png)
+
+### Authentication
+
+* Registration
+
+  Users can register with an email and password, or sign up using Google via OAuth integration. After registering, a confirmation email is sent with a confirmation link to verify the account.
+
+  ![register page](readme_assets/images/register_page.png)
+  
+* Login & Logout
+
+  Login and logout are handled through styled, user-friendly forms. The login page supports both traditional and Google login options.
+
+  ![login page](readme_assets/images/login_page.png)
+
+  ![logout page](readme_assets/images/logout_page.png)
+  ![continue with google](readme_assets/images/continue_with_google.png)
+
+* Password Reset
+
+  Users can request a password reset by entering their email. A reset link is then sent to their inbox for secure recovery.
+
+  ![reset password](readme_assets/images/reset_password.png)
+  
+* Email Confirmation & Testing
+
+  All email-related flows (registration confirmation and password reset) have been tested and verified to work correctly, the email templates are styled and clear.
+
+    ![register email](readme_assets/images/register_confirmation_email.png)
+    ![reset password email](readme_assets/images/password_reset_email.png)
+
+
+### Toast Messages
+
+Pawgress implements toast messages across the site to provide immediate feedback to users based on their interactions. These messages appear at the top of the screen and are color-coded for clarity: green for success, blue for alerts, yellow for warnings and red for the errors.
+The success and info messages dissappear after a few seconds, so users don't have to manually exit them.
+
+* Success (green) toasts notify users of actions like:
+    * successful login
+    * successful purchase 
+    * course creation/deletion/edit
+    * succesful login/logout
+    * adding/deleting courses or bundles displays a full rundown on the current state of the cart with a go to cart button for ease of use
+
+  ![success sign in](readme_assets/images/success_sign_in.png)
+  ![success course created](readme_assets/images/success_course_created.png)
+
+  ![success purchase](readme_assets/images/success_order_processed.png)
+  ![bundle added](readme_assets/images/success_bundle_added_to_cart.png)
+
+* Info (Alert - blue) toasts notify users if:
+    * a course is already in their cart
+    * if they attempt to add a course they already own
+  
+  ![bundle course already in cart](readme_assets/images/bundle_course_already_in_cart.png)
+  ![course already in bundle](readme_assets/images/course_already_in_bundle.png)
+
+  ![course already in cart](readme_assets/images/course_already_in_cart.png)
+  ![course already owned](readme_assets/images/course_already_owned.png)
+  
+* Warnings (yellow) are used for:
+    * when users add a bundle to the cart that contains courses they already own. The message lists those specific courses, but the bundle is still added to the cart
+  
+  ![already owned course(s) in bundle](readme_assets/images/already_owned_courses_in_bundle.png)
+
+* Error (red) toasts are:
+    * Used when an action can’t be completed, for example submitting an empty search form.
+
+  ![searchbar empty](readme_assets/images/error_searchbar_empty.png)
+
+This system helps ensure that users are informed about the outcome of their actions in a clear and unobtrusive way.
+
+### Custom 404 page
+
+A custom 404 error page has been implemented to provide a friendly fallback when users navigate to a non-existent page. It features a friendly image and a clear message, along with a button that takes users back to the home page, helping them find their way back to the site.
+
+![page not found](readme_assets/images/page_not_found_screenshot.png)
 
 ## Future Features
 
