@@ -72,6 +72,62 @@ Pawgress is aimed at dog owners of all experience levels who are looking for acc
 ## Planning
 
 ### User Stories
+
+The project was structured around six milestones, each focusing on a different stage of devlopment. These milestones were broken down into development goals and user stories. Features were prioritized using the MoSCoW method, making sure the most important parts were built first.
+More details on the project's progress and priorities can be found on te [Pawgress Kanban Board](https://github.com/users/Keszi94/projects/7/views/1).
+
+![kanban board](readme_assets/images/kanban_board.png)
+
+* Milestone 1 - User Accounts and Authentication
+
+  * Easily register for an account
+  * Easily log in and out
+  * Recieve confirmation email after registering
+  * Easily recover my password
+
+* Milestone 2 - Viewing and Navigation
+
+  * Browse all available training courses
+  * View individual course details
+  * See my current total while browsing
+  * Recieve feedback on actions across the site
+  * See the course's duration time
+  * See the actual value of courses and the amount saved with bundles
+  * Accessing purchased course content - from courses page
+  * Accessing purchased course content - from My courses page
+
+* Milestone 3 - Sorting and Searching
+
+  * Find courses using search
+  * Find courses by categories
+
+* Milestone 4 - Checkout and Payments
+
+  * Add course to cart from courses list page
+  * View shopping cart
+  * Remove previously added item from the cart
+  * Choose the Country easily in the checkout form
+  * Enter payment details easily
+  * View and manage purchases in admin panel
+  * View a purchase confirmation
+  * Receive an email receipt
+
+* Milestone 5 - Admin CRUD
+
+  * Add courses to the site
+  * Create a Bundle with existing courses
+  * Creating courses on the front-end
+  * Deleting Courses on the front-end
+  * Editing Courses on the front-end
+
+* Milestone 6 - Dev
+
+  * Set up Bootstrap and base template
+  * Configure Django authentication system
+  * Add Favicons
+  * Add unit tests for site features
+  * Add meta tags (Essential Meta Tags Open Graph, Twitter Cards)
+
 ### Wireframes
 ### Database Schema
 
@@ -500,7 +556,7 @@ You can also navigate to a specific section of the file by selecting one of the 
 
 * [This article on bastakiss.com](https://bastakiss.com/blog/django-6/effective-implementation-of-django-templates-structure-inheritance-and-best-practices-800) helped me with template structuring.
 * I gathered information from the [Django Documentation](https://www.djangoproject.com/) throughout the build.
-* All Course and Bundle contents, including titles and descriptions were created by [ChatGPT](https://chatgpt.com/).
+* All Course and Bundle contents, including titles and descriptions as well as the subscription welcome letter and facebook post contents were created by [ChatGPT](https://chatgpt.com/).
 * [Flake8 documentation](https://flake8.pycqa.org/en/3.1.1/index.html)
 * I have gathered some useful information from the following youtube videos:
     * [E-commerce Website With Django and Vue Tutorial (Django Rest Framework)](https://www.youtube.com/watch?v=Yg5zkd9nm6w&ab_channel=freeCodeCamp.org)
