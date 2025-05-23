@@ -423,9 +423,13 @@ A custom 404 error page has been implemented to provide a friendly fallback when
 
 ## Future Features
 
-* Bundle Creation for admins from the front-end
-* Bundle edit/deletion from the front-end for admins
+All these features can be also viewed in the project's [Kanban board](https://github.com/users/Keszi94/projects/7/views/1) inside the "Ignored" column.
 
+* Have a personalised profile
+* Easily manage a wishlist from the My Profile page
+* Creating Bndles on the front-end (admin)
+* Deleting Bundles on the front-end (admin)
+* Editing Bundles on the front-end (admion)
 
 ## SEO and Web Marketing
 
@@ -537,9 +541,78 @@ You can also navigate to a specific section of the file by selecting one of the 
 ## Deployment
 
 ### Heroku Deployment
+
+This site is deployed to and currently hosted on the Heroku platform. The steps for deploying to Heroku with a custom PostgreSQL database setup are as follows:
+
+1. PostgreSQL Database Setup
+ * Navigate to [PostgreSQL from Code Institute](https://dbs.ci-dbs.net/).
+ * Enter your student email address in the input field provided.
+ * Click Submit.
+ * Wait while the database is created.
+ * Once the database is successfully created, check your student email inbox for further details.
+
+2. Django Project Settings
+
+* In the project workspace, navigate to/create a file named Procfile (remember the capital 'P'). Add the following code (replace <myapp> with your actual app name) and save the file:
+  ```makefile
+  web: gunicorn pawgress-by-keszi94.wsgi
+   ```
+* Now, create a file named env.py and add the following code, replacing <myurl> with your database URL and <mykey> with a secret key string. Save the file:
+  ```python
+  import os
+
+  os.environ["DATABASE_URL"] = "your-url-here"
+  os.environ["SECRET_KEY"] = "your-secret-key-here"
+  ```
+* Open settings.py and add the following imports near the top of the file:
+  ```python
+  import os
+  import dj_database_url
+  if os.path.isfile('env.py'):
+    import env
+  ```
+* Replace the SECRET_KEY and DATABASES variables with the following:
+  ```python
+  SECRET_KEY = os.environ.get('SECRET_KEY')
+
+  DATABASES = {
+      'default': dj_database_url.parse(os.environ.get("DATABASE_URL"))
+  }
+  ```
+* Save the file, then run ```python manage.py migrate``` in the terminal to apply any database migrations.
+
+3. Push Changes to Repository
+ * Commit and push these changes to the repository to update your project.
+
+4.  Heroku Setup
+* Navigate to Heroku and log in or create an account.
+* Click "New" in the top right and select "Create New App."
+* Enter a unique app name, choose a region, then click "Create app."
+* Go to the "Settings" tab and click "Reveal Config Vars." Add the following:
+     * ```DATABASE_URL```: Your database URL from the previous setup.
+     * ```SECRET_KEY```: Your secret key.
+     * ```PORT```: 8000 (default port for Heroku apps).
+* Go to the "Deploy" tab, select "GitHub" under "Deployment method," and connect your repository.
+* Scroll down and click "Deploy Branch" to complete the deployment process.
+
 ### How to Fork
+
+1. Log in to your GitHub account.
+2. Navigate to the ['Pawgress' GitHub repository](https://github.com/Keszi94/pawgress).
+3. In the top right corner of the page, click the "Fork" button.
+4. Select your GitHub account or organization where you want to fork the repository.
+5. You now have a copy of the repository in your own account to make changes.
+
 ### How to Clone
 
+1. Log in to your GitHub account.
+2. Navigate to the ['Pawgress' GitHub repository](https://github.com/Keszi94/pawgress).
+3. Click on the "Code" button and ensure "HTTPS" is selected.
+4. Copy the repository URL.
+5. Open your terminal/command line, navigate to the folder where you want to clone the project, and run:
+```python
+git clone <repository-url>
+```
 
 ## Credits
 
