@@ -5,7 +5,7 @@
 
 <div class="container d-flex justify-content-center align-items-center page-not-found">
     <div class="text-center">
-        <img src="static/images/sad_dog.png" alt="Sad pug">
+        <img src="{% static 'images/sad_dog.png' %}" alt="Sad pug">
         <h1 class="display-4">404 Page Not Found</h1>
         <p class="lead">Oops! We couldn't find this page.</p>
         <a href="{% url 'home' %}" class="btn btn-lg rounded-1 text-uppercase py-3 border border-black border-1 browse-courses-button">
